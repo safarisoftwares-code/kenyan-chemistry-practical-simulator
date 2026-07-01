@@ -21,24 +21,26 @@
     .freeze-header {
       position: sticky; top: 0; z-index: 200;
       background: linear-gradient(135deg, #0f2b40 0%, #1a4058 60%, #1f4d6e 100%);
-      padding: 24px 30px 18px; color: white; display: flex; flex-wrap: wrap;
-      align-items: center; justify-content: space-between; gap: 14px;
+      padding: 20px 30px 14px; color: white; display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.25); border-radius: 28px 28px 0 0;
     }
-    .hero-left h1 { font-size: 1.9rem; font-weight: 700; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .badge-row { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+    .hero-left { text-align: center; }
+    .hero-left h1 { font-size: 1.9rem; font-weight: 700; display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .badge-row { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; justify-content: center; }
     .badge { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); padding: 4px 12px; border-radius: 18px; font-size: 0.78rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); }
-    .developer-tag { background: #f0c040; color: #0f2b40; font-weight: 700; padding: 7px 16px; border-radius: 22px; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+    .safari-tag-line { text-align: center; padding: 4px 30px 8px; background: #0f2b40; }
+    .safari-tag-line span { background: #f0c040; color: #0f2b40; font-weight: 700; padding: 5px 14px; border-radius: 16px; font-size: 0.78rem; }
 
     .freeze-tabs {
-      position: sticky; top: 98px; z-index: 199;
+      position: sticky; top: 106px; z-index: 199;
       display: flex; background: #eaf0f8; border-bottom: 2px solid #d0dbe8; margin: 0;
     }
-    .main-tab { flex: 1; padding: 14px 10px; background: transparent; border: none; font-weight: 700; font-size: 0.88rem; color: #4a6078; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; text-align: center; }
+    .main-tab { flex: 1; padding: 13px 8px; background: transparent; border: none; font-weight: 700; font-size: 0.82rem; color: #4a6078; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; text-align: center; }
     .main-tab:hover { color: #0f2b40; background: rgba(255,255,255,0.4); }
     .main-tab.active-tab { background: white; border-bottom: 3px solid #134b6e; color: #0f2b40; }
 
-    .main-panel { display: none; padding: 26px 28px 22px; animation: fade 0.25s; }
+    .main-panel { display: none; padding: 22px 24px 18px; animation: fade 0.25s; }
     .main-panel.active-panel { display: block; }
     @keyframes fade { from { opacity: 0.6; } to { opacity: 1; } }
 
@@ -98,6 +100,13 @@
     .flame.apple-green { background: #8bc34a; box-shadow: 0 0 22px rgba(139,195,74,0.8); }
     .flame-colour-label { font-weight: 700; margin-top: 6px; font-size: 0.85rem; }
 
+    .precip-card { background: #fff; border: 1px solid #dce5f2; border-radius: 14px; padding: 14px; }
+    .precip-card h4 { color: #0f2b40; border-bottom: 2px solid #f0c040; padding-bottom: 6px; margin-bottom: 8px; }
+    .precip-item { font-size: 0.82rem; line-height: 1.5; margin: 6px 0; padding: 8px; background: #fafcff; border-radius: 6px; }
+    .precip-item strong { color: #0f2b40; }
+    .precip-colour { color: #5d4037; }
+    .precip-note { font-size: 0.73rem; color: #888; margin-top: 4px; }
+
     .exam-question { background: #f7faff; padding: 16px; border-radius: 14px; margin-bottom: 14px; border: 1px solid #dce5f2; }
     .exam-question h3 { color: #0f2b40; margin-bottom: 6px; font-size: 0.9rem; }
     .option { display: block; padding: 9px 12px; margin: 4px 0; background: white; border: 2px solid #dce5f2; border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; }
@@ -135,15 +144,17 @@
             <span class="badge">🧪 Practical Chemistry</span>
             <span class="badge">📘 Chemistry Syllabus</span>
             <span class="badge">💧 Aqueous Ions</span>
+            <span class="badge" style="cursor:pointer;" onclick="document.getElementById('tabPrecipitates').click()">🔬 Precipitates Guide</span>
           </div>
         </div>
-        <div class="developer-tag">🔬 Safari Softwares</div>
       </div>
+      <div class="safari-tag-line"><span id="safariLink" style="background:#f0c040;color:#0f2b40;font-weight:700;padding:5px 14px;border-radius:16px;font-size:0.78rem;cursor:pointer;user-select:none;" title="Double-click to visit Safari Softwares website">🔬 Safari Softwares</span></div>
 
       <div class="freeze-tabs">
         <button class="main-tab active-tab" id="tabReactions">🧪 Ion Reactions</button>
         <button class="main-tab" id="tabFlame">🔥 Flame Tests</button>
-        <button class="main-tab" id="tabExam">📝 Practice Questions</button>
+        <button class="main-tab" id="tabExam">📝 Practice</button>
+        <button class="main-tab" id="tabPrecipitates">🔬 Precipitates</button>
       </div>
 
       <div class="main-panel active-panel" id="panelReactions">
@@ -158,7 +169,7 @@
 
         <div class="table-wrapper">
           <table>
-            <thead><tr><th id="cationHeader">Cation</th><th id="anionHeader">Anion</th><th id="equationHeader">Word equation</th><th>Product's Colour</th></tr></thead>
+            <thead><tr><th id="cationHeader">Cation</th><th id="anionHeader">Anion</th><th id="equationHeader">Word equation</th><th>Products' Colour</th></tr></thead>
             <tbody><tr>
               <td>
                 <select id="cationSelect"></select>
@@ -233,6 +244,62 @@
         <div class="marking-scheme" id="markingScheme" style="display:none;"></div>
       </div>
 
+      <!-- PANEL 4: PRECIPITATES GUIDE -->
+      <div class="main-panel" id="panelPrecipitates">
+        <h3 style="color:#0f2b40;margin-bottom:12px;">🔬 Theoretical Precipitates Guide</h3>
+        <p style="margin-bottom:14px;color:#4a6078;">Common precipitates formed when anions react with cations. Ionic equations, colours, and behaviour in excess reagent.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;">
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🟡 Carbonates (CO₃²⁻)</h4>
+            <div class="precip-item"><strong>Calcium (Ca²⁺)</strong><br>Ca²⁺ + CO₃²⁻ → CaCO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Magnesium (Mg²⁺)</strong><br>Mg²⁺ + CO₃²⁻ → MgCO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Zinc (Zn²⁺)</strong><br>Zn²⁺ + CO₃²⁻ → ZnCO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Iron(II) (Fe²⁺)</strong><br>Fe²⁺ + CO₃²⁻ → FeCO₃(s) ↓<br><span class="precip-colour">Greenish-grey precipitate</span></div>
+            <div class="precip-item"><strong>Copper(II) (Cu²⁺)</strong><br>Cu²⁺ + CO₃²⁻ → CuCO₃(s) ↓<br><span class="precip-colour">Blue-green precipitate</span></div>
+            <div class="precip-item"><strong>Lead(II) (Pb²⁺)</strong><br>Pb²⁺ + CO₃²⁻ → PbCO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Barium (Ba²⁺)</strong><br>Ba²⁺ + CO₃²⁻ → BaCO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <p class="precip-note"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺ carbonates</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🟠 Sulphates (SO₄²⁻)</h4>
+            <div class="precip-item"><strong>Calcium (Ca²⁺)</strong><br>Ca²⁺ + SO₄²⁻ → CaSO₄(s) ↓<br><span class="precip-colour">White precipitate (sparingly soluble)</span></div>
+            <div class="precip-item"><strong>Barium (Ba²⁺)</strong><br>Ba²⁺ + SO₄²⁻ → BaSO₄(s) ↓<br><span class="precip-colour">White precipitate</span><br><small>Insoluble in excess acid</small></div>
+            <div class="precip-item"><strong>Lead(II) (Pb²⁺)</strong><br>Pb²⁺ + SO₄²⁻ → PbSO₄(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <p class="precip-note"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺, Mg²⁺, Al³⁺, Zn²⁺, Fe²⁺, Fe³⁺, Cu²⁺ sulphates</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>⚪ Chlorides (Cl⁻)</h4>
+            <div class="precip-item"><strong>Lead(II) (Pb²⁺)</strong><br>Pb²⁺ + 2Cl⁻ → PbCl₂(s) ↓<br><span class="precip-colour">White precipitate</span><br><small>Soluble in hot water</small></div>
+            <div class="precip-item"><strong>Silver (Ag⁺)</strong><br>Ag⁺ + Cl⁻ → AgCl(s) ↓<br><span class="precip-colour">White precipitate</span><br><small>Turns purple in sunlight</small></div>
+            <p class="precip-note"><strong>Soluble:</strong> All other common chlorides</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🔵 Hydroxides (OH⁻)</h4>
+            <div class="precip-item"><strong>Calcium (Ca²⁺)</strong><br>Ca²⁺ + 2OH⁻ → Ca(OH)₂(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Magnesium (Mg²⁺)</strong><br>Mg²⁺ + 2OH⁻ → Mg(OH)₂(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Aluminium (Al³⁺)</strong><br>Al³⁺ + 3OH⁻ → Al(OH)₃(s) ↓<br><span class="precip-colour">White gelatinous precipitate</span><br><small>✅ Soluble in excess NaOH → [Al(OH)₄]⁻</small></div>
+            <div class="precip-item"><strong>Zinc (Zn²⁺)</strong><br>Zn²⁺ + 2OH⁻ → Zn(OH)₂(s) ↓<br><span class="precip-colour">White precipitate</span><br><small>✅ Soluble in excess NaOH → [Zn(OH)₄]²⁻</small></div>
+            <div class="precip-item"><strong>Iron(II) (Fe²⁺)</strong><br>Fe²⁺ + 2OH⁻ → Fe(OH)₂(s) ↓<br><span class="precip-colour">Dirty green precipitate</span></div>
+            <div class="precip-item"><strong>Iron(III) (Fe³⁺)</strong><br>Fe³⁺ + 3OH⁻ → Fe(OH)₃(s) ↓<br><span class="precip-colour">Reddish-brown precipitate</span></div>
+            <div class="precip-item"><strong>Copper(II) (Cu²⁺)</strong><br>Cu²⁺ + 2OH⁻ → Cu(OH)₂(s) ↓<br><span class="precip-colour">Blue precipitate</span></div>
+            <div class="precip-item"><strong>Lead(II) (Pb²⁺)</strong><br>Pb²⁺ + 2OH⁻ → Pb(OH)₂(s) ↓<br><span class="precip-colour">White precipitate</span><br><small>✅ Soluble in excess NaOH → [Pb(OH)₄]²⁻</small></div>
+            <p class="precip-note"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺, Ba²⁺ hydroxides</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🟤 Bromides (Br⁻) & Iodides (I⁻)</h4>
+            <div class="precip-item"><strong>Lead(II) + Bromide</strong><br>Pb²⁺ + 2Br⁻ → PbBr₂(s) ↓<br><span class="precip-colour">Cream precipitate</span></div>
+            <div class="precip-item"><strong>Lead(II) + Iodide</strong><br>Pb²⁺ + 2I⁻ → PbI₂(s) ↓<br><span class="precip-colour">Bright yellow precipitate</span></div>
+            <div class="precip-item"><strong>Copper(II) + Iodide</strong><br>2Cu²⁺ + 4I⁻ → 2CuI(s) + I₂<br><span class="precip-colour">Brown (iodine liberated)</span></div>
+            <p class="precip-note"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺, Ca²⁺, Mg²⁺, Al³⁺, Zn²⁺ bromides & iodides</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🟢 Sulphites (SO₃²⁻)</h4>
+            <div class="precip-item"><strong>Calcium (Ca²⁺)</strong><br>Ca²⁺ + SO₃²⁻ → CaSO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <div class="precip-item"><strong>Barium (Ba²⁺)</strong><br>Ba²⁺ + SO₃²⁻ → BaSO₃(s) ↓<br><span class="precip-colour">White precipitate</span></div>
+            <p class="precip-note"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺ sulphites</p></div>
+          <div class="precip-card" style="flex:1;min-width:280px;"><h4>🔄 Complex Ions & Excess Reagent</h4>
+            <div class="precip-item"><strong>Al(OH)₃ + Excess NaOH</strong><br>Al(OH)₃(s) + NaOH(aq) → Na[Al(OH)₄](aq)<br><span class="precip-colour">White ppt dissolves → colourless</span></div>
+            <div class="precip-item"><strong>Zn(OH)₂ + Excess NaOH</strong><br>Zn(OH)₂(s) + 2NaOH(aq) → Na₂[Zn(OH)₄](aq)<br><span class="precip-colour">White ppt dissolves → colourless</span></div>
+            <div class="precip-item"><strong>Pb(OH)₂ + Excess NaOH</strong><br>Pb(OH)₂(s) + 2NaOH(aq) → Na₂[Pb(OH)₄](aq)<br><span class="precip-colour">White ppt dissolves → colourless</span></div>
+            <div class="precip-item"><strong>Cu(OH)₂ + Excess NH₃</strong><br>Cu(OH)₂(s) + 4NH₃(aq) → [Cu(NH₃)₄]²⁺(aq) + 2OH⁻<br><span class="precip-colour">Blue ppt dissolves → deep blue</span></div>
+            <div class="precip-item"><strong>AgCl + Excess NH₃</strong><br>AgCl(s) + 2NH₃(aq) → [Ag(NH₃)₂]⁺(aq) + Cl⁻<br><span class="precip-colour">White ppt dissolves → colourless</span></div></div>
+        </div>
+        <div style="margin-top:16px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;">
+          <strong>📋 KCSE Solubility Rules Summary:</strong><br>
+          ✅ <strong>Always soluble:</strong> Na⁺, K⁺, NH₄⁺ salts | All nitrates (NO₃⁻) | Most chlorides (except Pb²⁺, Ag⁺)<br>
+          ❌ <strong>Common precipitates:</strong> Most carbonates | BaSO₄, PbSO₄, CaSO₄ | Most hydroxides (except Na⁺, K⁺, NH₄⁺, Ba²⁺)
+        </div>
+      </div>
+
       <div class="footer-tab-area">
         <div class="tab-header">
           <button class="tab-button" id="tabCopyright">© Copyright & Legal</button>
@@ -243,51 +310,24 @@
           <h3>📜 Copyright & Intellectual Property</h3>
           <p><strong>© 2025 Safari Softwares. All rights reserved.</strong></p>
           <p>This chemistry simulation software, including but not limited to:</p>
-          <ul>
-            <li>All source code (HTML, CSS, JavaScript)</li>
-            <li>Ion colour databases and reaction mappings</li>
-            <li>Visual design, layout, test tube graphics, and UI elements</li>
-            <li>Educational content aligned with the Kenyan syllabus</li>
-          </ul>
+          <ul><li>All source code (HTML, CSS, JavaScript)</li><li>Ion colour databases and reaction mappings</li><li>Visual design, layout, test tube graphics, and UI elements</li><li>Educational content aligned with the Kenyan syllabus</li></ul>
           <p>is the <strong>exclusive intellectual property</strong> of Safari Softwares. Protected under Kenyan copyright law (Copyright Act, Cap 130) and international treaties including the Berne Convention.</p>
           <p><strong>Prohibited actions:</strong> Unauthorized reproduction, distribution, modification, reverse engineering, decompilation, or commercial exploitation without prior written consent from Safari Softwares. Educational institutions may use this software freely for non-commercial teaching purposes only.</p>
           <p><strong>Contact:</strong> <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a></p>
-          <hr>
-          <h3>⚖️ Liability Disclaimer</h3>
+          <hr><h3>⚖️ Liability Disclaimer</h3>
           <p>While every effort has been made to ensure chemical accuracy, Safari Softwares assumes no liability for any errors, omissions, or damages arising from the use of this software. Users should cross-reference with official lab manuals and practical guides. This software is provided "as is" without warranty of any kind, express or implied.</p>
         </div>
         <div class="tab-panel" id="panelTerms">
           <h3>📋 Terms of Use Agreement</h3>
           <p><strong>Effective date:</strong> January 2025</p>
-          <ul>
-            <li><strong>Educational purpose:</strong> This software is designed exclusively for chemistry education aligned with the Kenyan syllabus.</li>
-            <li><strong>Permitted use:</strong> Free for non-commercial educational use by teachers, students, parents, and educational institutions in Kenya and worldwide.</li>
-            <li><strong>Redistribution:</strong> Redistribution of this software, in whole or in part, requires explicit written permission from Safari Softwares. Embedding in other websites or applications without attribution and permission is prohibited.</li>
-            <li><strong>Modifications:</strong> Users may not modify, adapt, or create derivative works based on this software without authorization.</li>
-            <li><strong>Data extraction:</strong> Scraping, harvesting, or extracting the ion reaction database for use in other systems is strictly forbidden.</li>
-            <li><strong>Accuracy:</strong> Chemical data is curated from standard references. However, actual laboratory results may vary depending on concentration, temperature, and purity of reagents.</li>
-            <li><strong>Termination:</strong> Safari Softwares reserves the right to revoke access or permissions at any time if terms are violated.</li>
-            <li><strong>Governing law:</strong> These terms are governed by the laws of the Republic of Kenya.</li>
-          </ul>
+          <ul><li><strong>Educational purpose:</strong> This software is designed exclusively for chemistry education aligned with the Kenyan syllabus.</li><li><strong>Permitted use:</strong> Free for non-commercial educational use by teachers, students, parents, and educational institutions in Kenya and worldwide.</li><li><strong>Redistribution:</strong> Redistribution of this software, in whole or in part, requires explicit written permission from Safari Softwares.</li><li><strong>Modifications:</strong> Users may not modify, adapt, or create derivative works based on this software without authorization.</li><li><strong>Data extraction:</strong> Scraping, harvesting, or extracting the ion reaction database for use in other systems is strictly forbidden.</li><li><strong>Accuracy:</strong> Chemical data is curated from standard references. Lab results may vary depending on concentration, temperature, and purity of reagents.</li><li><strong>Termination:</strong> Safari Softwares reserves the right to revoke access or permissions at any time if terms are violated.</li><li><strong>Governing law:</strong> These terms are governed by the laws of the Republic of Kenya.</li></ul>
         </div>
         <div class="tab-panel" id="panelPrivacy">
           <h3>🔒 Privacy Policy</h3>
           <p><strong>Effective date:</strong> January 2025</p>
           <p>Safari Softwares is committed to protecting user privacy. This application operates entirely within your web browser and does not collect, store, process, or transmit any personal information.</p>
-          <ul>
-            <li><strong>No data collection:</strong> We do not use cookies, analytics tools, tracking pixels, or any form of user monitoring.</li>
-            <li><strong>Local processing only:</strong> All chemical reaction calculations, ion selections, and display logic execute client-side on your device. No data is sent to any external server.</li>
-            <li><strong>No third-party services:</strong> This application does not integrate with any third-party services, advertising networks, or social media platforms that could collect data.</li>
-            <li><strong>Children's privacy:</strong> This educational tool is suitable for users of all ages, including children under 13. No personal information is requested, collected, or stored at any time.</li>
-            <li><strong>Your selections:</strong> Ion pair selections and equation preferences remain temporarily in your browser's memory and are cleared when you close or refresh the page.</li>
-            <li><strong>Contact:</strong> For privacy-related inquiries, contact <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a>.</li>
-          </ul>
-          <div style="background:#f2f6fc; padding:14px; border-radius:12px; margin-top:14px;">
-            <strong>📧 Safari Softwares</strong><br>
-            Email: <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a><br>
-            Location: Nairobi, Kenya<br>
-            <span style="font-size:0.8rem;">For permissions, customizations, syllabus alignment requests, or reporting inaccuracies, please reach out.</span>
-          </div>
+          <ul><li><strong>No data collection:</strong> We do not use cookies, analytics tools, tracking pixels, or any form of user monitoring.</li><li><strong>Local processing only:</strong> All chemical reaction calculations, ion selections, and display logic execute client-side on your device. No data is sent to any external server.</li><li><strong>No third-party services:</strong> This application does not integrate with any third-party services, advertising networks, or social media platforms that could collect data.</li><li><strong>Children's privacy:</strong> This educational tool is suitable for users of all ages, including children under 13. No personal information is requested, collected, or stored at any time.</li><li><strong>Your selections:</strong> Ion pair selections and equation preferences remain temporarily in your browser's memory and are cleared when you close or refresh the page.</li><li><strong>Contact:</strong> For privacy-related inquiries, contact <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a>.</li></ul>
+          <div style="background:#f2f6fc; padding:14px; border-radius:12px; margin-top:14px;"><strong>📧 Safari Softwares</strong><br>Email: <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a><br>Location: Nairobi, Kenya</div>
         </div>
         <div class="footer-empty" id="footerEmpty">👆 Click any tab above to view legal information. Click again to close.</div>
       </div>
@@ -435,9 +475,9 @@
 
       function getReaction(cK,aK){const k=cK+":"+aK;if(REACTION_DATA[k])return REACTION_DATA[k];const c=CATIONS.find(x=>x.value===cK),a=ANIONS.find(x=>x.value===aK);return{word:(c?.labelWord||'?')+' + '+(a?.labelWord||'?')+' → product',ionic:(c?.labelIonic||'?')+' + '+(a?.labelIonic||'?')+' → product',colour:"colourless",swatch:"#ffffff",productName:"product"};}
 
-      const mt={reactions:{btn:document.getElementById('tabReactions'),panel:document.getElementById('panelReactions')},flame:{btn:document.getElementById('tabFlame'),panel:document.getElementById('panelFlame')},exam:{btn:document.getElementById('tabExam'),panel:document.getElementById('panelExam')}};
+      const mt={reactions:{btn:document.getElementById('tabReactions'),panel:document.getElementById('panelReactions')},flame:{btn:document.getElementById('tabFlame'),panel:document.getElementById('panelFlame')},exam:{btn:document.getElementById('tabExam'),panel:document.getElementById('panelExam')},precipitates:{btn:document.getElementById('tabPrecipitates'),panel:document.getElementById('panelPrecipitates')}};
       function sm(k){Object.keys(mt).forEach(x=>{mt[x].btn.classList.remove('active-tab');mt[x].panel.classList.remove('active-panel');});mt[k].btn.classList.add('active-tab');mt[k].panel.classList.add('active-panel');}
-      mt.reactions.btn.addEventListener('click',()=>sm('reactions'));mt.flame.btn.addEventListener('click',()=>sm('flame'));mt.exam.btn.addEventListener('click',()=>sm('exam'));
+      mt.reactions.btn.addEventListener('click',()=>sm('reactions'));mt.flame.btn.addEventListener('click',()=>sm('flame'));mt.exam.btn.addEventListener('click',()=>sm('exam'));mt.precipitates.btn.addEventListener('click',()=>sm('precipitates'));
 
       const cs=document.getElementById('cationSelect'),as=document.getElementById('anionSelect'),ed=document.getElementById('equationDisplay'),pcn=document.getElementById('productColourNote'),ct=document.getElementById('colourText'),csw=document.getElementById('colourSwatch'),cct=document.getElementById('cationColourText'),csw2=document.getElementById('cationSwatch'),act=document.getElementById('anionColourText'),asw=document.getElementById('anionSwatch'),eh=document.getElementById('equationHeader'),ch=document.getElementById('cationHeader'),ah=document.getElementById('anionHeader'),wb=document.getElementById('wordEqBtn'),ib=document.getElementById('ionicEqBtn'),mi=document.getElementById('modeIndicator'),cl=document.getElementById('cationLiquid'),al=document.getElementById('anionLiquid'),pl=document.getElementById('productLiquid'),ctl=document.getElementById('cationTubeLabel'),atl=document.getElementById('anionTubeLabel'),ptl=document.getElementById('productTubeLabel');
       let cm='word';
@@ -484,6 +524,7 @@
       function tf(k){if(af===k)cf();else{cf();ft[k].btn.classList.add('active-tab');ft[k].panel.classList.add('active-panel');fe.style.display='none';af=k;}}
       ft.copyright.btn.addEventListener('click',()=>tf('copyright'));ft.terms.btn.addEventListener('click',()=>tf('terms'));ft.privacy.btn.addEventListener('click',()=>tf('privacy'));
 
+      document.getElementById('safariLink').addEventListener('dblclick',()=>{window.open('https://safarisoftwares-code.github.io/safari-softwares/','_blank');});
       ps();gq();fe.style.display='block';
     })();
   </script>
