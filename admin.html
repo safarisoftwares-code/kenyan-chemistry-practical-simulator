@@ -97,6 +97,7 @@
     <a href="#" onclick="showSection('bulk', this)"><span class="icon">📦</span> <span>Bulk Operations</span></a>
     <a href="#" onclick="showSection('settings', this)"><span class="icon">⚙️</span> <span>Settings</span></a>
     <a href="#" onclick="showSection('log', this)"><span class="icon">📝</span> <span>Activity Log</span></a>
+    <a href="#" onclick="showSection('activationLogs', this)"><span class="icon">🔑</span> <span>Key Activations</span></a>
     <a href="index.html" target="_blank" style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.2);"><span class="icon">🚀</span> <span>Open Simulator</span></a>
   </div>
 
@@ -165,15 +166,11 @@
         <div style="margin-top:10px;">
           <input type="text" id="genPassword" placeholder="Custom password (leave empty for auto-generate)" style="width:100%;">
         </div>
-        <div style="margin-top:10px;display:flex;gap:10px;">
+                <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button>
           <button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button>
+          <button class="btn btn-success" onclick="printKeyCard()" id="printKeyBtn" style="display:none;">🖨️ Print Key Card</button>
         </div>
-        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-  <button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button>
-  <button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button>
-  <button class="btn btn-success" onclick="printKeyCard()" id="printKeyBtn" style="display:none;">🖨️ Print Key Card</button>
-</div>
 <div id="genOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.82rem;white-space:pre-wrap;display:none;"></div>
       </div>
     </div>
@@ -294,6 +291,41 @@
       </div>
     </div>
 
+    <!-- ACTIVATION LOGS SECTION -->
+<div class="section" id="sec-activationLogs">
+  <div class="card">
+    <h3>🔑 Key Activation Attempts</h3>
+    <p style="color:#888;margin-bottom:10px;">Tracks every activation attempt — successful and rejected — with reasons.</p>
+    
+    <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+      <select id="activationFilter" style="flex:1;min-width:120px;padding:8px;" onchange="renderActivationLogs()">
+        <option value="all">All Attempts</option>
+        <option value="success">✅ Successful Only</option>
+        <option value="rejected">❌ Rejected Only</option>
+      </select>
+      <button class="btn btn-sm btn-primary" onclick="renderActivationLogs()">🔄 Refresh</button>
+      <button class="btn btn-sm btn-danger" onclick="clearActivationLogs()">🗑️ Clear Logs</button>
+    </div>
+    
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Date/Time</th>
+            <th>Key</th>
+            <th>Status</th>
+            <th>Reason</th>
+            <th>Device ID</th>
+            <th>Browser</th>
+          </tr>
+        </thead>
+        <tbody id="activationLogsTable">
+          <tr><td colspan="6" style="text-align:center;color:#888;">No activation attempts recorded yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
     <!-- ACTIVITY LOG SECTION -->
     <div class="section" id="sec-log">
       <div class="card">
@@ -397,7 +429,8 @@
         'devices': 'sec-devices',
         'bulk': 'sec-bulk',
         'settings': 'sec-settings',
-        'log': 'sec-log'
+        'log': 'sec-log',
+'activationLogs': 'sec-activationLogs'
       };
       
       const secId = secMap[section];
@@ -412,7 +445,8 @@
         'devices': '📱 Device Management',
         'bulk': '📦 Bulk Operations',
         'settings': '⚙️ Settings',
-        'log': '📝 Activity Log'
+        'log': '📝 Activity Log',
+'activationLogs': '🔑 Key Activations'
       };
       document.getElementById('sectionTitle').textContent = titles[section] || 'Dashboard';
       
@@ -1063,7 +1097,47 @@
   `);
   printWindow.document.close();
 }
+ function renderActivationLogs() {
+  const filter = document.getElementById('activationFilter').value;
+  let logs = [];
+  
+  try {
+    logs = JSON.parse(localStorage.getItem('safari_activation_logs') || '[]');
+  } catch(e) { logs = []; }
+  
+  // Filter
+  if (filter === 'success') logs = logs.filter(l => l.status === 'success');
+  if (filter === 'rejected') logs = logs.filter(l => l.status === 'rejected');
+  
+  // Sort by newest first
+  logs.sort((a, b) => new Date(b.time) - new Date(a.time));
+  
+  let html = '';
+  logs.forEach(l => {
+    const time = new Date(l.time).toLocaleString();
+    const statusBadge = l.status === 'success' 
+      ? '<span class="badge badge-active">✅ Success</span>' 
+      : '<span class="badge badge-expired">❌ Rejected</span>';
     
+    html += '<tr>' +
+      '<td style="font-size:0.75rem;">' + time + '</td>' +
+      '<td><code style="font-size:0.7rem;">' + (l.key || 'N/A') + '</code></td>' +
+      '<td>' + statusBadge + '</td>' +
+      '<td style="font-size:0.78rem;">' + (l.reason || '—') + '</td>' +
+      '<td><code style="font-size:0.65rem;">' + (l.device || '—') + '</code></td>' +
+      '<td style="font-size:0.65rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;" title="' + (l.browser || '') + '">' + (l.browser ? l.browser.substring(0, 40) : '—') + '</td>' +
+      '</tr>';
+  });
+  
+  document.getElementById('activationLogsTable').innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#888;">No activation attempts match your filter</td></tr>';
+}
+
+function clearActivationLogs() {
+  if (!confirm('Clear all activation logs? This cannot be undone.')) return;
+  localStorage.removeItem('safari_activation_logs');
+  renderActivationLogs();
+  addLog('Activation logs cleared');
+}   
     init();
   </script>
 </body>
