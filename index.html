@@ -14,7 +14,6 @@
     .hero-left h1 { font-size: 1.9rem; font-weight: 700; }
     .badge-row { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; justify-content: center; }
     .badge { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); padding: 4px 12px; border-radius: 18px; font-size: 0.78rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
-    .safari-tag-line { text-align: center; padding: 4px 30px 8px; background: #0f2b40; }
     .freeze-tabs { position: sticky; top: 106px; z-index: 199; display: flex; background: #eaf0f8; border-bottom: 2px solid #d0dbe8; margin: 0; flex-wrap: wrap; }
     .main-tab { flex: 1; min-width: 70px; padding: 13px 8px; background: transparent; border: none; font-weight: 800; font-size: 0.8rem; color: #4a6078; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; text-align: center; letter-spacing: 0.3px; }
     .main-tab:hover { color: #0f2b40; background: rgba(255,255,255,0.4); }
@@ -89,7 +88,7 @@
 </head>
 <body>
 <div class="main-container"><div class="unified-card">
-<div class="freeze-header"><div class="hero-left"><h1>⚗️ Kenyan Chemistry Practical</h1><div class="badge-row"><span class="badge" onclick="switchPanel('practical')">🧪 Practical</span><span class="badge" onclick="switchPanel('syllabus')">📘 Syllabus</span><span class="badge" onclick="switchPanel('ions')">💧 Ions</span><span class="badge" onclick="switchPanel('radicals')">🔬 Radicals</span><span class="badge" onclick="switchPanel('precipitates')">🔬 Precipitates</span><span class="badge" onclick="switchPanel('exam')">📝 Practice</span></div></div></div>
+<div class="freeze-header"><div class="hero-left"><h1>⚗️ Kenyan Chemistry Practical</h1><div class="badge-row"><span class="badge" onclick="switchPanel('practical')">🧪 Practical</span><span class="badge" onclick="switchPanel('syllabus')">📘 Syllabus</span><span class="badge" onclick="switchPanel('ions')">💧 Ions</span><span class="badge" onclick="switchPanel('radicals')">🔬 Radicals</span><span class="badge" onclick="switchPanel('solubility')">💧 Solubility</span><span class="badge" onclick="switchPanel('precipitates')">🔬 Precipitates</span><span class="badge" onclick="switchPanel('exam')">📝 Practice</span></div></div></div>
 <div class="freeze-tabs">
 <button class="main-tab active-tab" onclick="switchPanel('reactions')">🧪 REACTIONS</button>
 <button class="main-tab" onclick="switchPanel('flame')">🔥 FLAME</button>
@@ -101,15 +100,15 @@
 </div>
 
 <div class="main-panel active-panel" id="panelReactions">
-<div class="toggle-bar"><span style="font-weight:650;color:#0f2b40;font-size:0.92rem;">📐 Equation Mode:</span><div class="toggle-buttons"><button class="toggle-btn active" id="wordEqBtn">📝 Word Equation</button><button class="toggle-btn" id="ionicEqBtn">⚡ Ionic Equation</button></div><span class="mode-indicator" id="modeIndicator">🧪 WORD MODE</span></div>
+<div class="toggle-bar"><span style="font-weight:650;color:#0f2b40;font-size:0.92rem;">📐 Equation Mode:</span><div class="toggle-buttons"><button class="toggle-btn active" id="wordEqBtn">📝 Word Equation</button><button class="toggle-btn" id="ionicEqBtn">⚡ Ionic Equation</button></div><span class="mode-indicator" id="modeIndicator">🧪 WORD EQUATION MODE</span></div>
 <div class="table-wrapper"><table><thead><tr><th>Cation</th><th>Anion</th><th>Word equation</th><th>Products' Colour</th></tr></thead><tbody><tr><td><select id="cationSelect"></select><div class="ion-colour-indicator"><span class="mini-swatch" id="cationSwatch"></span><span id="cationColourText">colourless</span></div></td><td><select id="anionSelect"></select><div class="ion-colour-indicator"><span class="mini-swatch" id="anionSwatch"></span><span id="anionColourText">colourless</span></div></td><td><div class="equation-cell"><span class="equation-text" id="equationDisplay">—</span><span class="product-colour-note" id="productColourNote"></span></div></td><td><div class="colour-cell"><span class="colour-indicator" id="colourSwatch"></span><span id="colourText">—</span></div></td></tr></tbody></table></div>
 <div class="merged-row"><div class="merged-left"><div style="font-weight:700;color:#0f2b40;margin-bottom:6px;">🧪 Reactants → Product</div><div class="test-tubes-row"><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="cationLiquid" style="background:#fff;">—</div></div></div><div class="tube-label" id="cationTubeLabel">Cation</div></div><span class="arrow-symbol">+</span><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="anionLiquid" style="background:#fff;">—</div></div></div><div class="tube-label" id="anionTubeLabel">Anion</div></div><span class="arrow-symbol">→</span><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="productLiquid" style="background:#ccc;">?</div></div></div><div class="tube-label" id="productTubeLabel">Product</div></div></div></div><div class="merged-right"><button class="btn" id="previousBtn">⬅ Previous</button><button class="btn" id="clearSelectionsBtn">↺ Clear</button><button class="btn btn-primary" id="randomExampleBtn">🎲 Random</button></div></div>
 </div>
 
 <div class="main-panel" id="panelPractical"><h3>🧪 About This Chemistry Practical Simulator</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>🎯 Purpose</h4><div class="precip-item">This software simulates KCSE Chemistry Paper 3 practical experiments. Students explore ion reactions, flame tests, titration, gas identification, cation confirmatory tests, enthalpy measurements, and precipitate identification — all interactively.</div></div>
+<div class="precip-card" style="flex:1;min-width:280px;"><h4>🎯 Purpose</h4><div class="precip-item">This software simulates KCSE Chemistry Paper 3 practical experiments. Students explore ion reactions, flame tests, titration, gas identification, cation confirmatory tests, enthalpy measurements, solubility curves, and precipitate identification — all interactively.</div></div>
 <div class="precip-card" style="flex:1;min-width:280px;"><h4>👨‍🔬 Who Is It For?</h4><div class="precip-item"><strong>Form 1-2:</strong> Word equations with chemical names.<br><strong>Form 3-4:</strong> Ionic equations with symbols.<br><strong>Teachers:</strong> Classroom demonstration tool.<br><strong>Students:</strong> Self-study and exam preparation.</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>💡 Features</h4><div class="precip-item">• Ion reactions with test tube visualization<br>• Flame test simulator<br>• Titration simulator with auto-calculations<br>• Gas identification tests<br>• Cation confirmatory tests<br>• Enthalpy experiments with graphs<br>• Practice questions with marking scheme<br>• Precipitates, ions & radicals reference guides</div></div>
+<div class="precip-card" style="flex:1;min-width:280px;"><h4>💡 Features</h4><div class="precip-item">• Ion reactions with test tube visualization<br>• Flame test simulator<br>• Titration simulator with auto-calculations<br>• Gas identification tests<br>• Cation confirmatory tests<br>• Enthalpy experiments with graphs<br>• Solubility curves simulation<br>• Practice questions with marking scheme<br>• Precipitates, ions & radicals reference guides</div></div>
 </div></div>
 
 <div class="main-panel" id="panelSyllabus"><h3>📘 Table of Contents</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
@@ -119,6 +118,7 @@
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>💨 Gas Tests</h4><div class="precip-item">O₂, H₂, CO₂, NH₃, Cl₂, SO₂ identification.</div></div>
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>✅ Cation Tests</h4><div class="precip-item">Fe²⁺, Fe³⁺, Cu²⁺, Zn²⁺, Al³⁺, Pb²⁺ with NaOH/NH₃.</div></div>
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>🔥 Enthalpy</h4><div class="precip-item">Temperature-time graphs. ΔH calculations.</div></div>
+<div class="precip-card" style="flex:1;min-width:240px;"><h4>💧 Solubility</h4><div class="precip-item">Solubility curves, salt preparation, crystallization.</div></div>
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>📝 Practice</h4><div class="precip-item">MCQ questions with auto-marking & marking scheme.</div></div>
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>💧 Ions Guide</h4><div class="precip-item">All cations, anions & complex ions reference.</div></div>
 <div class="precip-card" style="flex:1;min-width:240px;"><h4>🔬 Radicals</h4><div class="precip-item">13 polyatomic radicals, oxidation states & calculation guide.</div></div>
@@ -187,7 +187,6 @@
 </div></div></div>
 
 <div class="main-panel" id="panelRadicals"><h3>🔬 Radicals Guide — Polyatomic Ions</h3><p style="color:#4a6078;margin-bottom:14px;">Common radicals tested in KCSE. Formulas, valencies, oxidation states, and calculation guide.</p>
-
 <div style="display:flex;flex-wrap:wrap;gap:14px;">
 <div class="precip-card" style="flex:1;min-width:340px;"><h4>📋 Complete Radicals Reference</h4>
 <div style="overflow-x:auto;"><table style="width:100%;font-size:0.78rem;border-collapse:collapse;">
@@ -207,31 +206,88 @@
 <tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Thiosulphate</td><td style="padding:6px;border:1px solid #dce5f2;">S₂O₃²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">S</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+2</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr>
 <tr><td style="padding:6px;border:1px solid #dce5f2;">Chlorate(V)</td><td style="padding:6px;border:1px solid #dce5f2;">ClO₃⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">Cl</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+5</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr>
 </tbody></table></div></div>
-
 <div class="precip-card" style="flex:1;min-width:300px;"><h4>⭐ Essential KCSE Radicals</h4>
-<div class="precip-item"><strong>MnO₄⁻ — Manganate(VII)</strong><br><span style="color:#8e44ad;">Purple</span> solution. Powerful oxidizing agent. Used in redox titrations. Reduced to Mn²⁺ (colourless).</div>
-<div class="precip-item"><strong>Cr₂O₇²⁻ — Dichromate(VI)</strong><br><span style="color:#e67e22;">Orange</span> solution. Turns <span style="color:#27ae60;">green</span> (Cr³⁺) when reduced by SO₂. Test for reducing agents.</div>
-<div class="precip-item"><strong>S₂O₃²⁻ — Thiosulphate</strong><br>Colourless. Used in iodine titration. Reacts with I₂: 2S₂O₃²⁻ + I₂ → S₄O₆²⁻ + 2I⁻. "Clock reaction".</div>
-<div class="precip-item"><strong>SO₄²⁻ — Sulphate(VI)</strong><br>Colourless. Forms <span style="color:#888;">white ppt</span> with Ba²⁺ (BaSO₄). Test for sulphates.</div>
-<div class="precip-item"><strong>CO₃²⁻ — Carbonate</strong><br>Colourless. Reacts with acids to produce CO₂ gas. Turns limewater milky.</div>
+<div class="precip-item"><strong>MnO₄⁻ — Manganate(VII)</strong><br><span style="color:#8e44ad;">Purple</span> solution. Powerful oxidizing agent. Used in redox titrations.</div>
+<div class="precip-item"><strong>Cr₂O₇²⁻ — Dichromate(VI)</strong><br><span style="color:#e67e22;">Orange</span> solution. Turns <span style="color:#27ae60;">green</span> when reduced by SO₂.</div>
+<div class="precip-item"><strong>S₂O₃²⁻ — Thiosulphate</strong><br>Colourless. Used in iodine titration. "Clock reaction".</div>
+<div class="precip-item"><strong>SO₄²⁻ — Sulphate(VI)</strong><br>Colourless. Forms white ppt with Ba²⁺ (BaSO₄).</div>
+<div class="precip-item"><strong>CO₃²⁻ — Carbonate</strong><br>Colourless. Reacts with acids to produce CO₂ gas.</div>
 </div>
 </div>
-
 <div style="background:#f0f4fa;padding:14px;border-radius:12px;margin-top:14px;"><h4 style="color:#0f2b40;">📐 How to Calculate Oxidation States</h4>
 <div style="display:flex;flex-wrap:wrap;gap:14px;">
 <div class="precip-card" style="flex:1;min-width:300px;"><h4>📋 Rules</h4>
-<div class="precip-item">1. Sum of oxidation states in a <strong>neutral compound = 0</strong></div>
-<div class="precip-item">2. Sum of oxidation states in an <strong>ion = charge on the ion</strong></div>
-<div class="precip-item">3. <strong>Oxygen (O) = -2</strong> (except in peroxides where it's -1)</div>
-<div class="precip-item">4. <strong>Hydrogen (H) = +1</strong> (except in metal hydrides where it's -1)</div>
-<div class="precip-item">5. Group 1 metals = +1, Group 2 metals = +2</div></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 Worked Example: MnO₄⁻</h4>
-<div class="precip-item"><strong>Find oxidation state of Mn in MnO₄⁻</strong><br><br>Let Mn = x<br>4 Oxygen atoms: 4 × (-2) = <strong>-8</strong><br>Total charge on ion = <strong>-1</strong><br><br>Equation: x + (-8) = -1<br>x - 8 = -1<br>x = -1 + 8<br><strong>x = +7</strong><br><br>✅ Manganese in MnO₄⁻ = <strong>+7</strong> (hence Manganate(VII))</div></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 Worked Example: Cr₂O₇²⁻</h4>
-<div class="precip-item"><strong>Find oxidation state of Cr in Cr₂O₇²⁻</strong><br><br>Let each Cr = x (2 Cr atoms = 2x)<br>7 Oxygen atoms: 7 × (-2) = <strong>-14</strong><br>Total charge = <strong>-2</strong><br><br>Equation: 2x + (-14) = -2<br>2x - 14 = -2<br>2x = 12<br><strong>x = +6</strong><br><br>✅ Each Chromium = <strong>+6</strong> (hence Dichromate(VI))</div></div>
+<div class="precip-item">1. Sum in neutral compound = 0</div><div class="precip-item">2. Sum in ion = charge on ion</div><div class="precip-item">3. Oxygen = -2 (except peroxides)</div><div class="precip-item">4. Hydrogen = +1 (except metal hydrides)</div></div>
+<div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 Example: MnO₄⁻</h4><div class="precip-item">Let Mn = x<br>4×(-2) = -8<br>x + (-8) = -1<br>x = +7<br>✅ Mn = +7 (Manganate VII)</div></div>
+<div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 Example: Cr₂O₇²⁻</h4><div class="precip-item">Let Cr = x<br>2x + 7×(-2) = -2<br>2x - 14 = -2<br>2x = 12<br>x = +6<br>✅ Cr = +6 (Dichromate VI)</div></div>
+</div></div>
 </div>
-<div style="margin-top:10px;background:#fef9e7;padding:12px;border-radius:8px;"><strong>🎯 Try These:</strong><br>• Calculate oxidation state of Cl in ClO₃⁻ (Answer: +5)<br>• Calculate oxidation state of S in SO₃²⁻ (Answer: +4)<br>• Calculate oxidation state of P in PO₄³⁻ (Answer: +5)<br>• Calculate oxidation state of N in NO₃⁻ (Answer: +5)</div>
+
+<div class="main-panel" id="panelSolubility"><h3>💧 Solubility & Solubility Curves</h3><p style="color:#4a6078;margin-bottom:10px;">Select a salt, heat the solution, record temperature and solubility. Plot the curve.</p>
+<div style="margin-bottom:10px;"><select id="solubilitySaltSelect" style="padding:8px;border-radius:8px;width:100%;max-width:400px;"><option value="0">KNO₃ — Potassium nitrate (sharp increase)</option><option value="1">KCl — Potassium chloride (gradual increase)</option><option value="2">NaCl — Sodium chloride (nearly constant)</option><option value="3">Ce₂(SO₄)₃ — Cerium(III) sulphate (decreases)</option><option value="4">K₂SO₄ — Potassium sulphate (increases then levels)</option></select></div>
+<div style="display:flex;gap:10px;justify-content:center;align-items:flex-end;margin:10px 0;flex-wrap:wrap;">
+<div style="display:flex;gap:16px;justify-content:center;align-items:flex-start;margin:14px 0;flex-wrap:wrap;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0px;">
+    <div style="text-align:center;">
+      <div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;">
+        <div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div>
+      </div>
+      <div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div>
+      <small style="font-size:0.5rem;">Therm.</small>
+    </div>
+    <div style="height:2px;"></div>
+    <div style="text-align:center;">
+      <div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;">
+        <div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div>
+        <div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div>
+      </div>
+      <small style="font-size:0.5rem;">Beaker</small>
+    </div>
+    <div style="height:0px;"></div>
+    <div style="text-align:center;margin-left:28px;">
+      <div style="position:relative;width:32px;height:50px;">
+        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:16px;height:22px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div>
+        <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);width:8px;height:22px;background:#7a8b9a;border-radius:1px;"></div>
+        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:10px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div>
+      </div>
+      <small style="font-size:0.5rem;">Bunsen</small>
+      <button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;min-width:200px;">
+    <span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solTimer">Time: 0s</span>
+    <span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solTemp">Temp: 20°C</span>
+    <span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solSolubility">Sol: 0g</span>
+  </div>
 </div>
+<div style="overflow-x:auto;margin-top:12px;"><table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.7rem;"><thead><tr style="background:#153e54;color:white;"><th style="padding:5px;">Time</th><th style="padding:5px;">Temp (°C)</th><th style="padding:5px;">Solubility (g/100g)</th><th style="padding:5px;">Observation</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:8px;">Click 🔥 Heat ON to start experiment</td></tr></tbody></table></div>
+<div id="solCurveGraph" style="text-align:center;margin-top:8px;background:#fff;border:1px solid #ccc;min-height:240px;max-width:100%;overflow-x:auto;"></div>
+<div id="solCurveLegend" style="text-align:center;margin-top:6px;font-size:0.75rem;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+  <span style="color:#e74c3c;font-weight:700;">● KNO₃</span>
+  <span style="color:#2980b9;font-weight:700;">● KCl</span>
+  <span style="color:#27ae60;font-weight:700;">● NaCl</span>
+  <span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span>
+  <span style="color:#e67e22;font-weight:700;">● K₂SO₄</span>
+</div>
+<div style="margin-top:12px;background:#f0f4fa;padding:14px;border-radius:12px;">
+  <h4 style="color:#0f2b40;">📊 Solubility Calculations</h4>
+  <div class="precip-item">
+    <strong>Formula:</strong> Solubility = (Mass of solute ÷ Mass of water) × 100<br>
+    <strong>Mass of solute at given temp = (Solubility × Mass of water) ÷ 100</strong>
+  </div>
+</div>
+
+<div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;">
+  <h4 style="color:#0f2b40;">📝 KCSE Exam-Style Questions</h4>
+  <ol style="padding-left:18px;line-height:1.9;">
+    <li><strong>Using the KNO₃ curve, determine the mass of KNO₃ that dissolves in 50g of water at 60°C.</strong><br><span style="color:#134b6e;">From curve: solubility at 60°C = 110g/100g water.<br>Mass in 50g water = (110 × 50) ÷ 100 = <strong>55g of KNO₃</strong></span></li>
+    <li><strong>A saturated solution of KCl is cooled from 70°C to 30°C. What mass of KCl crystals will form if 200g of water was used?</strong><br><span style="color:#134b6e;">At 70°C: solubility = 49g/100g → mass dissolved = (49 × 200) ÷ 100 = 98g<br>At 30°C: solubility = 37g/100g → mass dissolved = (37 × 200) ÷ 100 = 74g<br>Mass crystallized = 98 - 74 = <strong>24g of KCl</strong></span></li>
+    <li><strong>Which of the five salts would be best separated from a mixture by fractional crystallization? Explain.</strong><br><span style="color:#134b6e;">KNO₃ and KCl — KNO₃ has a very steep curve (large solubility change with temperature) while KCl changes gradually. When a hot solution is cooled, KNO₃ crystallizes out first while most KCl remains dissolved.</span></li>
+    <li><strong>Explain why Ce₂(SO₄)₃ behaves differently from the other salts when heated.</strong><br><span style="color:#134b6e;">Ce₂(SO₄)₃ dissolves exothermically — it releases heat when dissolving. According to Le Chatelier's principle, increasing temperature shifts equilibrium to favor the solid (undissolved) form, so solubility DECREASES with temperature rise.</span></li>
+    <li><strong>A student dissolves 15g of K₂SO₄ in 100g of water at 40°C. Is the solution saturated? Explain.</strong><br><span style="color:#134b6e;">From curve: solubility of K₂SO₄ at 40°C = 15g/100g water.<br>The student dissolved exactly 15g. The solution is <strong>just saturated</strong> — no more K₂SO₄ can dissolve at this temperature.</span></li>
+  </ol>
+</div>
+<div style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:8px;border:1px solid #f0c040;font-size:0.8rem;"><strong>💡 Key Note:</strong> The solubility of one salt does NOT interfere with the solubility of another salt. Each salt dissolves independently. This is why fractional crystallization works — different salts crystallize at different temperatures.</div>
 </div>
 
 <div class="main-panel" id="panelPrecipitates"><h3>🔬 Theoretical Precipitates Guide</h3><p style="color:#4a6078;margin-bottom:14px;">Common precipitates formed when anions react with cations. Ionic equations, colours, and behaviour in excess reagent.</p>
@@ -289,12 +345,13 @@
 <div class="tab-panel" id="panelTerms"><h3>📋 Terms of Use Agreement</h3><p><strong>Effective date:</strong> January 2025</p><ul><li><strong>Educational purpose:</strong> Designed exclusively for chemistry education aligned with the Kenyan syllabus.</li><li><strong>Permitted use:</strong> Free for non-commercial educational use by teachers, students, parents, and educational institutions in Kenya and worldwide.</li><li><strong>Redistribution:</strong> Requires explicit written permission from Safari Softwares.</li><li><strong>Modifications:</strong> Users may not modify, adapt, or create derivative works without authorization.</li><li><strong>Data extraction:</strong> Scraping or extracting the ion reaction database is strictly forbidden.</li><li><strong>Accuracy:</strong> Chemical data is curated from standard references. Lab results may vary.</li><li><strong>Termination:</strong> Safari Softwares reserves the right to revoke access if terms are violated.</li><li><strong>Governing law:</strong> Laws of the Republic of Kenya.</li></ul></div>
 <div class="tab-panel" id="panelPrivacy"><h3>🔒 Privacy Policy</h3><p><strong>Effective date:</strong> January 2025</p><p>Safari Softwares is committed to protecting user privacy. This application operates entirely within your web browser and does not collect, store, process, or transmit any personal information.</p><ul><li><strong>No data collection:</strong> No cookies, analytics, or tracking.</li><li><strong>Local processing only:</strong> All logic executes client-side.</li><li><strong>No third-party services:</strong> No external integrations.</li><li><strong>Children's privacy:</strong> Suitable for all ages.</li><li><strong>Contact:</strong> <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a></li></ul><div style="background:#f2f6fc;padding:14px;border-radius:12px;margin-top:14px;"><strong>📧 Safari Softwares</strong><br>Email: <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a><br>Location: Nairobi, Kenya</div></div>
 <div class="footer-empty" id="footerEmpty">👆 Click any tab above to view. Click again to close.</div></div>
+</div></div>
 
 <script>
 function switchPanel(k){
   document.querySelectorAll('.main-panel').forEach(p=>p.classList.remove('active-panel'));
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active-tab'));
-  const map={practical:'panelPractical',syllabus:'panelSyllabus',reactions:'panelReactions',flame:'panelFlame',titration:'panelTitration',gasTests:'panelGasTests',cationTests:'panelCationTests',enthalpy:'panelEnthalpy',exam:'panelExam',ions:'panelIons',radicals:'panelRadicals',precipitates:'panelPrecipitates'};
+  const map={practical:'panelPractical',syllabus:'panelSyllabus',reactions:'panelReactions',flame:'panelFlame',titration:'panelTitration',gasTests:'panelGasTests',cationTests:'panelCationTests',enthalpy:'panelEnthalpy',exam:'panelExam',ions:'panelIons',radicals:'panelRadicals',solubility:'panelSolubility',precipitates:'panelPrecipitates'};
   const p=document.getElementById(map[k]);if(p)p.classList.add('active-panel');
   const tabMap={reactions:0,flame:1,titration:2,gasTests:3,cationTests:4,enthalpy:5,precipitates:6};
   if(tabMap[k]!==undefined){const tabs=document.querySelectorAll('.main-tab');if(tabs[tabMap[k]])tabs[tabMap[k]].classList.add('active-tab');}
@@ -345,7 +402,15 @@ let af=null;
 function cf(){Object.keys(ft).forEach(k=>{ft[k].btn.classList.remove('active-tab');ft[k].panel.classList.remove('active-panel');});fe.style.display='block';af=null;}
 function tf(k){if(af===k)cf();else{cf();ft[k].btn.classList.add('active-tab');ft[k].panel.classList.add('active-panel');fe.style.display='none';af=k;}}
 ft.copyright.btn.addEventListener('click',()=>tf('copyright'));ft.terms.btn.addEventListener('click',()=>tf('terms'));ft.privacy.btn.addEventListener('click',()=>tf('privacy'));
-resetTitr();loadTQ();loadEQ();ps();gq();fe.style.display='block';
+// SOLUBILITY SIMULATION
+const solData=[{name:"KNO₃",temps:[20,30,40,50,60,70,80],sols:[32,46,64,86,110,138,170],colour:"#e74c3c"},{name:"KCl",temps:[20,30,40,50,60,70,80],sols:[34,37,40,43,46,49,52],colour:"#2980b9"},{name:"NaCl",temps:[20,30,40,50,60,70,80],sols:[36,36.3,36.6,37,37.3,37.7,38],colour:"#27ae60"},{name:"Ce₂(SO₄)₃",temps:[20,30,40,50,60,70,80],sols:[10.0,7.5,5.2,3.8,2.5,1.8,1.2],colour:"#8e44ad"},{name:"K₂SO₄",temps:[20,30,40,50,60,70,80],sols:[11,13,15,16.5,17.5,18,18],colour:"#e67e22"}];
+let solTimer=null,solStep=0,isHeating=false,currentSalt=0,allSolSteps=[0,0,0,0,0];
+const solSalt=document.getElementById('solubilitySaltSelect'),solTimeDisp=document.getElementById('solTimer'),solTempDisp=document.getElementById('solTemp'),solSolDisp=document.getElementById('solSolubility'),solTable=document.getElementById('solTable'),solGraph=document.getElementById('solCurveGraph'),thermoM=document.getElementById('thermoMercury'),beakerS=document.getElementById('beakerSolution'),bunsenF=document.getElementById('bunsenFlame'),heatBtn=document.getElementById('toggleHeatBtn');
+solSalt.addEventListener('change',()=>{currentSalt=parseInt(solSalt.value);resetSolubility();});
+function resetSolubility(){if(solTimer)clearInterval(solTimer);solStep=0;isHeating=false;solTimeDisp.textContent='Time: 0s';solTempDisp.textContent='Temp: 20°C';solSolDisp.textContent='Sol: 0g';thermoM.style.height='15%';beakerS.style.background='#b3d9ff';bunsenF.style.background='#ff9933';heatBtn.textContent='🔥 Heat ON';solTable.querySelector('tbody').innerHTML='<tr><td colspan="4">Click 🔥 Heat ON to start</td></tr>';drawAllCurves();}
+heatBtn.addEventListener('click',()=>{if(isHeating){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}else{resetSolubility();isHeating=true;heatBtn.textContent='🛑 Stop';bunsenF.style.background='#1a6eff';const d=solData[currentSalt];let h='';solTimer=setInterval(()=>{solStep++;allSolSteps[currentSalt]=Math.min(solStep,d.temps.length);const idx=Math.min(solStep-1,d.temps.length-1);const temp=d.temps[idx];const sol=d.sols[idx];solTimeDisp.textContent='Time: '+(solStep*20)+'s';solTempDisp.textContent='Temp: '+temp+'°C';solSolDisp.textContent='Sol: '+sol+'g';thermoM.style.height=(15+(temp-20)*2)+'%';if(temp>50)beakerS.style.background='#ffcccc';h+='<tr><td>'+(solStep*20)+'s</td><td>'+temp+'°C</td><td>'+sol+'g</td><td>'+(solStep===1?'Starting':solStep>=d.temps.length?'Saturated':'Dissolving...')+'</td></tr>';solTable.querySelector('tbody').innerHTML=h;drawAllCurves();if(solStep>=d.temps.length){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}},1000);}});
+function drawAllCurves(){const w=400,h=200,pad=40;let svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#333"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#333"/>';svg+='<text x="'+(w/2)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9">Temp (°C)</text>';svg+='<text x="10" y="'+(h/2)+'" text-anchor="middle" font-size="9" transform="rotate(-90,10,'+(h/2)+')">Solubility</text>';const allSols=solData.flatMap(d=>d.sols);const maxSol=Math.max(...allSols)+10;solData.forEach((d,si)=>{const ptsShown=allSolSteps[si];if(ptsShown>0){let pts='';for(let i=0;i<ptsShown;i++){const x=pad+((d.temps[i]-20)/(80-20))*(w-2*pad);const y=h-pad-((d.sols[i])/maxSol)*(h-2*pad);pts+=(i===0?'M':'L')+' '+x.toFixed(0)+' '+y.toFixed(0)+' ';svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="2" fill="'+d.colour+'"/>';}if(ptsShown>1)svg+='<path d="'+pts+'" fill="none" stroke="'+d.colour+'" stroke-width="2"/>';}});svg+='</svg>';solGraph.innerHTML=svg;}
+resetSolubility();resetTitr();loadTQ();loadEQ();ps();gq();fe.style.display='block';
 let tapCount=0;document.getElementById('safariFooterLink').addEventListener('click',()=>{tapCount++;if(tapCount>=4){window.open('https://safarisoftwares-code.github.io/safari-softwares/','_blank');tapCount=0;}setTimeout(()=>{tapCount=0},2000);});
 let prevStack=[];
 function saveCurrent(){if(cs.value&&as.value){prevStack.push({cation:cs.value,anion:as.value});if(prevStack.length>5)prevStack.shift();}}
