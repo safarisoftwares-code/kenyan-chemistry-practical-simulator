@@ -1,0 +1,26 @@
+{
+  "name": "Kenyan Chemistry Practical Simulator",
+  "short_name": "Chem Simulator",
+  "description": "Interactive KCSE Chemistry Paper 3 practical simulator for Kenyan students",
+  "start_url": "/kenyan-chemistry-practical-simulator/index.html",
+  "display": "standalone",
+  "background_color": "#e8eef5",
+  "theme_color": "#0f2b40",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5KqPC90ZXh0Pjwvc3ZnPg==",
+      "sizes": "100x100",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "science"],
+  "lang": "en-KE",
+  "dir": "ltr"
+}

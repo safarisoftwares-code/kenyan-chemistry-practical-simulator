@@ -1,0 +1,48 @@
+# Safari Softwares - Chemistry Simulator
+# Apache configuration file
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Custom 404 page
+ErrorDocument 404 /404.html
+
+# Custom 403 page
+ErrorDocument 403 /404.html
+
+# Custom 500 page
+ErrorDocument 500 /404.html
+
+# Block access to sensitive files
+<FilesMatch "^(admin\.html|admin-login\.html|generate-key\.html|totp-helper\.html)$">
+    Order Deny,Allow
+    Deny from all
+    # Allow from specific IP (uncomment and add your IP)
+    # Allow from 123.456.789.000
+</FilesMatch>
+
+# Password protect admin files
+<FilesMatch "^(admin\.html|admin-login\.html)$">
+    AuthType Basic
+    AuthName "Admin Access - Safari Softwares"
+    AuthUserFile /path/to/.htpasswd
+    Require valid-user
+</FilesMatch>
+
+# Block directory browsing
+Options -Indexes
+
+# Cache control for static assets
+<FilesMatch "\.(html|css|js|png|jpg|svg|ico)$">
+    Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
+
+# Prevent access to .git and other hidden files
+RedirectMatch 404 /\..*$
+
+# Compress text files
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json

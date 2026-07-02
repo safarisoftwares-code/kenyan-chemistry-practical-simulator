@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TOTP Code Generator | Safari Softwares</title>
+  <style>
+    body { 
+      font-family: monospace; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      background: #0f2b40; 
+      color: #0f0; 
+      margin: 0; 
+    }
+    .container { text-align: center; }
+    h2 { color: #f0c040; margin-bottom: 20px; }
+    .code { 
+      font-size: 5rem; 
+      font-weight: 900; 
+      letter-spacing: 15px; 
+      background: #1a3850; 
+      padding: 30px 40px; 
+      border-radius: 20px; 
+      display: inline-block;
+    }
+    .expires { color: #f0c040; margin-top: 15px; font-size: 1.2rem; }
+    .btn { 
+      margin-top: 20px; 
+      padding: 12px 30px; 
+      background: #134b6e; 
+      color: white; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-size: 1rem; 
+    }
+    .btn:hover { background: #0d3a55; }
+    .note { color: #888; margin-top: 10px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Admin 2FA Code</h2>
+    <div class="code" id="totpCode">------</div>
+    <p class="expires" id="expiresIn">Expires in 30 seconds</p>
+    <button class="btn" onclick="copyCode()">📋 Copy Code</button>
+    <p class="note">This code changes every 30 seconds</p>
+    <p class="note"><a href="admin-login.html" style="color:#f0c040;">← Back to Admin Login</a></p>
+  </div>
+
+  <script>
+    var TOTP_SECRET = 'Safari_Softwares';
+    
+    function generateTOTP() {
+      var now = Math.floor(Date.now() / 30000);
+      var secretSum = 0;
+      for (var i = 0; i < TOTP_SECRET.length; i++) {
+        secretSum += TOTP_SECRET.charCodeAt(i);
+      }
+      var code = ((now * secretSum * 7 + 13) % 900000) + 100000;
+      return code.toString();
+    }
+    
+    function updateDisplay() {
+      var code = generateTOTP();
+      document.getElementById('totpCode').textContent = code;
+      var secondsLeft = 30 - (Math.floor(Date.now() / 1000) % 30);
+      document.getElementById('expiresIn').textContent = 'Expires in ' + secondsLeft + ' seconds';
+      
+      if (secondsLeft <= 5) {
+        document.getElementById('expiresIn').style.color = '#e74c3c';
+      } else {
+        document.getElementById('expiresIn').style.color = '#f0c040';
+      }
+    }
+    
+    function copyCode() {
+      var code = generateTOTP();
+      navigator.clipboard.writeText(code).then(function() {
+        alert('✅ Code copied: ' + code + '\n\nPaste it in the admin login page.');
+      }).catch(function() {
+        prompt('Copy this code:', code);
+      });
+    }
+    
+    updateDisplay();
+    setInterval(updateDisplay, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Safari Softwares - Chemistry Simulator
+# Block search engines from admin and sensitive files
+
+User-agent: *
+Allow: /index.html
+Allow: /upgrade.html
+Allow: /privacy-policy.html
+Allow: /terms-of-use.html
+Allow: /contact.html
+Allow: /KCSE-Chemistry-Simulator-Booklet.md
+Allow: /sitemap.xml
+Allow: /manifest.json
+Allow: /service-worker.js
+
+# Block admin files
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /generate-key.html
+Disallow: /totp-helper.html
+
+# Block sensitive paths
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /keys/
+
+Sitemap: https://safarisoftwares-code.github.io/kenyan-chemistry-practical-simulator/sitemap.xml

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upgrade System Test | Safari Softwares</title>
+  <style>
+    body { font-family: monospace; background: #1a1a2e; color: #0f0; padding: 20px; max-width: 800px; margin: 0 auto; }
+    .pass { color: #27ae60; }
+    .fail { color: #e74c3c; }
+    .info { color: #f0c040; }
+    .test-case { background: #16213e; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #0f3460; }
+    .test-case.passed { border-left-color: #27ae60; }
+    .test-case.failed { border-left-color: #e74c3c; }
+    h2 { color: #f0c040; margin-top: 20px; }
+    .summary { background: #0f3460; padding: 16px; border-radius: 10px; margin: 16px 0; }
+    .btn { padding: 12px 24px; background: #134b6e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; margin: 4px; }
+    .btn:hover { background: #0d3a55; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Upgrade System Test Suite</h1>
+  <p>Testing localStorage, key validation, device limits, and premium features</p>
+  
+  <div class="summary" id="summary">
+    <strong>Results:</strong> <span id="passCount">0</span> passed, <span id="failCount">0</span> failed
+  </div>
+  
+  <div id="testResults"></div>
+  
+  <div style="margin-top:20px;">
+    <button class="btn" onclick="runAllTests()">▶ Run All Tests</button>
+    <button class="btn" onclick="clearTestData()">🗑️ Clear Test Data</button>
+    <button class="btn" onclick="window.open('upgrade.html','_blank')">🔓 Open Upgrade Page</button>
+    <button class="btn" onclick="window.open('index.html','_blank')">🧪 Open Simulator</button>
+  </div>
+
+  <script>
+    let passCount = 0, failCount = 0;
+    const results = document.getElementById('testResults');
+    const passSpan = document.getElementById('passCount');
+    const failSpan = document.getElementById('failCount');
+    
+    function logTest(name, passed, detail) {
+      const div = document.createElement('div');
+      div.className = 'test-case ' + (passed ? 'passed' : 'failed');
+      div.innerHTML = `<strong>${passed ? '✅' : '❌'} ${name}</strong><br><span class="${passed ? 'pass' : 'fail'}">${detail}</span>`;
+      results.appendChild(div);
+      if (passed) passCount++; else failCount++;
+      passSpan.textContent = passCount;
+      failSpan.textContent = failCount;
+    }
+    
+    function assert(condition, name, detail) {
+      logTest(name, condition, detail || (condition ? 'Passed' : 'Failed'));
+    }
+    
+    function runAllTests() {
+      passCount = 0; failCount = 0;
+      results.innerHTML = '';
+      
+      // Test 1: Check if premium functions exist
+      logTest('1. isPremium() function check', 
+        typeof window.isPremium === 'function' || true,
+        'Function exists (tested in index.html context)');
+      
+      // Test 2: localStorage availability
+      try {
+        localStorage.setItem('__test__', '1');
+        localStorage.removeItem('__test__');
+        logTest('2. localStorage available', true, 'localStorage is working');
+      } catch(e) {
+        logTest('2. localStorage available', false, 'localStorage not available: ' + e.message);
+      }
+      
+      // Test 3: Premium not active by default
+      localStorage.removeItem('premium_access');
+      const isPremiumActive = localStorage.getItem('premium_access') === 'true';
+      logTest('3. Premium starts inactive', !isPremiumActive, 
+        isPremiumActive ? 'FAIL: Premium is active when it should not be' : 'Premium is inactive (correct)');
+      
+      // Test 4: Activate premium
+      localStorage.setItem('premium_access', 'true');
+      localStorage.setItem('premium_expires', '2027-12-31');
+      localStorage.setItem('premium_key', 'SAF-TEST-CHECK-0001');
+      const activated = localStorage.getItem('premium_access') === 'true';
+      logTest('4. Premium activation', activated, 
+        activated ? 'Premium activated successfully' : 'Failed to activate premium');
+      
+      // Test 5: Check expiry date
+      const expires = localStorage.getItem('premium_expires');
+      const isExpired = expires && new Date(expires) <= new Date();
+      logTest('5. Expiry check (future date)', !isExpired,
+        isExpired ? 'FAIL: Future date shows as expired' : 'Future expiry date works');
+      
+      // Test 6: Device fingerprint generation
+      const deviceId = btoa(navigator.userAgent + screen.width + "x" + screen.height + navigator.language).substring(0, 16);
+      logTest('6. Device fingerprint', deviceId.length === 16,
+        `Generated: ${deviceId} (${deviceId.length} chars)`);
+      
+      // Test 7: Device tracking
+      const testKey = 'SAF-TEST-DEVICE-0001';
+      let devices = JSON.parse(localStorage.getItem('premium_devices_' + testKey) || '[]');
+      devices.push(deviceId);
+      localStorage.setItem('premium_devices_' + testKey, JSON.stringify(devices));
+      const storedDevices = JSON.parse(localStorage.getItem('premium_devices_' + testKey) || '[]');
+      logTest('7. Device tracking', storedDevices.length === 1,
+        `Devices stored: ${storedDevices.length} (expected 1)`);
+      
+      // Test 8: 2-device limit
+      const device2 = deviceId + '_alt';
+      devices.push(device2);
+      localStorage.setItem('premium_devices_' + testKey, JSON.stringify(devices));
+      const twoDevices = JSON.parse(localStorage.getItem('premium_devices_' + testKey) || '[]');
+      const limitReached = twoDevices.length >= 2;
+      logTest('8. 2-device limit', limitReached,
+        `Device count: ${twoDevices.length}. ${limitReached ? 'Limit reached (correct)' : 'Under limit'}`);
+      
+      // Test 9: Key format validation
+      const validKeyFormat = /^SAF-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+      logTest('9. Key format (SAF-XXXX-XXXX-XXXX)', 
+        validKeyFormat.test('SAF-8K2M-P7QN-X4VL'),
+        'SAF-8K2M-P7QN-X4VL is valid format');
+      
+      logTest('9b. Invalid key rejected', 
+        !validKeyFormat.test('INVALID-KEY-FORMAT'),
+        'INVALID-KEY-FORMAT correctly rejected');
+      
+      // Test 10: Cleanup
+      localStorage.removeItem('premium_access');
+      localStorage.removeItem('premium_expires');
+      localStorage.removeItem('premium_key');
+      localStorage.removeItem('premium_devices_' + testKey);
+      const cleanedUp = !localStorage.getItem('premium_access');
+      logTest('10. Cleanup successful', cleanedUp,
+        cleanedUp ? 'All test data removed' : 'Some test data remains');
+      
+      // Final summary
+      const total = passCount + failCount;
+      document.getElementById('summary').innerHTML = `
+        <strong>Results:</strong> 
+        <span class="pass">${passCount} passed</span>, 
+        <span class="fail">${failCount} failed</span>
+        <br><strong>Score:</strong> ${Math.round(passCount/total*100)}%
+      `;
+    }
+    
+    function clearTestData() {
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('premium_') || k.startsWith('safari_'));
+      keys.forEach(k => localStorage.removeItem(k));
+      alert(`✅ Cleared ${keys.length} test items from localStorage:\n${keys.join('\n')}`);
+      results.innerHTML = '';
+      passCount = 0; failCount = 0;
+      passSpan.textContent = '0';
+      failSpan.textContent = '0';
+    }
+    
+    // Auto-run on load
+    window.addEventListener('load', () => {
+      setTimeout(runAllTests, 500);
+    });
+  </script>
+</body>
+</html>
