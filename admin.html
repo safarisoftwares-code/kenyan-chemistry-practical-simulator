@@ -169,7 +169,12 @@
           <button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button>
           <button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button>
         </div>
-        <div id="genOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.82rem;white-space:pre-wrap;display:none;"></div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+  <button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button>
+  <button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button>
+  <button class="btn btn-success" onclick="printKeyCard()" id="printKeyBtn" style="display:none;">🖨️ Print Key Card</button>
+</div>
+<div id="genOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.82rem;white-space:pre-wrap;display:none;"></div>
       </div>
     </div>
 
@@ -512,17 +517,18 @@
       setKeys(keys);
       
       document.getElementById('genOutput').style.display = 'block';
+      document.getElementById('printKeyBtn').style.display = 'inline-block';
       document.getElementById('genOutput').textContent = 
-        `✅ KEY GENERATED SUCCESSFULLY\n\n` +
-        `🔑 Key:     ${key}\n` +
-        `🔒 Password: ${password}\n` +
-        `👤 Student:  ${student}\n` +
-        `📅 Created:  ${now.toLocaleDateString()}\n` +
-        `⏰ Expires:  ${expiry.toLocaleDateString()}\n` +
-        `📆 Duration: ${months} month(s)\n\n` +
-        `📋 Copy-paste for upgrade.html:\n` +
-        `"${key}": { password: "${password}", expires: "${expiry.toISOString().split('T')[0]}" },`;
-      
+    `✅ KEY GENERATED SUCCESSFULLY\n\n` +
+    `🔑 Key:     ${key}\n` +
+    `🔒 Password: ${password}\n` +
+    `👤 Student:  ${student}\n` +
+    `📅 Created:  ${now.toLocaleDateString()}\n` +
+    `⏰ Expires:  ${expiry.toLocaleDateString()}\n` +
+    `📆 Duration: ${months} month(s)\n` +
+    `📱 Devices:  2 max\n\n` +
+    `📋 Copy-paste for upgrade.html:\n` +
+    `"${key}": { password: "${password}", expires: "${expiry.toISOString().split('T')[0]}" },`;      
       addLog(`Generated key ${key} for ${student} (${months} months)`);
       refreshDashboard();
     }
@@ -937,6 +943,124 @@
       
       addLog('Admin dashboard opened');
     }
+
+    function printKeyCard() {
+  const outputText = document.getElementById('genOutput').textContent;
+  
+  // Parse the key details
+  const keyMatch = outputText.match(/🔑 Key:\s+(SAF-[A-Z0-9-]+)/);
+  const passMatch = outputText.match(/🔒 Password:\s+(\w+)/);
+  const studentMatch = outputText.match(/👤 Student:\s+(.+)/);
+  const expiresMatch = outputText.match(/⏰ Expires:\s+(.+)/);
+  
+  const key = keyMatch ? keyMatch[1] : 'N/A';
+  const password = passMatch ? passMatch[1] : 'N/A';
+  const student = studentMatch ? studentMatch[1] : 'N/A';
+  const expires = expiresMatch ? expiresMatch[1] : 'N/A';
+  
+  // Create print window
+  const printWindow = window.open('', '_blank', 'width=600,height=500');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Premium Key Card - Safari Softwares</title>
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; }
+        .card { 
+          border: 3px solid #134b6e; 
+          border-radius: 16px; 
+          padding: 30px; 
+          max-width: 500px; 
+          margin: 0 auto; 
+          text-align: center;
+        }
+        .logo { font-size: 3rem; }
+        h1 { color: #0f2b40; font-size: 1.3rem; margin: 10px 0; }
+        .key-box { 
+          background: #1a3850; 
+          color: #0f0; 
+          padding: 20px; 
+          border-radius: 10px; 
+          font-family: 'Courier New', monospace; 
+          font-size: 1.1rem; 
+          letter-spacing: 2px;
+          margin: 16px 0;
+          word-break: break-all;
+        }
+        .detail-row { 
+          display: flex; 
+          justify-content: space-between; 
+          padding: 10px; 
+          border-bottom: 1px solid #eee; 
+          font-size: 0.9rem;
+        }
+        .detail-row strong { color: #134b6e; }
+        .footer { 
+          margin-top: 20px; 
+          font-size: 0.75rem; 
+          color: #888; 
+          line-height: 1.6;
+        }
+        .footer a { color: #134b6e; }
+        .instructions {
+          background: #fef9e7;
+          padding: 14px;
+          border-radius: 8px;
+          margin: 16px 0;
+          font-size: 0.82rem;
+          text-align: left;
+          line-height: 1.6;
+        }
+        .instructions ol { padding-left: 18px; }
+        @media print {
+          body { padding: 0; }
+          .card { border: 2px solid #000; }
+          .no-print { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <div class="logo">🔬</div>
+        <h1>Safari Softwares</h1>
+        <h2 style="color:#134b6e;font-size:1.1rem;">Chemistry Simulator - Premium Key Card</h2>
+        
+        <div class="key-box">
+          <div style="margin-bottom:8px;"><strong>KEY:</strong> ${key}</div>
+          <div><strong>PASSWORD:</strong> ${password}</div>
+        </div>
+        
+        <div class="detail-row"><strong>👤 Student:</strong> <span>${student}</span></div>
+        <div class="detail-row"><strong>📅 Expires:</strong> <span>${expires}</span></div>
+        <div class="detail-row"><strong>📱 Devices:</strong> <span>2 devices max</span></div>
+        <div class="detail-row"><strong>💰 Price:</strong> <span>KES 350</span></div>
+        
+        <div class="instructions">
+          <strong>📋 How to Activate:</strong>
+          <ol>
+            <li>Go to: <strong>safarisoftwares-code.github.io/kenyan-chemistry-practical-simulator/upgrade.html</strong></li>
+            <li>Enter the <strong>KEY</strong> and <strong>PASSWORD</strong> above</li>
+            <li>Click <strong>"Activate Premium Now"</strong></li>
+            <li>Open the simulator and enjoy premium features!</li>
+          </ol>
+        </div>
+        
+        <div class="footer">
+          <p>📧 safarisoftwares@gmail.com</p>
+          <p>📱 WhatsApp: +254112168732</p>
+          <p>🌐 safarisoftwares-code.github.io/safari-softwares/</p>
+          <p style="margin-top:8px;"><strong>Keep this card safe!</strong> Each key works on 2 devices only.</p>
+        </div>
+        
+        <button class="no-print" onclick="window.print()" style="margin-top:16px;padding:12px 30px;background:#134b6e;color:white;border:none;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:700;">🖨️ Print Key Card</button>
+      </div>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
     
     init();
   </script>
