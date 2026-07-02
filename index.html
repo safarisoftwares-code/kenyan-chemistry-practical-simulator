@@ -223,71 +223,100 @@
 </div></div>
 </div>
 
-<div class="main-panel" id="panelSolubility"><h3>💧 Solubility & Solubility Curves</h3><p style="color:#4a6078;margin-bottom:10px;">Select a salt, heat the solution, record temperature and solubility. Plot the curve.</p>
-<div style="margin-bottom:10px;"><select id="solubilitySaltSelect" style="padding:8px;border-radius:8px;width:100%;max-width:400px;"><option value="0">KNO₃ — Potassium nitrate (sharp increase)</option><option value="1">KCl — Potassium chloride (gradual increase)</option><option value="2">NaCl — Sodium chloride (nearly constant)</option><option value="3">Ce₂(SO₄)₃ — Cerium(III) sulphate (decreases)</option><option value="4">K₂SO₄ — Potassium sulphate (increases then levels)</option></select></div>
-<div style="display:flex;gap:10px;justify-content:center;align-items:flex-end;margin:10px 0;flex-wrap:wrap;">
-<div style="display:flex;gap:16px;justify-content:center;align-items:flex-start;margin:14px 0;flex-wrap:wrap;">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:0px;">
-    <div style="text-align:center;">
-      <div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;">
-        <div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div>
-      </div>
-      <div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div>
-      <small style="font-size:0.5rem;">Therm.</small>
-    </div>
-    <div style="height:2px;"></div>
-    <div style="text-align:center;">
-      <div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;">
-        <div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div>
-        <div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div>
-      </div>
-      <small style="font-size:0.5rem;">Beaker</small>
-    </div>
-    <div style="height:0px;"></div>
-    <div style="text-align:center;margin-left:28px;">
-      <div style="position:relative;width:32px;height:50px;">
-        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:16px;height:22px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div>
-        <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);width:8px;height:22px;background:#7a8b9a;border-radius:1px;"></div>
-        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:10px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div>
-      </div>
-      <small style="font-size:0.5rem;">Bunsen</small>
-      <button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button>
-    </div>
+<div class="main-panel" id="panelSolubility">
+  <h3>💧 Solubility & Solubility Curves — Interactive Simulation</h3>
+  <p style="color:#4a6078;margin-bottom:10px;">Select a salt, heat the solution, record temperature and solubility. All 5 curves plot simultaneously.</p>
+  
+  <div style="margin-bottom:10px;">
+    <select id="solubilitySaltSelect" style="padding:8px;border-radius:8px;width:100%;max-width:400px;">
+      <option value="0">KNO₃ — Potassium nitrate (sharp increase)</option>
+      <option value="1">KCl — Potassium chloride (gradual increase)</option>
+      <option value="2">NaCl — Sodium chloride (nearly constant)</option>
+      <option value="3">Ce₂(SO₄)₃ — Cerium(III) sulphate (decreases)</option>
+      <option value="4">K₂SO₄ — Potassium sulphate (increases then levels)</option>
+    </select>
   </div>
-  <div style="display:flex;flex-direction:column;gap:6px;min-width:200px;">
-    <span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solTimer">Time: 0s</span>
-    <span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solTemp">Temp: 20°C</span>
-    <span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:4px 8px;border-radius:5px;display:inline-block;font-size:0.7rem;" id="solSolubility">Sol: 0g</span>
-  </div>
-</div>
-<div style="overflow-x:auto;margin-top:12px;"><table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.7rem;"><thead><tr style="background:#153e54;color:white;"><th style="padding:5px;">Time</th><th style="padding:5px;">Temp (°C)</th><th style="padding:5px;">Solubility (g/100g)</th><th style="padding:5px;">Observation</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:8px;">Click 🔥 Heat ON to start experiment</td></tr></tbody></table></div>
-<div id="solCurveGraph" style="text-align:center;margin-top:8px;background:#fff;border:1px solid #ccc;min-height:240px;max-width:100%;overflow-x:auto;"></div>
-<div id="solCurveLegend" style="text-align:center;margin-top:6px;font-size:0.75rem;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-  <span style="color:#e74c3c;font-weight:700;">● KNO₃</span>
-  <span style="color:#2980b9;font-weight:700;">● KCl</span>
-  <span style="color:#27ae60;font-weight:700;">● NaCl</span>
-  <span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span>
-  <span style="color:#e67e22;font-weight:700;">● K₂SO₄</span>
-</div>
-<div style="margin-top:12px;background:#f0f4fa;padding:14px;border-radius:12px;">
-  <h4 style="color:#0f2b40;">📊 Solubility Calculations</h4>
-  <div class="precip-item">
-    <strong>Formula:</strong> Solubility = (Mass of solute ÷ Mass of water) × 100<br>
-    <strong>Mass of solute at given temp = (Solubility × Mass of water) ÷ 100</strong>
-  </div>
-</div>
 
-<div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;">
-  <h4 style="color:#0f2b40;">📝 KCSE Exam-Style Questions</h4>
-  <ol style="padding-left:18px;line-height:1.9;">
-    <li><strong>Using the KNO₃ curve, determine the mass of KNO₃ that dissolves in 50g of water at 60°C.</strong><br><span style="color:#134b6e;">From curve: solubility at 60°C = 110g/100g water.<br>Mass in 50g water = (110 × 50) ÷ 100 = <strong>55g of KNO₃</strong></span></li>
-    <li><strong>A saturated solution of KCl is cooled from 70°C to 30°C. What mass of KCl crystals will form if 200g of water was used?</strong><br><span style="color:#134b6e;">At 70°C: solubility = 49g/100g → mass dissolved = (49 × 200) ÷ 100 = 98g<br>At 30°C: solubility = 37g/100g → mass dissolved = (37 × 200) ÷ 100 = 74g<br>Mass crystallized = 98 - 74 = <strong>24g of KCl</strong></span></li>
-    <li><strong>Which of the five salts would be best separated from a mixture by fractional crystallization? Explain.</strong><br><span style="color:#134b6e;">KNO₃ and KCl — KNO₃ has a very steep curve (large solubility change with temperature) while KCl changes gradually. When a hot solution is cooled, KNO₃ crystallizes out first while most KCl remains dissolved.</span></li>
-    <li><strong>Explain why Ce₂(SO₄)₃ behaves differently from the other salts when heated.</strong><br><span style="color:#134b6e;">Ce₂(SO₄)₃ dissolves exothermically — it releases heat when dissolving. According to Le Chatelier's principle, increasing temperature shifts equilibrium to favor the solid (undissolved) form, so solubility DECREASES with temperature rise.</span></li>
-    <li><strong>A student dissolves 15g of K₂SO₄ in 100g of water at 40°C. Is the solution saturated? Explain.</strong><br><span style="color:#134b6e;">From curve: solubility of K₂SO₄ at 40°C = 15g/100g water.<br>The student dissolved exactly 15g. The solution is <strong>just saturated</strong> — no more K₂SO₄ can dissolve at this temperature.</span></li>
-  </ol>
-</div>
-<div style="margin-top:10px;background:#fff3cd;padding:10px;border-radius:8px;border:1px solid #f0c040;font-size:0.8rem;"><strong>💡 Key Note:</strong> The solubility of one salt does NOT interfere with the solubility of another salt. Each salt dissolves independently. This is why fractional crystallization works — different salts crystallize at different temperatures.</div>
+    <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+    <tr>
+      <!-- COLUMN 1: Apparatus (ratio 1) -->
+      <td style="width:20%;vertical-align:top;padding:0 4px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0px;">
+          <div style="text-align:center;">
+            <div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;">
+              <div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div>
+            </div>
+            <div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div>
+            <small style="font-size:0.5rem;">Therm.</small>
+          </div>
+          <div style="text-align:center;margin-top:2px;">
+            <div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;">
+              <div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div>
+              <div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div>
+            </div>
+            <small style="font-size:0.5rem;">Beaker</small>
+          </div>
+          <div style="text-align:center;margin-top:2px;margin-left:24px;">
+            <div style="position:relative;width:32px;height:50px;">
+              <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:30px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div>
+              <div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:8px;height:18px;background:#7a8b9a;border-radius:1px;"></div>
+              <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:8px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div>
+            </div>
+            <small style="font-size:0.5rem;">Bunsen</small>
+            <button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;">
+            <span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTimer">Time: 0s</span>
+            <span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTemp">Temp: 20°C</span>
+            <span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solSolubility">Sol: 0g</span>
+          </div>
+        </div>
+      </td>
+      
+      <!-- COLUMN 2: Table (ratio 2) -->
+      <td style="width:40%;vertical-align:top;padding:0 4px 0 4px;">
+        <div style="max-height:400px;overflow-y:auto;overflow-x:hidden;border:1px solid #dce5f2;border-radius:6px;margin-right:10px;">
+          <table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.6rem;table-layout:fixed;">
+            <colgroup><col style="width:22%;"><col style="width:18%;"><col style="width:28%;"><col style="width:32%;"></colgroup>
+            <thead><tr style="background:#153e54;color:white;position:sticky;top:0;"><th style="padding:2px 1px;">Time</th><th style="padding:2px 1px;">°C</th><th style="padding:2px 1px;">g/100g</th><th style="padding:2px 1px;">Obs.</th></tr></thead>
+            <tbody><tr><td colspan="4" style="text-align:center;padding:6px;">Click 🔥 Heat ON</td></tr></tbody>
+          </table>
+        </div>
+      </td>
+      
+      <!-- COLUMN 3: Graph (ratio 2) -->
+      <td style="width:40%;vertical-align:top;padding:0 4px;">
+        <div id="solCurveGraph" style="text-align:center;background:#fff;border:1px solid #ccc;min-height:220px;width:100%;"></div>
+        <div id="solCurveLegend" style="text-align:center;margin-top:4px;font-size:0.62rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+          <span style="color:#e74c3c;font-weight:700;">● KNO₃</span>
+          <span style="color:#2980b9;font-weight:700;">● KCl</span>
+          <span style="color:#27ae60;font-weight:700;">● NaCl</span>
+          <span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span>
+          <span style="color:#e67e22;font-weight:700;">● K₂SO₄</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- KEY NOTE with Calculations inside -->
+  <div style="margin-top:14px;background:#fff3cd;padding:14px;border-radius:10px;border:1px solid #f0c040;font-size:0.82rem;">
+    <strong>💡 Key Note:</strong> The solubility of one salt does NOT interfere with the solubility of another salt. Each salt dissolves independently. This is why fractional crystallization works.<br><br>
+    <strong>📊 Calculations:</strong><br>
+    Solubility = (Mass of solute ÷ Mass of water) × 100<br>
+    Mass of solute at given temp = (Solubility × Mass of water) ÷ 100
+  </div>
+
+  <!-- KCSE EXAM QUESTIONS -->
+  <div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;">
+    <h4 style="color:#0f2b40;">📝 KCSE Exam-Style Questions</h4>
+    <ol style="padding-left:18px;line-height:1.9;">
+      <li><strong>Using the KNO₃ curve, determine the mass of KNO₃ that dissolves in 50g of water at 60°C.</strong><br><span style="color:#134b6e;">From curve: solubility at 60°C = 110g/100g. Mass in 50g = (110×50)÷100 = <strong>55g KNO₃</strong></span></li>
+      <li><strong>A saturated KCl solution is cooled from 70°C to 30°C. What mass crystallizes from 200g water?</strong><br><span style="color:#134b6e;">70°C: (49×200)÷100=98g | 30°C: (37×200)÷100=74g | Crystals = 98-74 = <strong>24g KCl</strong></span></li>
+      <li><strong>Which two salts are best separated by fractional crystallization?</strong><br><span style="color:#134b6e;">KNO₃ and KCl — KNO₃ has steep curve, crystallizes first on cooling.</span></li>
+      <li><strong>Explain Ce₂(SO₄)₃'s unusual behavior when heated.</strong><br><span style="color:#134b6e;">Dissolves exothermically. Le Chatelier: heating favors solid, solubility DECREASES.</span></li>
+      <li><strong>15g K₂SO₄ in 100g water at 40°C — saturated?</strong><br><span style="color:#134b6e;">From curve: solubility at 40°C = 15g/100g. <strong>Just saturated.</strong></span></li>
+    </ol>
+  </div>
 </div>
 
 <div class="main-panel" id="panelPrecipitates"><h3>🔬 Theoretical Precipitates Guide</h3><p style="color:#4a6078;margin-bottom:14px;">Common precipitates formed when anions react with cations. Ionic equations, colours, and behaviour in excess reagent.</p>
