@@ -114,16 +114,17 @@
     </div>
   </div>
 
-  <script>
+    <script>
     // ============ CONFIGURATION ============
-    var MASTER_PASSWORD = '#Connected2026';  // CHANGE THIS
-    var TOTP_SECRET = '#Connected2027';  // CHANGE THIS
+    var MASTER_PASSWORD = '#Connected2026';
+    var TOTP_SECRET = '#Connected2027';
     var MAX_ATTEMPTS = 5;
     var failedAttempts = 0;
 
     // ============ TOTP GENERATOR ============
-    function getCurrentTOTP() {
-      var timeWindow = Math.floor(Date.now() / 30000);
+    function getTOTP(offset) {
+      offset = offset || 0;
+      var timeWindow = Math.floor(Date.now() / 30000) + offset;
       var secretSum = 0;
       for (var i = 0; i < TOTP_SECRET.length; i++) {
         secretSum += TOTP_SECRET.charCodeAt(i);
@@ -133,14 +134,8 @@
     }
 
     function isTOTPValid(inputCode) {
-      var current = getCurrentTOTP();
-      var prevWindow = Math.floor(Date.now() / 30000) - 1;
-      var secretSum = 0;
-      for (var i = 0; i < TOTP_SECRET.length; i++) {
-        secretSum += TOTP_SECRET.charCodeAt(i);
-      }
-      var previous = (((prevWindow * secretSum * 7 + 13) % 900000) + 100000).toString();
-      return (inputCode === current || inputCode === previous);
+      // Check current and previous 30-second window
+      return (inputCode === getTOTP(0) || inputCode === getTOTP(-1));
     }
 
     // ============ STEP 1: PASSWORD CHECK ============
@@ -155,17 +150,14 @@
       }
 
       if (password === MASTER_PASSWORD) {
-        // Password correct - show 2FA step
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
         document.getElementById('totpInput').focus();
         failedAttempts = 0;
         errorDiv.style.display = 'none';
       } else {
-        // Password wrong
         failedAttempts++;
         errorDiv.style.display = 'block';
-        
         if (failedAttempts >= MAX_ATTEMPTS) {
           errorDiv.textContent = '🚫 Too many failed attempts! Please wait 15 minutes.';
           document.getElementById('passwordBtn').disabled = true;
@@ -175,10 +167,8 @@
             errorDiv.style.display = 'none';
           }, 15 * 60 * 1000);
         } else {
-          var remaining = MAX_ATTEMPTS - failedAttempts;
-          errorDiv.textContent = '❌ Incorrect password. ' + remaining + ' attempt(s) remaining.';
+          errorDiv.textContent = '❌ Incorrect password. ' + (MAX_ATTEMPTS - failedAttempts) + ' attempt(s) remaining.';
         }
-        
         document.getElementById('passwordInput').value = '';
         document.getElementById('passwordInput').focus();
       }
@@ -197,24 +187,20 @@
       }
 
       if (isTOTPValid(code)) {
-        // SUCCESS!
         errorDiv.style.display = 'none';
         btn.disabled = true;
         btn.textContent = '✅ Access granted! Redirecting...';
         btn.style.background = '#27ae60';
         
-        // Create session
         sessionStorage.setItem('safari_admin_auth', 'true');
         sessionStorage.setItem('safari_admin_session', 'admin_' + Date.now());
         sessionStorage.setItem('safari_admin_expires', new Date(Date.now() + 8 * 3600000).toISOString());
         
-        // Redirect to admin dashboard
         setTimeout(function() {
           window.location.href = 'admin.html';
         }, 800);
-        
       } else {
-        errorDiv.textContent = '❌ Invalid code. Make sure totp-helper.html shows the current code.';
+        errorDiv.textContent = '❌ Invalid code. Expected: ' + getTOTP(0) + ' | Yours: ' + code;
         errorDiv.style.display = 'block';
         document.getElementById('totpInput').value = '';
         document.getElementById('totpInput').focus();
@@ -225,7 +211,6 @@
     document.getElementById('passwordInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkPassword();
     });
-
     document.getElementById('totpInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkTOTP();
     });
@@ -234,7 +219,6 @@
     (function() {
       var auth = sessionStorage.getItem('safari_admin_auth');
       var expires = sessionStorage.getItem('safari_admin_expires');
-      
       if (auth === 'true' && expires && new Date(expires) > new Date()) {
         document.getElementById('step1').innerHTML = '<p style="color:#27ae60;font-weight:600;font-size:1.1rem;">✅ You are already logged in!</p><a href="admin.html" style="display:inline-block;padding:14px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:12px;font-weight:700;margin-top:10px;">🚀 Go to Dashboard</a>';
       }
