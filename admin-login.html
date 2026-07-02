@@ -58,6 +58,7 @@
       border-radius: 8px; 
       margin-top: 12px; 
       font-size: 0.85rem;
+      display: none;
     }
     .success { 
       background: #d5f5e3; 
@@ -66,6 +67,7 @@
       border-radius: 8px; 
       margin-top: 12px; 
       font-size: 0.85rem;
+      display: none;
     }
     .hint { 
       font-size: 0.75rem; 
@@ -92,16 +94,16 @@
     <div id="step1">
       <input type="password" id="passwordInput" placeholder="🔒 Enter Admin Password" autocomplete="off">
       <button class="btn" id="passwordBtn" onclick="checkPassword()">🔐 Login</button>
-      <div id="passwordError" style="display:none;"></div>
+      <div class="error" id="passwordError"></div>
     </div>
     
-    <!-- Step 2: 2FA Code (hidden until password correct) -->
+    <!-- Step 2: 2FA Code -->
     <div id="step2">
       <p style="color:#27ae60;font-weight:600;">✅ Password accepted!</p>
       <p style="color:#888;">Enter the 6-digit verification code:</p>
       <input type="text" id="totpInput" placeholder="000000" maxlength="6" autocomplete="off" style="letter-spacing:10px;font-size:1.5rem;">
       <button class="btn" id="totpBtn" onclick="checkTOTP()">🔐 Verify & Enter Dashboard</button>
-      <div id="totpError" style="display:none;"></div>
+      <div class="error" id="totpError"></div>
       <p class="code-hint">💡 Open <a href="totp-helper.html" target="_blank">totp-helper.html</a> in a new tab to get the current code</p>
     </div>
     
@@ -113,12 +115,12 @@
   </div>
 
   <script>
-    // ============ CONFIG ============
-    var MASTER_PASSWORD = '#Connected2026';
-    var TOTP_SECRET = 'Safari_Softwares';
+    // ============ CONFIGURATION ============
+    var MASTER_PASSWORD = 'SafariAdmin2026!';  // CHANGE THIS
+    var TOTP_SECRET = 'SAFARI_SOFTWARES_ADMIN_2026';  // CHANGE THIS
     var MAX_ATTEMPTS = 5;
     var failedAttempts = 0;
-    
+
     // ============ TOTP GENERATOR ============
     function getCurrentTOTP() {
       var timeWindow = Math.floor(Date.now() / 30000);
@@ -129,77 +131,71 @@
       var code = ((timeWindow * secretSum * 7 + 13) % 900000) + 100000;
       return code.toString();
     }
-    
+
     function isTOTPValid(inputCode) {
       var current = getCurrentTOTP();
-      
-      // Also check previous window
       var prevWindow = Math.floor(Date.now() / 30000) - 1;
       var secretSum = 0;
       for (var i = 0; i < TOTP_SECRET.length; i++) {
         secretSum += TOTP_SECRET.charCodeAt(i);
       }
       var previous = (((prevWindow * secretSum * 7 + 13) % 900000) + 100000).toString();
-      
       return (inputCode === current || inputCode === previous);
     }
-    
-    // ============ STEP 1: PASSWORD ============
+
+    // ============ STEP 1: PASSWORD CHECK ============
     function checkPassword() {
       var password = document.getElementById('passwordInput').value.trim();
       var errorDiv = document.getElementById('passwordError');
       
       if (!password) {
-        errorDiv.className = 'error';
         errorDiv.textContent = 'Please enter your password.';
         errorDiv.style.display = 'block';
         return;
       }
-      
+
       if (password === MASTER_PASSWORD) {
-        // CORRECT! Show step 2
+        // Password correct - show 2FA step
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
         document.getElementById('totpInput').focus();
         failedAttempts = 0;
         errorDiv.style.display = 'none';
       } else {
-        // WRONG
+        // Password wrong
         failedAttempts++;
-        errorDiv.className = 'error';
+        errorDiv.style.display = 'block';
         
         if (failedAttempts >= MAX_ATTEMPTS) {
-          errorDiv.textContent = '🚫 Too many failed attempts! Please wait 15 minutes and try again.';
+          errorDiv.textContent = '🚫 Too many failed attempts! Please wait 15 minutes.';
           document.getElementById('passwordBtn').disabled = true;
           setTimeout(function() {
             document.getElementById('passwordBtn').disabled = false;
             failedAttempts = 0;
             errorDiv.style.display = 'none';
-          }, 15 * 60 * 1000); // 15 minutes
+          }, 15 * 60 * 1000);
         } else {
           var remaining = MAX_ATTEMPTS - failedAttempts;
           errorDiv.textContent = '❌ Incorrect password. ' + remaining + ' attempt(s) remaining.';
         }
         
-        errorDiv.style.display = 'block';
         document.getElementById('passwordInput').value = '';
         document.getElementById('passwordInput').focus();
       }
     }
-    
-    // ============ STEP 2: TOTP ============
+
+    // ============ STEP 2: TOTP CHECK ============
     function checkTOTP() {
       var code = document.getElementById('totpInput').value.trim();
       var errorDiv = document.getElementById('totpError');
       var btn = document.getElementById('totpBtn');
       
       if (!code || code.length !== 6) {
-        errorDiv.className = 'error';
-        errorDiv.textContent = 'Please enter the 6-digit code from totp-helper.html';
+        errorDiv.textContent = 'Please enter the 6-digit code.';
         errorDiv.style.display = 'block';
         return;
       }
-      
+
       if (isTOTPValid(code)) {
         // SUCCESS!
         errorDiv.style.display = 'none';
@@ -212,36 +208,34 @@
         sessionStorage.setItem('safari_admin_session', 'admin_' + Date.now());
         sessionStorage.setItem('safari_admin_expires', new Date(Date.now() + 8 * 3600000).toISOString());
         
-        // Redirect
+        // Redirect to admin dashboard
         setTimeout(function() {
           window.location.href = 'admin.html';
         }, 800);
         
       } else {
-        errorDiv.className = 'error';
-        errorDiv.textContent = '❌ Invalid code. Make sure totp-helper.html shows the current code (it changes every 30 seconds).';
+        errorDiv.textContent = '❌ Invalid code. Make sure totp-helper.html shows the current code.';
         errorDiv.style.display = 'block';
         document.getElementById('totpInput').value = '';
         document.getElementById('totpInput').focus();
       }
     }
-    
+
     // ============ ENTER KEY SUPPORT ============
     document.getElementById('passwordInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkPassword();
     });
-    
+
     document.getElementById('totpInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkTOTP();
     });
-    
+
     // ============ CHECK IF ALREADY LOGGED IN ============
     (function() {
       var auth = sessionStorage.getItem('safari_admin_auth');
       var expires = sessionStorage.getItem('safari_admin_expires');
       
       if (auth === 'true' && expires && new Date(expires) > new Date()) {
-        // Already logged in
         document.getElementById('step1').innerHTML = '<p style="color:#27ae60;font-weight:600;font-size:1.1rem;">✅ You are already logged in!</p><a href="admin.html" style="display:inline-block;padding:14px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:12px;font-weight:700;margin-top:10px;">🚀 Go to Dashboard</a>';
       }
     })();

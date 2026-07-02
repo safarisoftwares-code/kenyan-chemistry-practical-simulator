@@ -2,612 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
-  <title>Kenyan Chemistry Practical Simulator | Safari Softwares</title>
+  <title>Key Generator | Safari Softwares</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: linear-gradient(160deg, #e8eef5 0%, #d5dfed 40%, #c8d5e8 100%); font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh; margin: 0; padding: 16px; }
-    .main-container { max-width: 1300px; width: 100%; }
-    .unified-card { width: 100%; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 50px rgba(6,22,40,0.15), 0 6px 16px rgba(4,18,35,0.08); overflow: visible; }
-    .freeze-header { position: sticky; top: 0; z-index: 200; background: linear-gradient(135deg, #0f2b40 0%, #1a4058 60%, #1f4d6e 100%); padding: 20px 30px 14px; color: white; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.25); border-radius: 28px 28px 0 0; }
-    .hero-left { text-align: center; }
-    .hero-left h1 { font-size: 1.9rem; font-weight: 700; }
-    .badge-row { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; justify-content: center; }
-    .badge { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); padding: 4px 12px; border-radius: 18px; font-size: 0.78rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
-    .freeze-tabs { position: sticky; top: 106px; z-index: 199; display: flex; background: #eaf0f8; border-bottom: 2px solid #d0dbe8; margin: 0; flex-wrap: wrap; }
-    .main-tab { flex: 1; min-width: 70px; padding: 13px 8px; background: transparent; border: none; font-weight: 800; font-size: 0.8rem; color: #4a6078; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; text-align: center; letter-spacing: 0.3px; }
-    .main-tab:hover { color: #0f2b40; background: rgba(255,255,255,0.4); }
-    .main-tab.active-tab { background: white; border-bottom: 3px solid #134b6e; color: #0f2b40; font-size: 0.82rem; }
-    .main-panel { display: none; padding: 22px 24px 18px; animation: fade 0.25s; }
-    .main-panel.active-panel { display: block; }
-    @keyframes fade { from { opacity: 0.6; } to { opacity: 1; } }
-    .toggle-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; background: #f3f7fd; padding: 13px 20px; border-radius: 18px; margin-bottom: 22px; border: 1px solid #dce5f2; }
-    .toggle-buttons { display: flex; gap: 5px; background: #e2eaf5; border-radius: 28px; padding: 3px; margin-left: 6px; }
-    .toggle-btn { padding: 9px 24px; border-radius: 26px; border: none; background: transparent; font-weight: 600; cursor: pointer; transition: 0.2s; color: #3a5068; font-size: 0.88rem; }
-    .toggle-btn.active { background: white; color: #0f2b40; box-shadow: 0 3px 8px rgba(0,0,0,0.07); font-weight: 700; }
-    .mode-indicator { background: #fffde7; border: 1px solid #f0c040; padding: 7px 14px; border-radius: 18px; font-weight: 700; font-size: 0.82rem; color: #5d4037; margin-left: auto; }
-    .table-wrapper { overflow-x: auto; border-radius: 14px; border: 1px solid #dce5f0; background: white; margin-bottom: 16px; }
-    table { width: 100%; border-collapse: collapse; min-width: 550px; }
-    th { background: #153e54; color: white; font-weight: 600; padding: 12px 9px; text-align: left; font-size: 0.88rem; }
-    td { padding: 9px; background: #fafcff; border-bottom: 1px solid #e4ebf5; }
-    select { width: 100%; padding: 9px; border-radius: 10px; border: 1.5px solid #cfdde9; background: white; font-weight: 500; margin-bottom: 5px; font-size: 0.84rem; }
-    .ion-colour-indicator { display: flex; align-items: center; gap: 6px; background: #f2f7fe; border-radius: 9px; padding: 4px 7px; font-size: 0.73rem; border: 1px solid #d9e3f0; }
-    .mini-swatch { width: 13px; height: 13px; border-radius: 3px; }
-    .equation-cell { background: #fffde7; border-radius: 9px; padding: 10px; font-size: 0.88rem; min-height: 46px; display: flex; align-items: center; line-height: 1.4; border: 2px solid #f0c040; word-wrap: break-word; white-space: normal; gap: 8px; }
-    .equation-text { font-weight: 700; flex: 1; }
-    .product-colour-note { font-weight: 500; font-size: 0.76rem; color: #5d4037; font-style: italic; white-space: nowrap; background: rgba(240,192,64,0.18); padding: 4px 8px; border-radius: 5px; }
-    .colour-cell { background: #eef4fb; border-radius: 9px; padding: 8px; font-weight: 600; font-size: 0.83rem; min-height: 42px; display: flex; align-items: center; }
-    .colour-indicator { width: 17px; height: 17px; border-radius: 4px; margin-right: 6px; }
-    .merged-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; background: #f9fcff; border-radius: 20px; padding: 12px 14px; border: 1px solid #dce5f2; margin-top: 6px; }
-    .merged-left { flex: 1; min-width: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .merged-right { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; min-width: 100px; }
-    .test-tubes-row { display: flex; justify-content: space-evenly; align-items: flex-end; gap: 4px; margin: 2px 0 4px; width: 100%; max-width: 650px; }
-    .tube-unit { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
-    .test-tube-svg { position: relative; width: 42px; height: 102px; }
-    .test-tube-outer { position: absolute; bottom: 0; left: 0; width: 42px; height: 102px; background: rgba(225,238,250,0.28); border: 2px solid #93a9c2; border-top: 1.5px solid #b0c2d8; border-radius: 0 0 24px 24px; box-shadow: inset 0 0 12px rgba(255,255,255,0.6), 0 5px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
-    .liquid-fill { width: 100%; border-radius: 0 0 22px 22px; transition: height 0.35s ease, background 0.3s; box-shadow: inset 0 0 10px rgba(255,255,255,0.7); height: 64%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.6); font-size: 0.56rem; text-align: center; line-height: 1.1; padding: 0 2px; }
-    .tube-label { font-weight: 600; font-size: 0.66rem; color: #1a3850; text-align: center; line-height: 1.2; }
-    .arrow-symbol { font-size: 1.2rem; color: #1a4b6e; align-self: center; font-weight: bold; }
-    .btn { background: white; border: 1.5px solid #c4d3e6; padding: 8px 18px; border-radius: 26px; font-weight: 600; cursor: pointer; transition: 0.2s; color: #1a3850; font-size: 0.82rem; white-space: nowrap; }
-    .btn-primary { background: #134b6e; border-color: #134b6e; color: white; }
-    .btn:hover { background: #f0f5fd; }
-    .btn-primary:hover { background: #0d3a55; }
-    .btn-premium { background: linear-gradient(135deg,#f0c040,#e6a800); border: 1.5px solid #c8960c; color: #0f2b40; font-weight: 700; }
-    .flame-test-container { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: center; }
-    .flame-visual { position: relative; width: 70px; height: 160px; }
-    .bunsen-base { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 44px; height: 26px; background: #5a6b7a; border-radius: 7px 7px 3px 3px; }
-    .bunsen-barrel { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); width: 14px; height: 70px; background: #7a8b9a; border-radius: 2px; }
-    .flame { position: absolute; bottom: 92px; left: 50%; transform: translateX(-50%); width: 36px; height: 62px; background: #ff9933; border-radius: 50% 50% 18px 18px; transition: background 0.5s; box-shadow: 0 0 22px rgba(255,153,51,0.7); }
-    .flame.lilac { background: #c8a2c8; }
-    .flame.golden-yellow { background: #ffd700; }
-    .flame.brick-red { background: #cc4422; }
-    .flame.crimson { background: #dc143c; }
-    .flame.blue-green { background: #2ecc71; }
-    .flame.apple-green { background: #8bc34a; }
-    .flame.pale-green { background: #98fb98; }
-    .precip-card { background: #fff; border: 1px solid #dce5f2; border-radius: 14px; padding: 14px; }
-    .precip-card h4 { color: #0f2b40; border-bottom: 2px solid #f0c040; padding-bottom: 6px; margin-bottom: 8px; }
-    .precip-item { font-size: 0.82rem; line-height: 1.5; margin: 6px 0; padding: 8px; background: #fafcff; border-radius: 6px; }
-    .exam-question { background: #f7faff; padding: 16px; border-radius: 14px; margin-bottom: 14px; border: 1px solid #dce5f2; }
-    .option { display: block; padding: 9px 12px; margin: 4px 0; background: white; border: 2px solid #dce5f2; border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 0.85rem; }
-    .option.selected { border-color: #134b6e; background: #d4e4f7; font-weight: 600; }
-    .score-display { font-size: 1.4rem; font-weight: 700; color: #0f2b40; text-align: center; margin: 14px 0; padding: 14px; background: #f0f4fa; border-radius: 10px; }
-    .marking-scheme { background: #fef9e7; padding: 14px; border-radius: 10px; margin-top: 10px; border: 1px solid #f0c040; font-size: 0.84rem; }
-    .footer-tab-area { border-top: 2px solid #dee7f2; background: #f7f9fc; }
-    .tab-header { display: flex; background: #eaf0f8; }
-    .tab-button { flex: 1; padding: 15px 10px; background: transparent; border: none; font-weight: 700; font-size: 0.88rem; color: #4a6078; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; }
-    .tab-button.active-tab { background: white; border-bottom: 3px solid #134b6e; color: #0f2b40; }
-    .tab-panel { display: none; padding: 22px 28px; background: white; animation: fade 0.2s; color: #1a3850; font-size: 0.88rem; line-height: 1.5; }
-    .tab-panel.active-panel { display: block; }
-    .tab-panel h3 { font-weight: 700; margin: 16px 0 8px; color: #0f2b40; border-left: 4px solid #1f4d6e; padding-left: 12px; font-size: 0.95rem; }
-    .tab-panel h3:first-child { margin-top: 0; }
-    .tab-panel ul { padding-left: 20px; margin: 6px 0 12px; }
-    .tab-panel li { margin-bottom: 5px; }
-    hr { margin: 16px 0; border: 0.5px solid #dce4ef; }
-    .footer-empty { padding: 16px 28px; text-align: center; color: #8a9bb0; font-size: 0.82rem; font-style: italic; background: white; }
-    .enthalpy-graph { width: 100%; max-width: 420px; height: 180px; background: #fff; border: 1px solid #ccc; margin: 10px auto; }
-    .complex-ion-sim { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; background: #f7faff; padding: 12px; border-radius: 12px; margin: 8px 0; }
-    .step-indicator { display: flex; gap: 6px; align-items: center; font-weight: 700; font-size: 0.82rem; }
-    .premium-badge { background: linear-gradient(135deg,#f0c040,#e6a800); color: #0f2b40; padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; display: inline-block; }
-    
-    /* GAS TEST SIMULATOR STYLES */
-    .gas-test-sim { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center; background: #f0f4f8; padding: 20px; border-radius: 16px; margin: 14px 0; min-height: 250px; position: relative; }
-    .gas-jar { position: relative; width: 90px; height: 140px; background: rgba(230,240,250,0.4); border: 3px solid #8899aa; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: inset 0 0 30px rgba(200,210,220,0.3); }
-    .gas-jar::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; background: #7a8b9a; border-radius: 0; }
-    .gas-fill { position: absolute; bottom: 8px; left: 0; width: 100%; border-radius: 0; transition: background 0.6s, opacity 0.5s; opacity: 0.15; }
-    .gas-particle { position: absolute; border-radius: 50%; opacity: 0; transition: all 0.3s; }
-    .splint-container { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); z-index: 10; transition: top 0.8s ease-in; }
-    .splint { width: 6px; height: 70px; background: #d4a574; border-radius: 3px 3px 1px 1px; position: relative; margin: 0 auto; }
-    .splint-tip { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 14px; height: 16px; border-radius: 50% 50% 2px 2px; transition: all 0.3s; }
-    .splint-tip.glowing { background: #ff6600; box-shadow: 0 0 12px #ff6600, 0 0 24px #ff4400; animation: glow 0.5s infinite alternate; }
-    .splint-tip.burning { background: #ff9900; box-shadow: 0 0 8px #ff9900; }
-    .splint-tip.popped { background: #ff3300; box-shadow: 0 0 20px #ff0000; animation: pop 0.3s ease-out; }
-    @keyframes glow { from { box-shadow: 0 0 8px #ff6600, 0 0 16px #ff4400; } to { box-shadow: 0 0 18px #ff9900, 0 0 32px #ff6600; } }
-    @keyframes pop { 0% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.6); opacity: 1; } 100% { transform: translateX(-50%) scale(0); opacity: 0; } }
-    @keyframes sparkle { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
-    .litmus-paper { width: 18px; height: 50px; border-radius: 2px; position: absolute; transition: background 0.8s; z-index: 5; }
-    .litmus-paper.wet-blue { background: #4169e1; }
-    .litmus-paper.wet-red { background: #e74c3c; }
-    .litmus-paper.bleached { background: #f5f5f5; transition: background 1.5s; }
-    .fume-container { position: absolute; opacity: 0; transition: opacity 0.5s; }
-    .fume { background: rgba(255,255,255,0.9); border-radius: 50%; position: absolute; }
-    .dichromate-paper { width: 18px; height: 50px; border-radius: 2px; position: absolute; background: #e67e22; transition: background 1s; z-index: 5; }
-    .dichromate-paper.green { background: #27ae60; }
-    .pop-text { position: absolute; font-size: 1.5rem; font-weight: 900; color: #e74c3c; opacity: 0; z-index: 20; transition: all 0.4s; }
-    .pop-text.show { opacity: 1; animation: popText 0.6s ease-out; }
-    @keyframes popText { 0% { transform: scale(0.5); opacity: 0; } 30% { transform: scale(1.4); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
-    .gas-select-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 14px; }
-    .gas-select-btn { padding: 10px 16px; border-radius: 10px; border: 2px solid #dce5f2; background: white; cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: 0.2s; }
-    .gas-select-btn:hover { border-color: #134b6e; background: #f0f5fd; }
-    .gas-select-btn.active { border-color: #134b6e; background: #d4e4f7; font-weight: 700; }
-    .gas-select-btn.premium { border-style: dashed; border-color: #f0c040; }
-    @media (max-width: 800px) { .merged-row { flex-direction: column; } .merged-right { flex-direction: row; } .gas-jar { width: 70px; height: 110px; } }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .card { background: white; border-radius: 20px; padding: 30px; max-width: 450px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    input, select { width: 100%; padding: 10px; margin: 6px 0; border: 1.5px solid #dce5f2; border-radius: 10px; font-size: 0.9rem; }
+    .btn { width: 100%; padding: 14px; background: #134b6e; color: white; border: none; border-radius: 30px; font-weight: 700; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+    .btn:hover { background: #0d3a55; }
+    .btn-gold { background: linear-gradient(135deg,#f0c040,#e6a800); color: #0f2b40; }
+    .output { background: #1a3850; color: #0f0; padding: 14px; border-radius: 10px; margin-top: 10px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; display: none; }
+    h2 { color: #0f2b40; text-align: center; }
+    .note { font-size: 0.75rem; color: #888; text-align: center; margin-top: 10px; }
   </style>
 </head>
 <body>
-  
-  <div id="premiumLock" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;">
-  <div style="background:white;padding:30px;border-radius:20px;text-align:center;max-width:420px;">
-    <h2>🔒 Premium Feature</h2>
-    <p>This feature requires Premium. Unlock all gas test simulations, 200+ reactions, complex ion simulators, and more!</p>
-    <p><strong>Only KES 350/year</strong></p>
-    <button onclick="window.location.href='upgrade.html'" style="padding:12px 30px;background:#134b6e;color:white;border:none;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;">⭐ Upgrade Now - KES 350</button>
-    <p style="margin-top:10px;font-size:0.8rem;color:#888;">Already upgraded? <a href="upgrade.html">Activate here</a> | <a href="#" onclick="document.getElementById('premiumLock').style.display='none';">Go Back to Freemium</a></p>
-  </div>
-</div>
-
-<div class="main-container"><div class="unified-card">
-<div class="freeze-header"><div class="hero-left"><h1>⚗️ Kenyan Chemistry Practical</h1><div class="badge-row"><span class="badge" onclick="switchPanel('practical')">🧪 Practical</span><span class="badge" onclick="switchPanel('syllabus')">📘 Syllabus</span><span class="badge" onclick="switchPanel('ions')">💧 Ions</span><span class="badge" onclick="switchPanel('radicals')">🔬 Radicals</span><span class="badge" onclick="switchPanel('solubility')">💧 Solubility</span><span class="badge" onclick="switchPanel('precipitates')">🔬 Precipitates</span><span class="badge" onclick="switchPanel('complexIons')">🔄 Complex Ions</span><span class="badge" onclick="switchPanel('exam')">📝 Practice</span><span class="badge" onclick="window.location.href='upgrade.html'" style="background:#f0c040;color:#0f2b40;font-weight:700;">⭐ Upgrade</span></div></div></div>
-<div class="freeze-tabs">
-<button class="main-tab active-tab" onclick="switchPanel('reactions')">🧪 REACTIONS</button>
-<button class="main-tab" onclick="switchPanel('flame')">🔥 FLAME</button>
-<button class="main-tab" onclick="switchPanel('titration')">🧪 TITRATION</button>
-<button class="main-tab" onclick="switchPanel('gasTests')">💨 GAS TESTS</button>
-<button class="main-tab" onclick="switchPanel('cationTests')">✅ CATION TESTS</button>
-<button class="main-tab" onclick="switchPanel('enthalpy')">🔥 ENTHALPY</button>
-<button class="main-tab" onclick="switchPanel('precipitates')">🔬 PRECIPITATES</button>
-</div>
-
-<div class="main-panel active-panel" id="panelReactions">
-<div class="toggle-bar"><span style="font-weight:650;color:#0f2b40;font-size:0.92rem;">📐 Equation Mode:</span><div class="toggle-buttons"><button class="toggle-btn active" id="wordEqBtn">📝 Word Equation</button><button class="toggle-btn" id="ionicEqBtn">⚡ Ionic Equation</button></div><span class="mode-indicator" id="modeIndicator">🧪 WORD EQUATION MODE</span></div>
-<div class="table-wrapper"><table><thead><tr><th>Cation</th><th>Anion</th><th>Word equation</th><th>Products' Colour</th></tr></thead><tbody><tr><td><select id="cationSelect"></select><div class="ion-colour-indicator"><span class="mini-swatch" id="cationSwatch"></span><span id="cationColourText">colourless</span></div></td><td><select id="anionSelect"></select><div class="ion-colour-indicator"><span class="mini-swatch" id="anionSwatch"></span><span id="anionColourText">colourless</span></div></td><td><div class="equation-cell"><span class="equation-text" id="equationDisplay">—</span><span class="product-colour-note" id="productColourNote"></span></div></td><td><div class="colour-cell"><span class="colour-indicator" id="colourSwatch"></span><span id="colourText">—</span></div></td></tr></tbody></table></div>
-<div class="merged-row"><div class="merged-left"><div style="font-weight:700;color:#0f2b40;margin-bottom:6px;">🧪 Reactants → Product</div><div class="test-tubes-row"><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="cationLiquid" style="background:#fff;">—</div></div></div><div class="tube-label" id="cationTubeLabel">Cation</div></div><span class="arrow-symbol">+</span><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="anionLiquid" style="background:#fff;">—</div></div></div><div class="tube-label" id="anionTubeLabel">Anion</div></div><span class="arrow-symbol">→</span><div class="tube-unit"><div class="test-tube-svg"><div class="test-tube-outer"><div class="liquid-fill" id="productLiquid" style="background:#ccc;">?</div></div></div><div class="tube-label" id="productTubeLabel">Product</div></div></div></div><div class="merged-right"><button class="btn" id="previousBtn">⬅ Previous</button><button class="btn" id="clearSelectionsBtn">↺ Clear</button><button class="btn btn-primary" id="randomExampleBtn">🎲 Random</button></div></div>
-</div>
-
-<div class="main-panel" id="panelPractical"><h3>🧪 About This Chemistry Practical Simulator</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>🎯 Purpose</h4><div class="precip-item">This software simulates KCSE Chemistry Paper 3 practical experiments. Students explore ion reactions, flame tests, titration, gas identification with animated simulations, cation confirmatory tests, enthalpy measurements, solubility curves, complex ion formation, redox reactions, and precipitate identification — all interactively. With over 200+ reactions in the premium version, it covers the entire KCSE practical syllabus.</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>👨‍🔬 Who Is It For?</h4><div class="precip-item"><strong>Form 1-2:</strong> Word equations with chemical names.<br><strong>Form 3-4:</strong> Ionic equations with symbols.<br><strong>Teachers:</strong> Classroom demonstration tool.<br><strong>Students:</strong> Self-study and exam preparation.<br><strong>Premium Users:</strong> Full access to 200+ reactions, animated gas tests, complex ion simulations, all solubility curves.</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>💡 Features (Free)</h4><div class="precip-item">• 8 cations × 9 anions ion reactions (72 combos, 5 free uses)<br>• Flame test simulator (6 cations)<br>• 2 titration experiments<br>• Gas identification reference guide<br>• Cation confirmatory tests<br>• 1 enthalpy experiment<br>• 1 solubility curve (KNO₃)<br>• 5 practice questions<br>• Precipitates, ions & radicals reference</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;border:2px solid #f0c040;"><h4>⭐ Premium Features</h4><div class="precip-item">• All 12 cations + 9 anions = 108+ reactions (unlimited)<br>• 🆕 <strong>Animated Gas Test Simulator</strong> (splint relighting, pop sound, litmus changes, bleaching, dichromate paper)<br>• 10 titration experiments (acid-base, redox, back titration)<br>• 5 enthalpy experiments<br>• Full 7 solubility curves<br>• Complex ion formation simulator<br>• Redox reactions simulator<br>• 15+ practice questions<br>• No reaction limits<br>• Ad-free</div></div>
-</div></div>
-
-<div class="main-panel" id="panelSyllabus"><h3>📘 Table of Contents</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🧪 Ion Reactions</h4><div class="precip-item">12 cations, 9 anions. Word & ionic equations. Visual test tubes. 108+ reactions. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🔥 Flame Tests</h4><div class="precip-item">Li⁺, Na⁺, K⁺, Ca²⁺, Ba²⁺, Cu²⁺, Sr²⁺ flame colours with Bunsen animation.</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🧪 Titration</h4><div class="precip-item">10 experiments: acid-base, redox (KMnO₄/Fe²⁺), back titration. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>💨 Gas Tests</h4><div class="precip-item">O₂, H₂, CO₂, NH₃, Cl₂, SO₂, NO₂, HCl. <strong>Animated simulations</strong> with splint tests, litmus, and bleaching. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>✅ Cation Tests</h4><div class="precip-item">Fe²⁺, Fe³⁺, Cu²⁺, Zn²⁺, Al³⁺, Pb²⁺, Cr³⁺, Mn²⁺ with NaOH/NH₃.</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🔄 Complex Ions</h4><div class="precip-item">Interactive step-by-step complex ion formation simulator. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🔥 Enthalpy</h4><div class="precip-item">5 experiments. Temperature-time graphs. ΔH calculations. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>💧 Solubility</h4><div class="precip-item">7 solubility curves, fractional crystallization, KCSE questions. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>📝 Practice</h4><div class="precip-item">15+ MCQ questions with auto-marking & marking scheme. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>💧 Ions Guide</h4><div class="precip-item">All cations, anions & complex ions reference with colours.</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🔬 Radicals</h4><div class="precip-item">13 polyatomic radicals, oxidation states, redox simulator. <span class="premium-badge">Premium</span></div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🔬 Precipitates</h4><div class="precip-item">Full precipitates guide with solubility rules and colours.</div></div>
-</div></div>
-
-<div class="main-panel" id="panelFlame"><h3>🔥 Flame Test Colours</h3><div class="flame-test-container"><div style="text-align:center;"><div class="flame-visual"><div class="flame" id="flameDisplay"></div><div class="bunsen-barrel"></div><div class="bunsen-base"></div></div><div id="flameLabel" style="font-weight:700;margin-top:6px;">Select cation</div></div><div style="flex:1;min-width:240px;"><select id="flameCationSelect"><option value="">-- Select --</option></select><div id="flameInfo" style="background:#f7faff;padding:12px;border-radius:10px;margin-top:10px;">💡 Select a metal cation.</div></div></div></div>
-
-<div class="main-panel" id="panelTitration"><h3>🧪 Titration Simulator</h3><p style="color:#4a6078;margin-bottom:8px;">Pipette: 25.0 cm³ base. Tap valve. Flask max 60%.</p>
-<div style="margin-bottom:10px;"><select id="titrationSelect" style="padding:8px;border-radius:8px;width:100%;max-width:500px;" onchange="if(!isPremium()&&parseInt(this.value)>1){this.value='0';showUpgradeLock();}"><option value="0">1. HCl vs NaOH (phenolphthalein) — FREE</option><option value="1">2. H₂SO₄ vs NaOH (methyl orange) — FREE</option><option value="2">3. HCl vs Na₂CO₃ (methyl orange) 🔒</option><option value="3">4. H₂SO₄ vs KOH (phenolphthalein) 🔒</option><option value="4">5. HCl vs NaHCO₃ (methyl orange) 🔒</option><option value="5">6. CH₃COOH vs NaOH (phenolphthalein) 🔒</option><option value="6">7. KMnO₄ vs FeSO₄ (redox) 🔒</option><option value="7">8. K₂Cr₂O₇ vs FeSO₄ (redox) 🔒</option><option value="8">9. Back titration (CaCO₃ antacid) 🔒</option><option value="9">10. I₂ vs Na₂S₂O₃ (iodometric) 🔒</option></select></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:2px;margin:10px 0;"><div style="text-align:center;"><div style="width:42px;height:102px;background:rgba(225,238,250,0.28);border:2px solid #93a9c2;border-radius:0 0 24px 24px;overflow:hidden;position:relative;"><div id="buretteLiquid" style="position:absolute;bottom:0;width:100%;background:#e8b730;height:90%;transition:height 0.2s;"></div></div><small>Burette</small></div><div id="valveTap" style="width:28px;height:28px;background:#134b6e;border-radius:50%;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;margin:4px 0;">💧</div><div style="text-align:center;"><div style="width:70px;height:70px;background:#fff;border:2px solid #999;border-radius:10px 10px 24px 24px;overflow:hidden;position:relative;" id="flaskColour"><div id="flaskInner" style="position:absolute;bottom:0;width:100%;height:35%;background:rgba(255,224,178,0.8);transition:background 0.2s,height 0.2s;border-radius:0 0 22px 22px;"></div></div><small>Flask</small></div></div>
-<div style="text-align:center;margin:8px 0;"><div style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:6px 12px;border-radius:6px;" id="buretteReading">Used: 0.00 cm³</div><div id="endpointFlash" style="display:none;color:#e74c3c;font-weight:700;">🎯 ENDPOINT!</div></div>
-<div style="text-align:center;"><button class="btn btn-primary" id="recordTitreBtn">📝 Record</button> <button class="btn" id="resetTitrationBtn">🔄 Reset</button></div>
-<table id="titreTable" style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-top:10px;"><thead><tr style="background:#153e54;color:white;"><th>#</th><th>Initial</th><th>Final</th><th>Volume</th></tr></thead><tbody><tr><td colspan="4">No readings</td></tr></tbody></table>
-<div id="calcBox" style="display:none;background:#f0f4fa;padding:14px;border-radius:10px;margin-top:10px;"><strong>📊 Results:</strong><div id="calcContent"></div></div>
-<div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:10px;"><strong>📝 Calculations:</strong><ol id="titrationQuestions" style="padding-left:18px;line-height:1.8;"></ol></div>
-</div>
-
-<!-- ==================== GAS TESTS PANEL ==================== -->
-<div class="main-panel" id="panelGasTests">
-  <h3>💨 Gas Identification Tests — Interactive Simulator <span class="premium-badge">Premium</span></h3>
-  <p style="color:#4a6078;margin-bottom:14px;">Select a gas below to run the confirmatory test. Splint relighting, litmus paper changes, bleaching, and dichromate paper tests are animated.</p>
-  
-  <div class="gas-select-grid" id="gasSelectGrid">
-    <button class="gas-select-btn active" onclick="selectGas(0)" id="gasBtn0">🟢 O₂ — Relight</button>
-    <button class="gas-select-btn premium" onclick="selectGas(1)" id="gasBtn1">💥 H₂ — Pop 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(2)" id="gasBtn2">⬜ CO₂ — Milky 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(3)" id="gasBtn3">🟡 NH₃ — Litmus 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(4)" id="gasBtn4">🟢 Cl₂ — Bleach 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(5)" id="gasBtn5">🟤 SO₂ — Dichromate 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(6)" id="gasBtn6">🟠 NO₂ — Brown gas 🔒</button>
-    <button class="gas-select-btn premium" onclick="selectGas(7)" id="gasBtn7">⬜ HCl — Fumes 🔒</button>
-  </div>
-
-  <div class="gas-test-sim" id="gasTestSimulator">
-    <!-- Gas Jar -->
-    <div class="gas-jar" id="gasJar">
-      <div class="gas-fill" id="gasFill" style="height:85%;"></div>
-      <!-- Litmus paper 1 (left side) -->
-      <div class="litmus-paper wet-blue" id="litmusPaper1" style="left:15px;bottom:20px;"></div>
-      <!-- Litmus paper 2 / Dichromate paper (right side) -->
-      <div class="litmus-paper wet-blue" id="litmusPaper2" style="right:15px;bottom:20px;"></div>
-      <!-- Dichromate paper (hidden by default) -->
-      <div class="dichromate-paper" id="dichromatePaper" style="right:15px;bottom:20px;display:none;"></div>
-      <!-- Fumes -->
-      <div class="fume-container" id="fumeContainer" style="top:10px;left:50%;transform:translateX(-50%);"></div>
-    </div>
+  <div class="card">
+    <h2>🔑 Premium Key Generator</h2>
     
-    <!-- Splint (outside jar, moves in) -->
-    <div class="splint-container" id="splintContainer" style="top:-70px;left:50%;">
-      <div class="splint">
-        <div class="splint-tip" id="splintTip"></div>
-      </div>
-    </div>
+    <label>Student Name/Email:</label>
+    <input type="text" id="studentName" placeholder="e.g. john@gmail.com">
     
-    <!-- Pop text -->
-    <div class="pop-text" id="popText" style="top:30%;left:50%;transform:translateX(-50%);">💥 POP!</div>
+    <label>Phone Number (optional):</label>
+    <input type="text" id="studentPhone" placeholder="e.g. 0712345678">
+    
+    <label>Validity (months):</label>
+    <select id="months">
+      <option value="12">12 months (1 year) - KES 350</option>
+      <option value="6">6 months - KES 200</option>
+      <option value="3">3 months - KES 100</option>
+      <option value="1">1 month - KES 50</option>
+    </select>
+    
+    <label>Custom Password (leave empty for auto-generate):</label>
+    <input type="text" id="customPassword" placeholder="Auto-generated if empty">
+    
+    <button class="btn" onclick="generateKey()">🔑 Generate Key</button>
+    <button class="btn btn-gold" onclick="generateAndCopy()">📋 Generate & Copy</button>
+    
+    <div class="output" id="output"></div>
+    
+    <p class="note">Key format: <code>SAF-XXXX-XXXX-XXXX</code> | Works on 2 devices</p>
+    <p class="note"><a href="admin-login.html">← Admin Login</a> | <a href="index.html">Simulator</a></p>
   </div>
 
-  <div style="text-align:center;margin-top:8px;">
-    <button class="btn btn-primary" id="runGasTestBtn" onclick="runGasTest()">▶ Run Test</button>
-    <button class="btn" id="resetGasTestBtn" onclick="resetGasTest()">🔄 Reset</button>
-  </div>
+  <script>
+    function generateKeyString() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let key = 'SAF';
+      for (let i = 0; i < 3; i++) {
+        key += '-';
+        for (let j = 0; j < 4; j++) {
+          key += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+      return key;
+    }
 
-  <div id="gasTestObservation" style="background:#fef9e7;padding:14px;border-radius:10px;margin-top:10px;min-height:50px;border:1px solid #f0c040;font-weight:600;">
-    👆 Select a gas and click <strong>Run Test</strong>.
-  </div>
-  <div id="gasTestEquation" style="background:#fafcff;padding:8px;border-radius:6px;font-size:0.78rem;text-align:center;font-weight:600;margin-top:6px;"></div>
+    function generatePassword() {
+      const pwChars = 'abcdefghjkmnpqrstuvwxyz23456789';
+      let password = '';
+      for (let i = 0; i < 8; i++) {
+        password += pwChars[Math.floor(Math.random() * pwChars.length)];
+      }
+      return password;
+    }
 
-  <hr>
-  
-  <!-- Reference Cards -->
-  <h3>📋 Gas Tests Reference</h3>
-  <div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🟢 O₂ (Oxygen)</h4><div class="precip-item">Glowing splint <strong style="color:#27ae60;">relights</strong>. Colourless, odourless.<br><strong>Lab prep:</strong> 2H₂O₂ →MnO₂→ 2H₂O + O₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>💥 H₂ (Hydrogen)</h4><div class="precip-item">Burning splint: <strong style="color:#e74c3c;">"pop"</strong> sound.<br><strong>Lab prep:</strong> Zn + 2HCl → ZnCl₂ + H₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>⬜ CO₂ (Carbon dioxide)</h4><div class="precip-item">Limewater <strong style="color:#888;">milky</strong>. Blue litmus→<strong style="color:#e74c3c;">red</strong>. Extinguishes flame.<br><strong>Lab prep:</strong> CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🟡 NH₃ (Ammonia)</h4><div class="precip-item">Red litmus→<strong style="color:#2980b9;">blue</strong>. Pungent. White fumes with HCl.<br><strong>Lab prep:</strong> NH₄Cl + NaOH → NaCl + H₂O + NH₃</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🟢 Cl₂ (Chlorine)</h4><div class="precip-item">Blue litmus→<strong style="color:#e74c3c;">red</strong>→<strong style="color:#ccc;">bleaches</strong>. Greenish-yellow.<br><strong>Lab prep:</strong> MnO₂ + 4HCl → MnCl₂ + 2H₂O + Cl₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🟤 SO₂ (Sulphur dioxide)</h4><div class="precip-item">Blue litmus→<strong style="color:#e74c3c;">red</strong>→bleaches. K₂Cr₂O₇→<strong style="color:#27ae60;">green</strong>.<br><strong>Lab prep:</strong> Na₂SO₃ + H₂SO₄ → Na₂SO₄ + H₂O + SO₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>🟠 NO₂ (Nitrogen dioxide)</h4><div class="precip-item"><strong style="color:#c49a2c;">Reddish-brown</strong> gas. Turns blue litmus red.<br><strong>Lab prep:</strong> 2Pb(NO₃)₂ →heat→ 2PbO + 4NO₂ + O₂</div></div>
-<div class="precip-card" style="flex:1;min-width:240px;"><h4>⬜ HCl (Hydrogen chloride)</h4><div class="precip-item">White fumes with NH₃. Blue litmus→<strong style="color:#e74c3c;">red</strong>.<br><strong>Lab prep:</strong> NaCl + H₂SO₄ → NaHSO₄ + HCl</div></div>
-</div>
-</div>
+    function generateKey() {
+      const name = document.getElementById('studentName').value.trim() || 'student';
+      const phone = document.getElementById('studentPhone').value.trim();
+      const months = parseInt(document.getElementById('months').value);
+      let password = document.getElementById('customPassword').value.trim();
+      if (!password) password = generatePassword();
+      
+      const key = generateKeyString();
+      const now = new Date();
+      const expiry = new Date();
+      expiry.setMonth(expiry.getMonth() + months);
+      
+      const output = document.getElementById('output');
+      output.style.display = 'block';
+      output.textContent = 
+        `✅ KEY GENERATED SUCCESSFULLY\n\n` +
+        `🔑 Key:      ${key}\n` +
+        `🔒 Password:  ${password}\n` +
+        `👤 Student:   ${name}\n` +
+        `📱 Phone:     ${phone || 'N/A'}\n` +
+        `📅 Created:   ${now.toLocaleDateString()}\n` +
+        `⏰ Expires:   ${expiry.toLocaleDateString()}\n` +
+        `📆 Duration:  ${months} month(s)\n` +
+        `📱 Devices:   2 max\n\n` +
+        `📋 Add this line to upgrade.html:\n` +
+        `"${key}": { password: "${password}", expires: "${expiry.toISOString().split('T')[0]}" },`;
+      
+      // Also save to localStorage for admin tracking
+      try {
+        const keys = JSON.parse(localStorage.getItem('safari_keys') || '[]');
+        keys.push({
+          key: key,
+          password: password,
+          student: name,
+          phone: phone,
+          created: now.toISOString(),
+          expires: expiry.toISOString(),
+          months: months,
+          activated: false,
+          devices: []
+        });
+        localStorage.setItem('safari_keys', JSON.stringify(keys));
+      } catch(e) {}
+    }
 
-<div class="main-panel" id="panelCationTests"><h3>✅ Cation Tests & Complex Ions</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Fe²⁺</h4><div class="precip-item">+NaOH: <span style="color:#6b8e5a;">Dirty green ppt</span><br>+NH₃: Dirty green ppt<br>Insoluble in excess</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Fe³⁺</h4><div class="precip-item">+NaOH: <span style="color:#a0522d;">Red-brown ppt</span><br>+NH₃: Red-brown ppt<br>Insoluble in excess</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Cu²⁺</h4><div class="precip-item">+NaOH: <span style="color:#5b9bd5;">Blue ppt</span><br>+Excess NH₃: <span style="color:#1a5276;">Deep blue</span></div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Zn²⁺</h4><div class="precip-item">+NaOH: White ppt<br>+Excess: Dissolves → [Zn(OH)₄]²⁻</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Al³⁺</h4><div class="precip-item">+NaOH: White gel<br>+Excess: Dissolves → [Al(OH)₄]⁻</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Pb²⁺</h4><div class="precip-item">+NaOH: White ppt<br>+Excess: Dissolves<br>+KI: Bright yellow ppt</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Cr³⁺</h4><div class="precip-item">+NaOH: <span style="color:#7d8c7d;">Grey-green ppt</span><br>+Excess: → [Cr(OH)₄]⁻ green</div></div>
-<div class="precip-card" style="flex:1;min-width:220px;"><h4>Mn²⁺</h4><div class="precip-item">+NaOH: <span style="color:#f5cba7;">Pale pink ppt</span><br>Darkens in air → brown</div></div>
-</div></div>
-
-<div class="main-panel" id="panelComplexIons"><h3>🔄 Complex Ion Formation Simulator <span class="premium-badge">Premium</span></h3><p style="color:#4a6078;margin-bottom:10px;">Step-by-step simulation of complex ion formation with excess reagent.</p>
-<div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;">
-<div style="flex:1;min-width:280px;"><select id="complexCationSelect" style="padding:8px;border-radius:8px;width:100%;" onchange="if(!isPremium()){this.value='';showUpgradeLock();return;}resetComplexSim();"><option value="">-- Select Cation --</option><option value="Al3+">Al³⁺ — Aluminium</option><option value="Zn2+">Zn²⁺ — Zinc</option><option value="Pb2+">Pb²⁺ — Lead(II)</option><option value="Cu2+">Cu²⁺ — Copper(II)</option><option value="Ag+">Ag⁺ — Silver</option><option value="Cr3+">Cr³⁺ — Chromium(III)</option></select></div>
-<div style="flex:1;min-width:200px;"><select id="complexReagentSelect" style="padding:8px;border-radius:8px;width:100%;" onchange="resetComplexSim();"><option value="NaOH">NaOH (aq)</option><option value="NH3">NH₃ (aq)</option></select></div>
-</div>
-<div class="complex-ion-sim">
-  <div style="text-align:center;"><div style="width:50px;height:70px;background:#f5f5f5;border:2px solid #999;border-radius:6px 6px 16px 16px;position:relative;overflow:hidden;margin:0 auto;"><div id="complexFlask" style="position:absolute;bottom:0;width:100%;height:45%;background:#b3d9ff;border-radius:0 0 14px 14px;transition:background 0.5s;"></div></div><small id="complexLabel" style="font-size:0.6rem;">Initial</small></div>
-  <div class="step-indicator"><button class="btn btn-primary" id="addDropBtn" style="font-size:0.7rem;padding:4px 10px;" onclick="addDropComplex();">💧 Add 1 drop</button><span id="dropCount" style="font-family:monospace;">0 drops</span><button class="btn" id="addExcessBtn" style="font-size:0.7rem;padding:4px 10px;" onclick="addExcessComplex();">🧪 Add excess</button><button class="btn" id="resetComplexBtn" style="font-size:0.7rem;padding:4px 10px;" onclick="resetComplexSim();">🔄 Reset</button></div>
-</div>
-<div id="complexObservation" style="background:#fef9e7;padding:12px;border-radius:10px;margin:8px 0;min-height:50px;border:1px solid #f0c040;">👆 Select a cation and reagent, then add drops.</div>
-<div id="complexEquation" style="background:#fafcff;padding:8px;border-radius:6px;font-size:0.78rem;text-align:center;font-weight:600;min-height:30px;"></div>
-</div>
-
-<div class="main-panel" id="panelEnthalpy"><h3>🔥 Enthalpy Experiments</h3><p style="color:#4a6078;margin-bottom:6px;">Plateau, peak-fall, steady change.</p>
-<div style="margin-bottom:8px;"><select id="enthalpySelect" style="padding:8px;border-radius:8px;width:100%;max-width:500px;" onchange="if(!isPremium()&&parseInt(this.value)>0){this.value='0';showUpgradeLock();}"><option value="0">NaOH + HCl — FREE</option><option value="1">Zn + CuSO₄ 🔒</option><option value="2">NH₄NO₃ + H₂O 🔒</option><option value="3">NaOH + H₂SO₄ 🔒</option><option value="4">Mg + HCl 🔒</option></select></div>
-<div style="display:flex;gap:4px;justify-content:center;align-items:flex-end;margin:8px 0;">
-<div style="text-align:center;"><div style="width:55px;height:50px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:5px 5px 10px 10px;position:relative;overflow:hidden;"><div id="cupLiquid" style="position:absolute;bottom:0;width:100%;background:#b3d9ff;border-radius:0 0 8px 8px;height:55%;transition:background 0.5s;"></div><div style="position:absolute;top:3px;left:50%;transform:translateX(-50%);width:10px;height:38px;border-left:1.5px solid #e74c3c;z-index:3;"></div></div><small style="font-size:0.6rem;">Beaker</small></div>
-<div style="text-align:center;"><div style="width:10px;height:55px;background:#fff;border:1.5px solid #999;border-radius:5px 5px 1px 1px;overflow:hidden;position:relative;"><div id="mercuryFill" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:20%;transition:height 0.8s;"></div></div><div style="width:10px;height:14px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div><small style="font-size:0.6rem;">Therm.</small></div>
-</div><div style="height:6px;"></div>
-<div style="text-align:center;"><button class="btn btn-primary" id="startEnthalpyBtn">▶ Start</button> <button class="btn" id="resetEnthalpyBtn">🔄 Reset</button> <span style="font-weight:700;margin:0 6px;" id="enthalpyTimer">0s</span> <span style="font-weight:700;" id="enthalpyTemp">25.0°C</span></div>
-<table style="width:100%;border-collapse:collapse;font-size:0.7rem;margin-top:8px;" id="enthalpyTable"><thead><tr style="background:#153e54;color:white;"><th>0s</th><th>30s</th><th>60s</th><th>90s</th><th>120s</th><th>150s</th><th>180s</th></tr></thead><tbody><tr><td>25.0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table>
-<div class="enthalpy-graph" id="enthalpyGraph"></div>
-<div id="enthalpyCalcBox" style="display:none;background:#f0f4fa;padding:10px;border-radius:8px;margin-top:8px;"><strong>📊 Results:</strong><div id="enthalpyCalcContent"></div></div>
-<div style="margin-top:8px;background:#fef9e7;padding:12px;border-radius:8px;"><strong>📝 Questions:</strong><ol id="enthalpyQuestions" style="padding-left:16px;line-height:1.7;"></ol></div>
-</div>
-
-<div class="main-panel" id="panelSolubility"><h3>💧 Solubility & Solubility Curves <span class="premium-badge">Premium</span></h3><p style="color:#4a6078;margin-bottom:10px;">Select a salt, heat the solution. All 7 curves plot simultaneously.</p><div style="margin-bottom:10px;"><select id="solubilitySaltSelect" style="padding:8px;border-radius:8px;width:100%;max-width:450px;" onchange="if(!isPremium()&&parseInt(this.value)>0){this.value='0';showUpgradeLock();}"><option value="0">KNO₃ — Potassium nitrate (free)</option><option value="1">KCl — Potassium chloride 🔒</option><option value="2">NaCl — Sodium chloride 🔒</option><option value="3">Ce₂(SO₄)₃ — Cerium(III) sulphate 🔒</option><option value="4">K₂SO₄ — Potassium sulphate 🔒</option><option value="5">NaNO₃ — Sodium nitrate 🔒</option><option value="6">Pb(NO₃)₂ — Lead(II) nitrate 🔒</option></select></div>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed;"><tr>
-<td style="width:20%;vertical-align:top;padding:0 4px;"><div style="display:flex;flex-direction:column;align-items:center;gap:0px;"><div style="text-align:center;"><div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;"><div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div></div><div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div><small style="font-size:0.5rem;">Therm.</small></div><div style="text-align:center;margin-top:2px;"><div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;"><div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div><div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div></div><small style="font-size:0.5rem;">Beaker</small></div><div style="text-align:center;margin-top:2px;margin-left:24px;"><div style="position:relative;width:32px;height:50px;"><div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:30px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div><div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:8px;height:18px;background:#7a8b9a;border-radius:1px;"></div><div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:8px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div></div><small style="font-size:0.5rem;">Bunsen</small><button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button></div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;"><span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTimer">Time: 0s</span><span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTemp">Temp: 20°C</span><span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solSolubility">Sol: 0g</span></div></div></td>
-<td style="width:40%;vertical-align:top;padding:0 4px;"><div style="max-height:400px;overflow-y:auto;overflow-x:hidden;border:1px solid #dce5f2;border-radius:6px;margin-right:10px;"><table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.6rem;table-layout:fixed;"><colgroup><col style="width:22%;"><col style="width:18%;"><col style="width:28%;"><col style="width:32%;"></colgroup><thead><tr style="background:#153e54;color:white;position:sticky;top:0;"><th style="padding:2px 1px;">Time</th><th style="padding:2px 1px;">°C</th><th style="padding:2px 1px;">g/100g</th><th style="padding:2px 1px;">Obs.</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:6px;">Click 🔥 Heat ON</td></tr></tbody></table></div></td>
-<td style="width:40%;vertical-align:top;padding:0 4px;"><div id="solCurveGraph" style="text-align:center;background:#fff;border:1px solid #ccc;min-height:220px;width:100%;"></div><div id="solCurveLegend" style="text-align:center;margin-top:4px;font-size:0.62rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"><span style="color:#e74c3c;font-weight:700;">● KNO₃</span><span style="color:#2980b9;font-weight:700;">● KCl</span><span style="color:#27ae60;font-weight:700;">● NaCl</span><span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span><span style="color:#e67e22;font-weight:700;">● K₂SO₄</span><span style="color:#16a085;font-weight:700;">● NaNO₃</span><span style="color:#c0392b;font-weight:700;">● Pb(NO₃)₂</span></div></td></tr></table>
-<div style="margin-top:14px;background:#fff3cd;padding:14px;border-radius:10px;border:1px solid #f0c040;font-size:0.82rem;"><strong>💡 Key Note:</strong> Solubility of one salt does NOT interfere with another. Each salt dissolves independently.<br><strong>📊 Calculations:</strong> Solubility = (Mass of solute ÷ Mass of water) × 100 | Mass crystallized = Mass at T₁ − Mass at T₂</div>
-<div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;"><h4 style="color:#0f2b40;">📝 KCSE Exam-Style Questions</h4><ol style="padding-left:18px;line-height:1.9;"><li><strong>Mass of KNO₃ in 50g water at 60°C?</strong><br><span style="color:#134b6e;">(110×50)÷100 = <strong>55g KNO₃</strong></span></li><li><strong>KCl crystallized cooling 70°C→30°C in 200g water?</strong><br><span style="color:#134b6e;">98g − 74g = <strong>24g KCl</strong></span></li><li><strong>Best salts for fractional crystallization?</strong><br><span style="color:#134b6e;">KNO₃ and KCl — KNO₃ has steep curve.</span></li><li><strong>Ce₂(SO₄)₃ behaviour when heated?</strong><br><span style="color:#134b6e;">Solubility DECREASES — dissolves exothermically.</span></li><li><strong>80g NaNO₃ in 100g water at 30°C — saturated?</strong><br><span style="color:#134b6e;">80g < 96g → <strong>Unsaturated.</strong></span></li><li><strong>Pb(NO₃)₂ crystallized 80°C→20°C in 150g water?</strong><br><span style="color:#134b6e;">210g − 84g = <strong>126g</strong></span></li></ol></div></div>
-
-<div class="main-panel" id="panelExam"><h3>📝 Practice Questions <span class="premium-badge">15+ in Premium</span></h3><p style="color:#4a6078;">Answer all. Click <strong>Submit & Mark</strong> for your score.</p><div id="examContainer"></div><div style="text-align:center;margin-top:10px;"><button class="btn btn-primary" id="submitExamBtn">📋 Submit & Mark</button> <button class="btn" id="resetExamBtn">🔄 New Questions</button></div><div class="score-display" id="scoreDisplay"></div><div class="marking-scheme" id="markingScheme" style="display:none;"></div></div>
-
-<div class="main-panel" id="panelIons"><h3>💧 Ions Guide — Cations, Anions & Complex Ions</h3><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>🟢 Cations (15)</h4><div class="precip-item"><strong>Na⁺</strong> || Sodium — colourless aq</div><div class="precip-item"><strong>K⁺</strong> || Potassium — colourless aq</div><div class="precip-item"><strong>NH₄⁺</strong> || Ammonium — colourless aq</div><div class="precip-item"><strong>Li⁺</strong> || Lithium — colourless aq</div><div class="precip-item"><strong>Ca²⁺</strong> || Calcium — colourless aq</div><div class="precip-item"><strong>Mg²⁺</strong> || Magnesium — colourless aq</div><div class="precip-item"><strong>Al³⁺</strong> || Aluminium — colourless aq</div><div class="precip-item"><strong>Zn²⁺</strong> || Zinc — colourless aq</div><div class="precip-item"><strong>Fe²⁺</strong> || Iron(II) — <span style="color:#6b8e5a;">pale green</span> aq</div><div class="precip-item"><strong>Fe³⁺</strong> || Iron(III) — <span style="color:#c49a2c;">yellow-brown</span> aq</div><div class="precip-item"><strong>Pb²⁺</strong> || Lead(II) — colourless aq</div><div class="precip-item"><strong>Cu²⁺</strong> || Copper(II) — <span style="color:#3a6ea5;">blue</span> aq</div><div class="precip-item"><strong>Ba²⁺</strong> || Barium — colourless aq</div><div class="precip-item"><strong>Cr³⁺</strong> || Chromium(III) — <span style="color:#7d8c7d;">grey-green</span> aq</div><div class="precip-item"><strong>Mn²⁺</strong> || Manganese(II) — <span style="color:#f5cba7;">pale pink</span> aq</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>🟠 Anions (9)</h4><div class="precip-item"><strong>OH⁻</strong> || Hydroxide — colourless aq</div><div class="precip-item"><strong>SO₄²⁻</strong> || Sulphate — colourless aq</div><div class="precip-item"><strong>SO₃²⁻</strong> || Sulphite — colourless aq</div><div class="precip-item"><strong>CO₃²⁻</strong> || Carbonate — colourless aq</div><div class="precip-item"><strong>Cl⁻</strong> || Chloride — colourless aq</div><div class="precip-item"><strong>Br⁻</strong> || Bromide — colourless aq</div><div class="precip-item"><strong>I⁻</strong> || Iodide — colourless dilute aq</div><div class="precip-item"><strong>NO₃⁻</strong> || Nitrate — colourless aq</div><div class="precip-item"><strong>HCO₃⁻</strong> || Hydrogen carbonate — colourless aq</div></div>
-<div class="precip-card" style="flex:1;min-width:280px;"><h4>🔄 Complex Ions (7)</h4><div class="precip-item"><strong>[Al(OH)₄]⁻</strong> || Al(OH)₃ + OH⁻ → colourless</div><div class="precip-item"><strong>[Zn(OH)₄]²⁻</strong> || Zn(OH)₂ + 2OH⁻ → colourless</div><div class="precip-item"><strong>[Pb(OH)₄]²⁻</strong> || Pb(OH)₂ + 2OH⁻ → colourless</div><div class="precip-item"><strong>[Cr(OH)₄]⁻</strong> || Cr(OH)₃ + OH⁻ → green</div><div class="precip-item"><strong>[Cu(NH₃)₄]²⁺</strong> || Cu(OH)₂ + 4NH₃ → deep blue</div><div class="precip-item"><strong>[Ag(NH₃)₂]⁺</strong> || AgCl + 2NH₃ → colourless</div><div class="precip-item"><strong>[Zn(NH₃)₄]²⁺</strong> || Zn(OH)₂ + 4NH₃ → colourless</div></div></div></div>
-
-<div class="main-panel" id="panelRadicals"><h3>🔬 Radicals Guide <span class="premium-badge">Premium</span></h3><p style="color:#4a6078;margin-bottom:14px;">Common radicals tested in KCSE. Formulas, valencies, oxidation states.</p><div style="display:flex;flex-wrap:wrap;gap:14px;"><div class="precip-card" style="flex:1;min-width:340px;"><h4>📋 Complete Radicals Reference</h4><div style="overflow-x:auto;"><table style="width:100%;font-size:0.78rem;border-collapse:collapse;"><thead><tr style="background:#153e54;color:white;"><th style="padding:6px;">Radical</th><th style="padding:6px;">Formula</th><th style="padding:6px;">Valency</th><th style="padding:6px;">Central Atom</th><th style="padding:6px;">Oxid. State</th><th style="padding:6px;">Appearance</th></tr></thead><tbody><tr><td style="padding:6px;border:1px solid #dce5f2;">Ammonium</td><td style="padding:6px;border:1px solid #dce5f2;">NH₄⁺</td><td style="padding:6px;border:1px solid #dce5f2;">1+</td><td style="padding:6px;border:1px solid #dce5f2;">N</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">-3</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Hydroxide</td><td style="padding:6px;border:1px solid #dce5f2;">OH⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">O</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">-2</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Nitrate(V)</td><td style="padding:6px;border:1px solid #dce5f2;">NO₃⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">N</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+5</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Nitrite(III)</td><td style="padding:6px;border:1px solid #dce5f2;">NO₂⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">N</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+3</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Sulphate(VI)</td><td style="padding:6px;border:1px solid #dce5f2;">SO₄²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">S</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+6</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Sulphite(IV)</td><td style="padding:6px;border:1px solid #dce5f2;">SO₃²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">S</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+4</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Carbonate</td><td style="padding:6px;border:1px solid #dce5f2;">CO₃²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">C</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+4</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Hydrogen carbonate</td><td style="padding:6px;border:1px solid #dce5f2;">HCO₃⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">C</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+4</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Phosphate(V)</td><td style="padding:6px;border:1px solid #dce5f2;">PO₄³⁻</td><td style="padding:6px;border:1px solid #dce5f2;">3-</td><td style="padding:6px;border:1px solid #dce5f2;">P</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+5</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Manganate(VII)</td><td style="padding:6px;border:1px solid #dce5f2;">MnO₄⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">Mn</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+7</td><td style="padding:6px;border:1px solid #dce5f2;"><span style="color:#8e44ad;">Purple</span> aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Dichromate(VI)</td><td style="padding:6px;border:1px solid #dce5f2;">Cr₂O₇²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">Cr</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+6</td><td style="padding:6px;border:1px solid #dce5f2;"><span style="color:#e67e22;">Orange</span> aq</td></tr><tr style="background:#fafcff;"><td style="padding:6px;border:1px solid #dce5f2;">Thiosulphate</td><td style="padding:6px;border:1px solid #dce5f2;">S₂O₃²⁻</td><td style="padding:6px;border:1px solid #dce5f2;">2-</td><td style="padding:6px;border:1px solid #dce5f2;">S</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+2</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr><tr><td style="padding:6px;border:1px solid #dce5f2;">Chlorate(V)</td><td style="padding:6px;border:1px solid #dce5f2;">ClO₃⁻</td><td style="padding:6px;border:1px solid #dce5f2;">1-</td><td style="padding:6px;border:1px solid #dce5f2;">Cl</td><td style="padding:6px;border:1px solid #dce5f2;color:#134b6e;font-weight:700;">+5</td><td style="padding:6px;border:1px solid #dce5f2;">Colourless aq</td></tr></tbody></table></div></div><div style="background:#fff3cd;padding:14px;border-radius:10px;margin-bottom:14px;border:2px solid #f0c040;" id="redoxBanner"><h4 style="color:#0f2b40;margin:0 0 10px 0;">🔬 Redox Reactions Simulator <span class="premium-badge">Premium</span></h4><div id="redoxContent"><div style="margin-bottom:8px;"><select id="redoxSelect" style="padding:8px;border-radius:8px;width:100%;max-width:500px;" onchange="if(!isPremium()&&parseInt(this.value)>0){this.value='0';showUpgradeLock();return;}updateRedox();"><option value="0">1. KMnO₄ + Fe²⁺ — FREE</option><option value="1">2. K₂Cr₂O₇ + SO₂ 🔒</option><option value="2">3. Zn + CuSO₄ 🔒</option><option value="3">4. I₂ + Na₂S₂O₃ 🔒</option><option value="4">5. KMnO₄ + H₂O₂ 🔒</option><option value="5">6. Fe³⁺ + SO₂ 🔒</option></select></div><div style="display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin:10px 0;"><div style="text-align:center;"><div style="width:50px;height:60px;background:#f5f5f5;border:2px solid #999;border-radius:6px 6px 16px 16px;position:relative;overflow:hidden;margin:0 auto;"><div id="redoxReactant" style="position:absolute;bottom:0;width:100%;height:50%;background:#8e44ad;border-radius:0 0 14px 14px;transition:background 0.5s;"></div></div><small style="font-size:0.55rem;">Reactant</small></div><span style="font-size:1.2rem;">→</span><div style="text-align:center;"><div style="width:50px;height:60px;background:#f5f5f5;border:2px solid #999;border-radius:6px 6px 16px 16px;position:relative;overflow:hidden;margin:0 auto;"><div id="redoxProduct" style="position:absolute;bottom:0;width:100%;height:50%;background:#ccc;border-radius:0 0 14px 14px;transition:background 0.5s;"></div></div><small style="font-size:0.55rem;">Product</small></div></div><div id="redoxEquation" style="background:#fafcff;padding:8px;border-radius:6px;font-size:0.78rem;text-align:center;font-weight:600;margin:8px 0;"></div><div id="redoxObservation" style="background:#fafcff;padding:8px;border-radius:6px;font-size:0.75rem;text-align:center;color:#5d4037;"></div></div></div><div class="precip-card" style="flex:1;min-width:300px;"><h4>⭐ Essential KCSE Radicals</h4><div class="precip-item"><strong>MnO₄⁻</strong><br><span style="color:#8e44ad;">Purple</span>. Oxidizing agent. Redox titrations.</div><div class="precip-item"><strong>Cr₂O₇²⁻</strong><br><span style="color:#e67e22;">Orange</span>→<span style="color:#27ae60;">green</span> when reduced.</div><div class="precip-item"><strong>S₂O₃²⁻</strong><br>Iodine titration. "Clock reaction".</div><div class="precip-item"><strong>SO₄²⁻</strong><br>White ppt with Ba²⁺ (BaSO₄).</div><div class="precip-item"><strong>CO₃²⁻</strong><br>Produces CO₂ with acids.</div></div></div><div style="background:#f0f4fa;padding:14px;border-radius:12px;margin-top:14px;"><h4 style="color:#0f2b40;">📐 Oxidation State Calculation</h4><div style="display:flex;flex-wrap:wrap;gap:14px;"><div class="precip-card" style="flex:1;min-width:300px;"><h4>📋 Rules</h4><div class="precip-item">1. Sum in neutral compound = 0<br>2. Sum in ion = charge<br>3. O = -2, H = +1<br>4. Group 1 = +1, Group 2 = +2</div></div><div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 MnO₄⁻</h4><div class="precip-item">x + 4(-2) = -1<br>x - 8 = -1<br>x = +7 ✅</div></div><div class="precip-card" style="flex:1;min-width:300px;"><h4>🧪 Cr₂O₇²⁻</h4><div class="precip-item">2x + 7(-2) = -2<br>2x = 12<br>x = +6 ✅</div></div></div></div></div>
-
-<div class="main-panel" id="panelPrecipitates"><h3>🔬 Theoretical Precipitates Guide</h3><p style="color:#4a6078;margin-bottom:14px;">Common precipitates, ionic equations, colours, and excess reagent behaviour.</p><div style="display:flex;flex-wrap:wrap;gap:14px;">
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🟡 Carbonates (CO₃²⁻)</h4><div class="precip-item"><strong>Ca²⁺:</strong> CaCO₃ ↓ white</div><div class="precip-item"><strong>Mg²⁺:</strong> MgCO₃ ↓ white</div><div class="precip-item"><strong>Zn²⁺:</strong> ZnCO₃ ↓ white</div><div class="precip-item"><strong>Fe²⁺:</strong> FeCO₃ ↓ greenish-grey</div><div class="precip-item"><strong>Cu²⁺:</strong> CuCO₃ ↓ blue-green</div><div class="precip-item"><strong>Pb²⁺:</strong> PbCO₃ ↓ white</div><div class="precip-item"><strong>Ba²⁺:</strong> BaCO₃ ↓ white</div><p style="font-size:0.73rem;color:#888;"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺</p></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🟠 Sulphates (SO₄²⁻)</h4><div class="precip-item"><strong>Ca²⁺:</strong> CaSO₄ ↓ white (sparingly)</div><div class="precip-item"><strong>Ba²⁺:</strong> BaSO₄ ↓ white (insoluble in acid)</div><div class="precip-item"><strong>Pb²⁺:</strong> PbSO₄ ↓ white</div><p style="font-size:0.73rem;color:#888;"><strong>Soluble:</strong> Na⁺, K⁺, NH₄⁺, Mg²⁺, Al³⁺, Zn²⁺, Fe²⁺, Fe³⁺, Cu²⁺</p></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>⚪ Chlorides (Cl⁻)</h4><div class="precip-item"><strong>Pb²⁺:</strong> PbCl₂ ↓ white (soluble hot)</div><div class="precip-item"><strong>Ag⁺:</strong> AgCl ↓ white (purple in light)</div><p style="font-size:0.73rem;color:#888;"><strong>Soluble:</strong> All other chlorides</p></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🔵 Hydroxides (OH⁻)</h4><div class="precip-item"><strong>Ca²⁺:</strong> Ca(OH)₂ ↓ white</div><div class="precip-item"><strong>Al³⁺:</strong> Al(OH)₃ ↓ white gel → [Al(OH)₄]⁻</div><div class="precip-item"><strong>Zn²⁺:</strong> Zn(OH)₂ ↓ white → [Zn(OH)₄]²⁻</div><div class="precip-item"><strong>Fe²⁺:</strong> Fe(OH)₂ ↓ dirty green</div><div class="precip-item"><strong>Fe³⁺:</strong> Fe(OH)₃ ↓ red-brown</div><div class="precip-item"><strong>Cu²⁺:</strong> Cu(OH)₂ ↓ blue → [Cu(NH₃)₄]²⁺</div><div class="precip-item"><strong>Cr³⁺:</strong> Cr(OH)₃ ↓ grey-green → [Cr(OH)₄]⁻</div></div>
-<div class="precip-card" style="flex:1;min-width:300px;"><h4>🟤 Bromides & Iodides</h4><div class="precip-item"><strong>Pb²⁺ + Br⁻:</strong> PbBr₂ ↓ cream</div><div class="precip-item"><strong>Pb²⁺ + I⁻:</strong> PbI₂ ↓ bright yellow</div><div class="precip-item"><strong>Ag⁺ + Br⁻:</strong> AgBr ↓ cream</div><div class="precip-item"><strong>Ag⁺ + I⁻:</strong> AgI ↓ yellow</div></div>
-</div><div style="margin-top:16px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;"><strong>📋 KCSE Solubility Rules:</strong> ✅ Soluble: Na⁺, K⁺, NH₄⁺ salts, all nitrates, most chlorides. ❌ Precipitates: Most carbonates, BaSO₄/PbSO₄/CaSO₄, most hydroxides, AgCl/PbCl₂/PbI₂.</div>
-</div>
-
-<div class="footer-tab-area"><div class="tab-header"><button class="tab-button" id="tabCopyright">© Copyright & Legal</button><button class="tab-button" id="tabTerms">📋 Terms of Use</button><button class="tab-button" id="tabPrivacy">🔒 Privacy Policy</button><button class="tab-button" onclick="window.location.href='upgrade.html'" style="background:#27ae60;color:white;font-weight:700;">⭐ Upgrade to Premium</button><button class="tab-button" id="safariFooterLink" style="background:#f0c040;color:#0f2b40;font-weight:700;" title="Tap 4 times to visit Safari Softwares">🔬 Safari Softwares</button></div>
-<div class="tab-panel" id="panelCopyright"><h3>📜 Copyright & Intellectual Property</h3><p><strong>© 2025 Safari Softwares. All rights reserved.</strong></p><p>This chemistry simulation software including all source code, databases, visual design, and educational content is the exclusive intellectual property of Safari Softwares. Protected under Kenyan copyright law and the Berne Convention.</p><p><strong>Contact:</strong> <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a></p></div>
-<div class="tab-panel" id="panelTerms"><h3>📋 Terms of Use</h3><p>Free for non-commercial educational use. Redistribution, modification, or commercial exploitation prohibited without written consent.</p></div>
-<div class="tab-panel" id="panelPrivacy"><h3>🔒 Privacy Policy</h3><p>This application operates entirely in your browser. No personal data is collected, stored, or transmitted.</p></div>
-<div class="footer-empty" id="footerEmpty">👆 Click any tab above to view. Click again to close.</div></div>
-</div></div>
-
-<script>
-// ============ PREMIUM HELPERS ============
-function isPremium() {
-  const access = localStorage.getItem('premium_access');
-  const expires = localStorage.getItem('premium_expires');
-  return access === 'true' && expires && new Date(expires) > new Date();
-}
-function hideUpgradeLock() { document.getElementById('premiumLock').style.display = 'none'; }
-function showUpgradeLock() { document.getElementById('premiumLock').style.display = 'flex'; }
-if(isPremium()){hideUpgradeLock();}
-
-function switchPanel(k){
-  document.querySelectorAll('.main-panel').forEach(p=>p.classList.remove('active-panel'));
-  document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active-tab'));
-  const map={practical:'panelPractical',syllabus:'panelSyllabus',reactions:'panelReactions',flame:'panelFlame',titration:'panelTitration',gasTests:'panelGasTests',cationTests:'panelCationTests',complexIons:'panelComplexIons',enthalpy:'panelEnthalpy',exam:'panelExam',ions:'panelIons',radicals:'panelRadicals',solubility:'panelSolubility',precipitates:'panelPrecipitates'};
-  const p=document.getElementById(map[k]);if(p)p.classList.add('active-panel');
-  const tabMap={reactions:0,flame:1,titration:2,gasTests:3,cationTests:4,enthalpy:5,precipitates:6};
-  if(tabMap[k]!==undefined){const tabs=document.querySelectorAll('.main-tab');if(tabs[tabMap[k]])tabs[tabMap[k]].classList.add('active-tab');}
-}
-
-// ============ GAS TEST SIMULATOR ============
-const gasData = [
-  { name:"Oxygen", formula:"O₂", jarColour:"rgba(200,220,240,0.2)", splintType:"glowing", litmus1Start:"wet-blue", litmus1End:"wet-blue", litmus2Start:"wet-blue", litmus2End:"wet-blue", dichromate:false, bleach:false, pop:false, extinguish:false, observe:"🟢 <strong>O₂:</strong> Glowing splint <strong style='color:#27ae60;'>RELIGHTS</strong>. Colourless, odourless gas. Supports combustion.", eq:"2H₂O₂ →MnO₂→ 2H₂O + O₂" },
-  { name:"Hydrogen", formula:"H₂", jarColour:"rgba(200,220,240,0.15)", splintType:"burning", litmus1Start:"wet-blue", litmus1End:"wet-blue", litmus2Start:"wet-blue", litmus2End:"wet-blue", dichromate:false, bleach:false, pop:true, extinguish:false, observe:"💥 <strong>H₂:</strong> Burning splint produces a <strong style='color:#e74c3c;'>'POP'</strong> sound. Colourless, odourless. Burns with pale blue flame.", eq:"Zn + 2HCl → ZnCl₂ + H₂" },
-  { name:"Carbon dioxide", formula:"CO₂", jarColour:"rgba(220,225,230,0.2)", splintType:"burning", litmus1Start:"wet-blue", litmus1End:"wet-red", litmus2Start:"wet-blue", litmus2End:"wet-red", dichromate:false, bleach:false, pop:false, extinguish:true, observe:"⬜ <strong>CO₂:</strong> Burning splint <strong style='color:#e74c3c;'>EXTINGUISHES</strong>. Wet blue litmus turns <strong style='color:#e74c3c;'>RED</strong>. Limewater turns milky.", eq:"CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂" },
-  { name:"Ammonia", formula:"NH₃", jarColour:"rgba(210,220,210,0.2)", splintType:"none", litmus1Start:"wet-red", litmus1End:"wet-blue", litmus2Start:"wet-red", litmus2End:"wet-blue", dichromate:false, bleach:false, pop:false, extinguish:false, observe:"🟡 <strong>NH₃:</strong> Wet <strong style='color:#e74c3c;'>RED</strong> litmus turns <strong style='color:#2980b9;'>BLUE</strong>. Pungent smell. White fumes with HCl.", eq:"NH₄Cl + NaOH → NaCl + H₂O + NH₃" },
-  { name:"Chlorine", formula:"Cl₂", jarColour:"rgba(180,210,180,0.25)", splintType:"none", litmus1Start:"wet-blue", litmus1End:"wet-red-bleach", litmus2Start:"wet-blue", litmus2End:"wet-red-bleach", dichromate:false, bleach:true, pop:false, extinguish:false, observe:"🟢 <strong>Cl₂:</strong> Wet blue litmus turns <strong style='color:#e74c3c;'>RED</strong> then <strong style='color:#ccc;'>BLEACHES WHITE</strong>. Greenish-yellow, pungent gas.", eq:"MnO₂ + 4HCl → MnCl₂ + 2H₂O + Cl₂" },
-  { name:"Sulphur dioxide", formula:"SO₂", jarColour:"rgba(210,215,210,0.2)", splintType:"none", litmus1Start:"wet-blue", litmus1End:"wet-red-bleach", litmus2Start:"wet-blue", litmus2End:"wet-red-bleach", dichromate:true, bleach:true, pop:false, extinguish:false, observe:"🟤 <strong>SO₂:</strong> Blue litmus turns <strong style='color:#e74c3c;'>RED</strong> then bleaches. Orange dichromate paper turns <strong style='color:#27ae60;'>GREEN</strong>.", eq:"Na₂SO₃ + H₂SO₄ → Na₂SO₄ + H₂O + SO₂" },
-  { name:"Nitrogen dioxide", formula:"NO₂", jarColour:"rgba(180,120,60,0.35)", splintType:"none", litmus1Start:"wet-blue", litmus1End:"wet-red", litmus2Start:"wet-blue", litmus2End:"wet-red", dichromate:false, bleach:false, pop:false, extinguish:false, observe:"🟠 <strong>NO₂:</strong> <strong style='color:#c49a2c;'>Reddish-brown</strong> gas. Wet blue litmus turns <strong style='color:#e74c3c;'>RED</strong>. Pungent.", eq:"2Pb(NO₃)₂ →heat→ 2PbO + 4NO₂ + O₂" },
-  { name:"Hydrogen chloride", formula:"HCl", jarColour:"rgba(220,225,230,0.2)", splintType:"none", litmus1Start:"wet-blue", litmus1End:"wet-red", litmus2Start:"wet-blue", litmus2End:"wet-red", dichromate:false, bleach:false, pop:false, extinguish:false, observe:"⬜ <strong>HCl:</strong> Wet blue litmus turns <strong style='color:#e74c3c;'>RED</strong>. White fumes with NH₃. Pungent.", eq:"NaCl + H₂SO₄ → NaHSO₄ + HCl" }
-];
-let currentGas = 0;
-let gasTestRunning = false;
-
-function selectGas(idx){
-  if(idx > 0 && !isPremium()){
-    showUpgradeLock();
-    return;
-  }
-  currentGas = idx;
-  document.querySelectorAll('.gas-select-btn').forEach((b,i)=>{b.classList.toggle('active',i===idx);});
-  resetGasTest();
-}
-
-function resetGasTest(){
-  gasTestRunning = false;
-  const d = gasData[currentGas];
-  // Reset jar
-  document.getElementById('gasFill').style.background = d.jarColour;
-  document.getElementById('gasFill').style.height = '85%';
-  // Reset splint
-  const sc = document.getElementById('splintContainer');
-  sc.style.top = '-70px';
-  sc.style.display = (d.splintType !== 'none') ? 'block' : 'none';
-  const st = document.getElementById('splintTip');
-  st.className = 'splint-tip';
-  if(d.splintType==='glowing') st.classList.add('glowing');
-  if(d.splintType==='burning') st.classList.add('burning');
-  // Reset litmus papers
-  const lp1 = document.getElementById('litmusPaper1');
-  const lp2 = document.getElementById('litmusPaper2');
-  const dp = document.getElementById('dichromatePaper');
-  lp1.className = 'litmus-paper ' + d.litmus1Start;
-  lp1.style.display = 'block';
-  lp2.className = 'litmus-paper ' + d.litmus2Start;
-  lp2.style.display = 'block';
-  dp.style.display = 'none';
-  dp.className = 'dichromate-paper';
-  // Reset fumes
-  document.getElementById('fumeContainer').style.opacity = '0';
-  document.getElementById('fumeContainer').innerHTML = '';
-  // Reset pop text
-  document.getElementById('popText').classList.remove('show');
-  // Reset observation
-  document.getElementById('gasTestObservation').innerHTML = '👆 Select a gas and click <strong>Run Test</strong>.';
-  document.getElementById('gasTestEquation').textContent = '';
-}
-
-function runGasTest(){
-  if(currentGas > 0 && !isPremium()){
-    showUpgradeLock();
-    return;
-  }
-  if(gasTestRunning) return;
-  gasTestRunning = true;
-  resetGasTest();
-  const d = gasData[currentGas];
-  
-  // Show equation
-  document.getElementById('gasTestEquation').textContent = '⚗️ Lab prep: ' + d.eq;
-  
-  // Move splint into jar
-  const sc = document.getElementById('splintContainer');
-  if(d.splintType !== 'none'){
-    sc.style.display = 'block';
-    setTimeout(()=>{ sc.style.top = '20px'; }, 300);
-  }
-  
-  // Handle O₂ - relight
-  if(currentGas === 0){
-    setTimeout(()=>{
-      const st = document.getElementById('splintTip');
-      st.classList.remove('glowing');
-      st.classList.add('burning');
-      st.style.background = '#ff9900';
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-    }, 1200);
-  }
-  
-  // Handle H₂ - pop
-  if(currentGas === 1){
-    setTimeout(()=>{
-      const st = document.getElementById('splintTip');
-      st.classList.add('popped');
-      document.getElementById('popText').classList.add('show');
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-      setTimeout(()=>{
-        st.classList.remove('burning','popped');
-        st.style.background = '#999';
-        sc.style.top = '-70px';
-      }, 800);
-    }, 1200);
-  }
-  
-  // Handle CO₂ - extinguish
-  if(currentGas === 2){
-    setTimeout(()=>{
-      const st = document.getElementById('splintTip');
-      st.classList.remove('burning');
-      st.style.background = '#555';
-      st.style.boxShadow = 'none';
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-      // Litmus turns red
-      setTimeout(()=>{
-        document.getElementById('litmusPaper1').style.background = '#e74c3c';
-        document.getElementById('litmusPaper2').style.background = '#e74c3c';
-      }, 600);
-    }, 1200);
-  }
-  
-  // Handle NH₃ - red litmus to blue
-  if(currentGas === 3){
-    setTimeout(()=>{
-      document.getElementById('litmusPaper1').style.background = '#4169e1';
-      document.getElementById('litmusPaper2').style.background = '#4169e1';
-      // White fumes
-      const fc = document.getElementById('fumeContainer');
-      fc.style.opacity = '1';
-      fc.innerHTML = '<div class="fume" style="width:20px;height:20px;left:0;top:0;"></div><div class="fume" style="width:16px;height:16px;left:10px;top:-5px;"></div><div class="fume" style="width:22px;height:22px;left:5px;top:5px;"></div>';
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-    }, 800);
-  }
-  
-  // Handle Cl₂ - litmus red then bleach
-  if(currentGas === 4){
-    setTimeout(()=>{
-      document.getElementById('litmusPaper1').style.background = '#e74c3c';
-      document.getElementById('litmusPaper2').style.background = '#e74c3c';
-      setTimeout(()=>{
-        document.getElementById('litmusPaper1').style.background = '#f5f5f5';
-        document.getElementById('litmusPaper2').style.background = '#f5f5f5';
-        document.getElementById('gasTestObservation').innerHTML = d.observe;
-      }, 800);
-    }, 600);
-  }
-  
-  // Handle SO₂ - litmus red + dichromate green
-  if(currentGas === 5){
-    setTimeout(()=>{
-      document.getElementById('litmusPaper1').style.background = '#e74c3c';
-      document.getElementById('litmusPaper2').style.background = '#e74c3c';
-      // Show dichromate paper
-      const dp = document.getElementById('dichromatePaper');
-      document.getElementById('litmusPaper2').style.display = 'none';
-      dp.style.display = 'block';
-      dp.style.background = '#e67e22';
-      setTimeout(()=>{
-        document.getElementById('litmusPaper1').style.background = '#f5f5f5';
-        dp.style.background = '#27ae60';
-        document.getElementById('gasTestObservation').innerHTML = d.observe;
-      }, 1000);
-    }, 600);
-  }
-  
-  // Handle NO₂ - reddish gas + litmus red
-  if(currentGas === 6){
-    setTimeout(()=>{
-      document.getElementById('litmusPaper1').style.background = '#e74c3c';
-      document.getElementById('litmusPaper2').style.background = '#e74c3c';
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-    }, 800);
-  }
-  
-  // Handle HCl - litmus red + fumes
-  if(currentGas === 7){
-    setTimeout(()=>{
-      document.getElementById('litmusPaper1').style.background = '#e74c3c';
-      document.getElementById('litmusPaper2').style.background = '#e74c3c';
-      const fc = document.getElementById('fumeContainer');
-      fc.style.opacity = '1';
-      fc.innerHTML = '<div class="fume" style="width:18px;height:18px;left:0;top:0;"></div><div class="fume" style="width:14px;height:14px;left:8px;top:-3px;"></div><div class="fume" style="width:20px;height:20px;left:4px;top:4px;"></div>';
-      document.getElementById('gasTestObservation').innerHTML = d.observe;
-    }, 800);
-  }
-  
-  setTimeout(()=>{ gasTestRunning = false; }, 3000);
-}
-
-// Initialize first gas (O₂)
-selectGas(0);
-document.getElementById('runGasTestBtn').addEventListener('click', runGasTest);
-document.getElementById('resetGasTestBtn').addEventListener('click', ()=>{resetGasTest();selectGas(currentGas);});
-
-// ============ ALL OTHER SCRIPTS (ions, flame, titration, enthalpy, solubility, complex ions, redox, exam, etc.) ============
-(function(){
-const CATIONS=[{value:"sodium",labelWord:"sodium ions",labelIonic:"Na⁺ (aq)",productName:"sodium",colourName:"colourless",swatch:"#ffffff",flame:"golden yellow",flameClass:"golden-yellow"},{value:"potassium",labelWord:"potassium ions",labelIonic:"K⁺ (aq)",productName:"potassium",colourName:"colourless",swatch:"#ffffff",flame:"lilac",flameClass:"lilac"},{value:"lithium",labelWord:"lithium ions",labelIonic:"Li⁺ (aq)",productName:"lithium",colourName:"colourless",swatch:"#ffffff",flame:"crimson red",flameClass:"crimson"},{value:"calcium",labelWord:"calcium ions",labelIonic:"Ca²⁺ (aq)",productName:"calcium",colourName:"colourless",swatch:"#ffffff",flame:"brick red",flameClass:"brick-red"},{value:"copperII",labelWord:"copper(II) ions",labelIonic:"Cu²⁺ (aq)",productName:"copper(II)",colourName:"blue",swatch:"#3a6ea5",flame:"blue-green",flameClass:"blue-green"},{value:"ironII",labelWord:"iron(II) ions",labelIonic:"Fe²⁺ (aq)",productName:"iron(II)",colourName:"pale green",swatch:"#b0c4b0",flame:"none",flameClass:""},{value:"ironIII",labelWord:"iron(III) ions",labelIonic:"Fe³⁺ (aq)",productName:"iron(III)",colourName:"yellow-brown",swatch:"#c49a2c",flame:"none",flameClass:""},{value:"lead",labelWord:"lead(II) ions",labelIonic:"Pb²⁺ (aq)",productName:"lead(II)",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"barium",labelWord:"barium ions",labelIonic:"Ba²⁺ (aq)",productName:"barium",colourName:"colourless",swatch:"#ffffff",flame:"apple green",flameClass:"apple-green"},{value:"magnesium",labelWord:"magnesium ions",labelIonic:"Mg²⁺ (aq)",productName:"magnesium",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"aluminium",labelWord:"aluminium ions",labelIonic:"Al³⁺ (aq)",productName:"aluminium",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"zinc",labelWord:"zinc ions",labelIonic:"Zn²⁺ (aq)",productName:"zinc",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""}];
-const ANIONS=[{value:"hydroxide",labelWord:"hydroxide ions",labelIonic:"OH⁻ (aq)",productName:"hydroxide",colourName:"colourless",swatch:"#ffffff"},{value:"sulphate",labelWord:"sulphate ions",labelIonic:"SO₄²⁻ (aq)",productName:"sulphate",colourName:"colourless",swatch:"#ffffff"},{value:"carbonate",labelWord:"carbonate ions",labelIonic:"CO₃²⁻ (aq)",productName:"carbonate",colourName:"colourless",swatch:"#ffffff"},{value:"chloride",labelWord:"chloride ions",labelIonic:"Cl⁻ (aq)",productName:"chloride",colourName:"colourless",swatch:"#ffffff"},{value:"iodide",labelWord:"iodide ions",labelIonic:"I⁻ (aq)",productName:"iodide",colourName:"colourless",swatch:"#ffffff"},{value:"sulphite",labelWord:"sulphite ions",labelIonic:"SO₃²⁻ (aq)",productName:"sulphite",colourName:"colourless",swatch:"#ffffff"},{value:"bromide",labelWord:"bromide ions",labelIonic:"Br⁻ (aq)",productName:"bromide",colourName:"colourless",swatch:"#ffffff"},{value:"nitrate",labelWord:"nitrate ions",labelIonic:"NO₃⁻ (aq)",productName:"nitrate",colourName:"colourless",swatch:"#ffffff"},{value:"hydrogenCarbonate",labelWord:"hydrogen carbonate ions",labelIonic:"HCO₃⁻ (aq)",productName:"hydrogen carbonate",colourName:"colourless",swatch:"#ffffff"}];
-const RD={"sodium:hydroxide":{word:"sodium ions + hydroxide ions → sodium hydroxide (soluble, colourless)",ionic:"Na⁺(aq) + OH⁻(aq) → NaOH(aq)",colour:"colourless",swatch:"#ffffff",productName:"sodium hydroxide"},"sodium:chloride":{word:"sodium ions + chloride ions → sodium chloride (soluble, colourless)",ionic:"Na⁺(aq) + Cl⁻(aq) → NaCl(aq)",colour:"colourless",swatch:"#ffffff",productName:"sodium chloride"},"potassium:iodide":{word:"potassium ions + iodide ions → potassium iodide (soluble, colourless dilute)",ionic:"K⁺(aq) + I⁻(aq) → KI(aq)",colour:"colourless (dilute)",swatch:"#f8f9fa",productName:"potassium iodide"},"calcium:carbonate":{word:"calcium ions + carbonate ions → calcium carbonate (white ppt)",ionic:"Ca²⁺(aq) + CO₃²⁻(aq) → CaCO₃(s)↓",colour:"white",swatch:"#f8f9fa",productName:"calcium carbonate"},"copperII:hydroxide":{word:"copper(II) ions + hydroxide ions → copper(II) hydroxide (blue ppt)",ionic:"Cu²⁺(aq) + 2OH⁻(aq) → Cu(OH)₂(s)↓",colour:"blue",swatch:"#5b9bd5",productName:"copper(II) hydroxide"},"ironII:hydroxide":{word:"iron(II) ions + hydroxide ions → iron(II) hydroxide (dirty green ppt)",ionic:"Fe²⁺(aq) + 2OH⁻(aq) → Fe(OH)₂(s)↓",colour:"dirty green",swatch:"#6b8e5a",productName:"iron(II) hydroxide"},"ironIII:hydroxide":{word:"iron(III) ions + hydroxide ions → iron(III) hydroxide (red-brown ppt)",ionic:"Fe³⁺(aq) + 3OH⁻(aq) → Fe(OH)₃(s)↓",colour:"red-brown",swatch:"#a0522d",productName:"iron(III) hydroxide"},"lead:iodide":{word:"lead(II) ions + iodide ions → lead(II) iodide (bright yellow ppt)",ionic:"Pb²⁺(aq) + 2I⁻(aq) → PbI₂(s)↓",colour:"bright yellow",swatch:"#f4d03f",productName:"lead(II) iodide"},"barium:sulphate":{word:"barium ions + sulphate ions → barium sulphate (white ppt)",ionic:"Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s)↓",colour:"white",swatch:"#f7f9fc",productName:"barium sulphate"}};
-function getR(cK,aK){const k=cK+":"+aK;if(RD[k])return RD[k];const c=CATIONS.find(x=>x.value===cK),a=ANIONS.find(x=>x.value===aK);if(!c||!a)return{word:'?','ionic':'?',colour:"colourless",swatch:"#ffffff",productName:'?'};return{word:c.labelWord+' + '+a.labelWord+' → '+(c.productName||'')+' '+(a.productName||'')+' (solution)',ionic:(c.labelIonic||'?')+' + '+(a.labelIonic||'?')+' → product',colour:"colourless",swatch:"#ffffff",productName:(c.productName||'')+' '+(a.productName||'')};}
-const cs=document.getElementById('cationSelect'),as=document.getElementById('anionSelect'),ed=document.getElementById('equationDisplay'),pcn=document.getElementById('productColourNote'),ct=document.getElementById('colourText'),csw=document.getElementById('colourSwatch'),cct=document.getElementById('cationColourText'),csw2=document.getElementById('cationSwatch'),act=document.getElementById('anionColourText'),asw=document.getElementById('anionSwatch'),wb=document.getElementById('wordEqBtn'),ib=document.getElementById('ionicEqBtn'),mi=document.getElementById('modeIndicator'),cl=document.getElementById('cationLiquid'),al=document.getElementById('anionLiquid'),pl=document.getElementById('productLiquid'),ctl=document.getElementById('cationTubeLabel'),atl=document.getElementById('anionTubeLabel'),ptl=document.getElementById('productTubeLabel');
-let cm='word';
-function ps(){const cv=cs.value,av=as.value;cs.innerHTML='<option value="">-- Select --</option>';as.innerHTML='<option value="">-- Select --</option>';if(cm==='word'){CATIONS.forEach(c=>{const o=document.createElement('option');o.value=c.value;o.textContent=c.labelWord;cs.appendChild(o);});ANIONS.forEach(a=>{const o=document.createElement('option');o.value=a.value;o.textContent=a.labelWord;as.appendChild(o);});mi.textContent='🧪 WORD EQUATION MODE'}else{CATIONS.forEach(c=>{const o=document.createElement('option');o.value=c.value;o.textContent=c.labelIonic;cs.appendChild(o);});ANIONS.forEach(a=>{const o=document.createElement('option');o.value=a.value;o.textContent=a.labelIonic;as.appendChild(o);});mi.textContent='⚡ IONIC EQUATION MODE'}cs.value=cv;as.value=av;ud();}
-wb.addEventListener('click',()=>{cm='word';wb.classList.add('active');ib.classList.remove('active');ps();});
-ib.addEventListener('click',()=>{cm='ionic';ib.classList.add('active');wb.classList.remove('active');ps();});
-function ud(){const cv=cs.value,av=as.value,cD=CATIONS.find(c=>c.value===cv),aD=ANIONS.find(a=>a.value===av);cct.textContent=cD?cD.colourName:'colourless';csw2.style.backgroundColor=cD?cD.swatch:'#ccc';act.textContent=aD?aD.colourName:'colourless';asw.style.backgroundColor=aD?aD.swatch:'#ccc';if(cD){cl.style.backgroundColor=cD.swatch;cl.textContent=cD.colourName;ctl.textContent=cm==='word'?cD.labelWord:cD.labelIonic}else{cl.style.backgroundColor='#fff';cl.textContent='—';ctl.textContent='Cation'}if(aD){al.style.backgroundColor=aD.swatch;al.textContent=aD.colourName;atl.textContent=cm==='word'?aD.labelWord:aD.labelIonic}else{al.style.backgroundColor='#fff';al.textContent='—';atl.textContent='Anion'}if(!cv||!av){ed.textContent='—';pcn.textContent='';ct.textContent='—';csw.style.backgroundColor='#ccc';pl.style.backgroundColor='#ccc';pl.textContent='?';ptl.textContent='Product';return}const d=getR(cv,av);ed.textContent=cm==='word'?d.word:d.ionic;pcn.textContent='Colour: '+d.colour;ct.textContent=d.colour;csw.style.backgroundColor=d.swatch;pl.style.backgroundColor=d.swatch;pl.textContent=d.colour;ptl.textContent=d.productName||'Product'}
-cs.addEventListener('change',ud);as.addEventListener('change',ud);
-document.getElementById('clearSelectionsBtn').addEventListener('click',()=>{cs.value='';as.value='';ud();});
-let freeSelectionCount=0;
-document.getElementById('randomExampleBtn').addEventListener('click',()=>{if(!isPremium()){freeSelectionCount++;if(freeSelectionCount>5){showUpgradeLock();return;}}const rc=CATIONS[Math.floor(Math.random()*CATIONS.length)],ra=ANIONS[Math.floor(Math.random()*ANIONS.length)];cs.value=rc.value;as.value=ra.value;ud();});
-const fs=document.getElementById('flameCationSelect'),fd=document.getElementById('flameDisplay'),fl=document.getElementById('flameLabel'),fi=document.getElementById('flameInfo');
-fs.innerHTML='<option value="">-- Select --</option>';
-CATIONS.forEach(c=>{const o=document.createElement('option');o.value=c.value;o.textContent=c.labelWord+(c.flame&&c.flame!=='none'?' → '+c.flame+' flame':'');fs.appendChild(o);});
-fs.addEventListener('change',()=>{const cD=CATIONS.find(c=>c.value===fs.value);fd.className='flame';if(cD&&cD.flameClass){fd.classList.add(cD.flameClass);fl.textContent=cD.labelWord+' → '+cD.flame+' flame';fi.innerHTML='🔥 <strong>'+cD.labelWord+'</strong> → <strong>'+cD.flame+'</strong> flame.'}else{fl.textContent=cD?cD.labelWord+' — no characteristic flame':': none';fi.innerHTML='💡 Select a cation.';}});
-const td=[{s:"#ffe0b2",e:"#ffb3ba",eq:"HCl + NaOH → NaCl + H₂O",ratio:"1:1",indicator:"phenolphthalein",burette:"HCl"},{s:"#ffeb3b",e:"#ff6b6b",eq:"H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O",ratio:"1:2",indicator:"methyl orange",burette:"H₂SO₄"},{s:"#ffeb3b",e:"#ff6b6b",eq:"2HCl + Na₂CO₃ → 2NaCl + H₂O + CO₂",ratio:"2:1",indicator:"methyl orange",burette:"HCl"},{s:"#ffe0b2",e:"#ffb3ba",eq:"H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O",ratio:"1:2",indicator:"phenolphthalein",burette:"H₂SO₄"},{s:"#ffeb3b",e:"#ff6b6b",eq:"HCl + NaHCO₃ → NaCl + H₂O + CO₂",ratio:"1:1",indicator:"methyl orange",burette:"HCl"},{s:"#ffe0b2",e:"#ffb3ba",eq:"CH₃COOH + NaOH → CH₃COONa + H₂O",ratio:"1:1",indicator:"phenolphthalein",burette:"CH₃COOH"},{s:"#8e44ad",e:"#cccccc",eq:"2KMnO₄ + 10FeSO₄ + 8H₂SO₄ → ...",ratio:"1:5",indicator:"self-indicating",burette:"KMnO₄"},{s:"#e67e22",e:"#27ae60",eq:"K₂Cr₂O₇ + 6FeSO₄ + 7H₂SO₄ → ...",ratio:"1:6",indicator:"external",burette:"K₂Cr₂O₇"},{s:"#ffe0b2",e:"#ffb3ba",eq:"Back titration CaCO₃ antacid",ratio:"back",indicator:"phenolphthalein",burette:"NaOH"},{s:"#c49a2c",e:"#cccccc",eq:"I₂ + 2Na₂S₂O₃ → 2NaI + Na₂S₄O₆",ratio:"1:2",indicator:"starch",burette:"Na₂S₂O₃"}];
-let cT=0,tR=[],maxV=15,currentVol=0,endpointReached=false,endpointVol=0;const tSel=document.getElementById('titrationSelect'),bL=document.getElementById('buretteLiquid'),bR=document.getElementById('buretteReading'),fC=document.getElementById('flaskColour'),fI=document.getElementById('flaskInner'),tTb=document.getElementById('titreTable'),cB=document.getElementById('calcBox'),cC=document.getElementById('calcContent'),tQ=document.getElementById('titrationQuestions'),ef=document.getElementById('endpointFlash');
-function resetTitr(){tR=[];currentVol=0;endpointReached=false;endpointVol=9+Math.random()*4;bL.style.height='90%';bR.textContent='Used: 0.00 cm³';fC.style.background='#fff';fI.style.background=td[cT].s;fI.style.height='35%';ef.style.display='none';uTT();cB.style.display='none'}
-tSel.addEventListener('change',()=>{cT=parseInt(tSel.value);resetTitr();loadTQ()});
-document.getElementById('valveTap').addEventListener('click',()=>{if(currentVol>=maxV)return;currentVol+=0.3;const fill=35+(currentVol/maxV)*25;fI.style.height=Math.min(fill,60)+'%';bL.style.height=((maxV-currentVol)/maxV)*90+'%';bR.textContent='Used: '+currentVol.toFixed(1)+' cm³';if(currentVol>=endpointVol&&!endpointReached){endpointReached=true;fC.style.background=td[cT].e;fI.style.background=td[cT].e;ef.style.display='block';setTimeout(()=>{ef.style.display='none'},350)}});
-document.getElementById('recordTitreBtn').addEventListener('click',()=>{if(currentVol===0)return;tR.push({i:'0.00',f:currentVol.toFixed(2),v:currentVol.toFixed(2)});currentVol=0;endpointReached=false;endpointVol=9+Math.random()*4;bL.style.height='90%';bR.textContent='Used: 0.00 cm³';fC.style.background='#fff';fI.style.background=td[cT].s;fI.style.height='35%';ef.style.display='none';uTT();if(tR.length>=4){cB.style.display='block';const avs=tR.slice(1).map(r=>parseFloat(r.v));const avg=(avs.reduce((a,b)=>a+b,0)/avs.length).toFixed(2);cC.innerHTML='<strong>Avg (omit 1st):</strong> '+avg+' cm³<br><strong>Indicator:</strong> '+td[cT].indicator+'<br><strong>Burette:</strong> '+td[cT].burette;}});
-document.getElementById('resetTitrationBtn').addEventListener('click',resetTitr);
-function uTT(){if(tR.length===0){tTb.querySelector('tbody').innerHTML='<tr><td colspan="4">No readings</td></tr>';return}let h='';tR.forEach((r,i)=>{h+='<tr><td>'+(i+1)+'</td><td>0.00</td><td>'+r.f+'</td><td>'+r.v+'</td></tr>'});tTb.querySelector('tbody').innerHTML=h}
-function loadTQ(){const d=td[cT];tQ.innerHTML='<li><strong>Balanced equation:</strong><br><span style="color:#134b6e;">'+d.eq+'</span></li><li><strong>Indicator:</strong> '+d.indicator+'</li><li><strong>Average titre (omit 1st):</strong> Use your recorded values.</li><li><strong>Moles of base (0.1M, 25cm³):</strong> 0.1 × 0.025 = 0.0025 mol</li><li><strong>Moles of acid (ratio '+d.ratio+'):</strong> Use ratio from equation.</li><li><strong>Molarity of acid:</strong> M = moles ÷ (avg titre/1000)</li>';}
-const eData=[{sT:25,pT:32.5,dH:-57.3,behaviour:"plateau",name:"NaOH + HCl"},{sT:25,pT:48.2,dH:-217,behaviour:"peakfall",name:"Zn + CuSO₄"},{sT:25,pT:18.5,dH:+25.7,behaviour:"steady",name:"NH₄NO₃ + H₂O"},{sT:25,pT:33.8,dH:-114.6,behaviour:"plateau",name:"NaOH + H₂SO₄"},{sT:25,pT:52.0,dH:-456,behaviour:"peakfall",name:"Mg + HCl"}];let eTimer=null,cE=0,enthalpyPoints=[];const eSel=document.getElementById('enthalpySelect'),mF=document.getElementById('mercuryFill'),cL=document.getElementById('cupLiquid'),eTD=document.getElementById('enthalpyTimer'),eTP=document.getElementById('enthalpyTemp'),eTb=document.getElementById('enthalpyTable'),eCB=document.getElementById('enthalpyCalcBox'),eCC=document.getElementById('enthalpyCalcContent'),eQ=document.getElementById('enthalpyQuestions'),eG=document.getElementById('enthalpyGraph');
-eSel.addEventListener('change',()=>{cE=parseInt(eSel.value);rE();loadEQ()});
-function rE(){if(eTimer)clearInterval(eTimer);eTD.textContent='0s';eTP.textContent='25.0°C';mF.style.height='20%';cL.style.background='#b3d9ff';eCB.style.display='none';eG.innerHTML='';enthalpyPoints=[];const cells=eTb.querySelectorAll('tbody td');cells[0].textContent='25.0';for(let i=1;i<cells.length;i++)cells[i].textContent='-'}
-document.getElementById('startEnthalpyBtn').addEventListener('click',()=>{rE();const d=eData[cE];let s=0;eTimer=setInterval(()=>{s++;eTD.textContent=(s*30)+'s';let t;if(d.behaviour==="plateau"){t=d.sT+(d.pT-d.sT)*Math.min(s/4,1)}else if(d.behaviour==="peakfall"){if(s<=3)t=d.sT+(d.pT-d.sT)*(s/3);else t=d.pT-(d.pT-d.sT)*0.08*((s-3)/3)}else{t=d.sT+(d.pT-d.sT)*Math.min(s/6,1)}eTP.textContent=t.toFixed(1)+'°C';mF.style.height=(20+(t-d.sT)*5)+'%';cL.style.background=d.dH<0?'#ffcccc':'#ccccff';const cells=eTb.querySelectorAll('tbody td');if(s<=6)cells[s].textContent=t.toFixed(1);enthalpyPoints.push({time:s*30,temp:t});if(s>=6){clearInterval(eTimer);eCB.style.display='block';eCC.innerHTML='<strong>Experiment:</strong> '+d.name+'<br><strong>ΔT:</strong> '+(d.pT-d.sT).toFixed(1)+'°C<br><strong>ΔH:</strong> '+d.dH+' kJ/mol<br>'+(d.dH<0?'Exothermic 🔥':'Endothermic ❄️');drawGraph()}},500)});
-document.getElementById('resetEnthalpyBtn').addEventListener('click',rE);
-function drawGraph(){if(enthalpyPoints.length===0)return;const w=400,h=170,pad=20;let svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';const temps=enthalpyPoints.map(p=>p.temp);const minT=Math.min(...temps)-2,maxT=Math.max(...temps)+2;svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#999"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#999"/>';let pts='';enthalpyPoints.forEach((p,i)=>{const x=pad+((p.time/180)*(w-2*pad));const y=h-pad-(((p.temp-minT)/(maxT-minT))*(h-2*pad));pts+=(i===0?'M':'L')+' '+x.toFixed(0)+' '+y.toFixed(0)+' ';svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="3" fill="#e74c3c"/>'});svg+='<path d="'+pts+'" fill="none" stroke="#e74c3c" stroke-width="2"/>';svg+='</svg>';eG.innerHTML=svg}
-function loadEQ(){eQ.innerHTML='<li><strong>Why plateau?</strong> Reaction complete.</li><li><strong>Why fall after peak?</strong> Heat loss to surroundings.</li><li><strong>Calculate q (50g, c=4.2):</strong> q = mcΔT</li><li><strong>Why polystyrene cup?</strong> Good insulator.</li><li><strong>Endo or exothermic?</strong> ΔH negative = exothermic.</li>';}
-const AQ=[{q:"Colour of CuSO₄ solution?",opts:["Blue","Green","Yellow","Colourless"],ans:0,marks:1,topic:"Ion Colours"},{q:"Which cation gives a lilac flame?",opts:["Na⁺","K⁺","Ca²⁺","Cu²⁺"],ans:1,marks:1,topic:"Flame Tests"},{q:"Colour of Fe(OH)₂ precipitate?",opts:["Red-brown","Dirty green","White","Blue"],ans:1,marks:1,topic:"Precipitates"},{q:"Which anion forms a bright yellow ppt with Pb²⁺?",opts:["Cl⁻","SO₄²⁻","I⁻","CO₃²⁻"],ans:2,marks:1,topic:"Precipitates"},{q:"Gas that relights a glowing splint?",opts:["H₂","O₂","CO₂","Cl₂"],ans:1,marks:1,topic:"Gas Tests"},{q:"Colour of Fe³⁺ in aqueous solution?",opts:["Pale green","Blue","Yellow-brown","Colourless"],ans:2,marks:1,topic:"Ion Colours"},{q:"Which gas turns limewater milky?",opts:["O₂","H₂","CO₂","NH₃"],ans:2,marks:1,topic:"Gas Tests"},{q:"What colour is BaSO₄ precipitate?",opts:["Yellow","Blue","Green","White"],ans:3,marks:1,topic:"Precipitates"},{q:"Flame colour of calcium?",opts:["Golden yellow","Lilac","Brick red","Blue-green"],ans:2,marks:1,topic:"Flame Tests"},{q:"Which cation forms deep blue complex with excess NH₃?",opts:["Fe²⁺","Cu²⁺","Zn²⁺","Al³⁺"],ans:1,marks:1,topic:"Complex Ions"},{q:"Which hydroxide dissolves in excess NaOH?",opts:["Fe(OH)₃","Cu(OH)₂","Al(OH)₃","Fe(OH)₂"],ans:2,marks:1,topic:"Complex Ions"},{q:"Indicator used in HCl vs NaOH titration?",opts:["Methyl orange","Phenolphthalein","Starch","Litmus"],ans:1,marks:1,topic:"Titration"},{q:"KMnO₄ colour in redox titration?",opts:["Orange","Purple","Green","Blue"],ans:1,marks:1,topic:"Redox"},{q:"Gas with pungent smell, turns red litmus blue?",opts:["CO₂","SO₂","NH₃","Cl₂"],ans:2,marks:1,topic:"Gas Tests"},{q:"Solubility of KNO₃ at 60°C (g/100g)?",opts:["86","110","138","170"],ans:1,marks:1,topic:"Solubility"}];
-let eq=[],ua={};const ec=document.getElementById('examContainer'),sd=document.getElementById('scoreDisplay'),ms=document.getElementById('markingScheme');
-function gq(){if(isPremium()){eq=AQ.sort(()=>Math.random()-0.5).slice(0,10)}else{eq=AQ.slice(0,5).sort(()=>Math.random()-0.5).slice(0,5)}ua={};eq.forEach((_,i)=>ua[i]=null);re();}
-function re(){ec.innerHTML=eq.map((q,i)=>'<div class="exam-question"><h3>Q'+(i+1)+' ('+q.marks+' mark) — '+q.topic+'</h3><p><strong>'+q.q+'</strong></p>'+q.opts.map((o,j)=>'<label class="option '+(ua[i]===j?'selected':'')+'" onclick="window.sa('+i+','+j+')">'+String.fromCharCode(65+j)+'. '+o+'</label>').join('')+'</div>').join('');sd.textContent='';ms.style.display='none';}
-window.sa=function(qi,oi){ua[qi]=oi;re();};
-function me(){let t=0,s=0;eq.forEach((q,i)=>{t+=q.marks;if(ua[i]===q.ans)s+=q.marks;});const p=Math.round(s/t*100);sd.innerHTML='📊 Score: <strong>'+s+' / '+t+'</strong> marks ('+p+'%)<br>'+(p>=80?'🏆 Excellent!':p>=65?'👍 Good!':'📖 Keep practicing!');let h='<h4>📋 Marking Scheme</h4>';eq.forEach((q,i)=>{const c=ua[i]===q.ans;h+='<p style="margin:6px 0;padding:5px;border-radius:5px;background:'+(c?'#d5f5e3':'#fadbd8')+'"><strong>Q'+(i+1)+':</strong> '+q.q+'<br>✅ <strong>Answer:</strong> '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+' ('+q.marks+' mark)<br>'+(c?'✔️ Correct':'❌ Your answer: '+(ua[i]!==null?String.fromCharCode(65+ua[i])+'. '+q.opts[ua[i]]:'Not answered'))+'</p>';});ms.innerHTML=h;ms.style.display='block';ms.scrollIntoView({behavior:'smooth'});}
-document.getElementById('submitExamBtn').addEventListener('click',me);
-document.getElementById('resetExamBtn').addEventListener('click',()=>{gq();sd.textContent='';ms.style.display='none';});
-const fe=document.getElementById('footerEmpty'),ft={copyright:{btn:document.getElementById('tabCopyright'),panel:document.getElementById('panelCopyright')},terms:{btn:document.getElementById('tabTerms'),panel:document.getElementById('panelTerms')},privacy:{btn:document.getElementById('tabPrivacy'),panel:document.getElementById('panelPrivacy')}};let af=null;
-function cf(){Object.keys(ft).forEach(k=>{ft[k].btn.classList.remove('active-tab');ft[k].panel.classList.remove('active-panel');});fe.style.display='block';af=null;}
-function tf(k){if(af===k)cf();else{cf();ft[k].btn.classList.add('active-tab');ft[k].panel.classList.add('active-panel');fe.style.display='none';af=k;}}
-ft.copyright.btn.addEventListener('click',()=>tf('copyright'));ft.terms.btn.addEventListener('click',()=>tf('terms'));ft.privacy.btn.addEventListener('click',()=>tf('privacy'));
-// Complex Ions
-const complexData={"Al3+":{name:"Aluminium",ppt:"Al(OH)₃",pptColour:"#f8f9fa",pptName:"White gel",solubleNaOH:true,solubleNH3:false,complexNaOH:"[Al(OH)₄]⁻",complexNaOHColour:"#ffffff",complexNaOHName:"Colourless",eqPptNaOH:"Al³⁺ + 3OH⁻ → Al(OH)₃↓",eqComplexNaOH:"Al(OH)₃ + OH⁻ → [Al(OH)₄]⁻"},"Zn2+":{name:"Zinc",ppt:"Zn(OH)₂",pptColour:"#f8f9fa",pptName:"White ppt",solubleNaOH:true,solubleNH3:true,complexNaOH:"[Zn(OH)₄]²⁻",complexNaOHColour:"#ffffff",complexNaOHName:"Colourless",complexNH3:"[Zn(NH₃)₄]²⁺",complexNH3Colour:"#ffffff",eqPptNaOH:"Zn²⁺ + 2OH⁻ → Zn(OH)₂↓",eqComplexNaOH:"Zn(OH)₂ + 2OH⁻ → [Zn(OH)₄]²⁻"},"Pb2+":{name:"Lead(II)",ppt:"Pb(OH)₂",pptColour:"#f8f9fa",pptName:"White ppt",solubleNaOH:true,solubleNH3:false,complexNaOH:"[Pb(OH)₄]²⁻",complexNaOHColour:"#ffffff",complexNaOHName:"Colourless",eqPptNaOH:"Pb²⁺ + 2OH⁻ → Pb(OH)₂↓",eqComplexNaOH:"Pb(OH)₂ + 2OH⁻ → [Pb(OH)₄]²⁻"},"Cu2+":{name:"Copper(II)",ppt:"Cu(OH)₂",pptColour:"#5b9bd5",pptName:"Blue ppt",solubleNaOH:false,solubleNH3:true,complexNH3:"[Cu(NH₃)₄]²⁺",complexNH3Colour:"#1a5276",complexNH3Name:"Deep blue",eqPptNaOH:"Cu²⁺ + 2OH⁻ → Cu(OH)₂↓",eqComplexNH3:"Cu(OH)₂ + 4NH₃ → [Cu(NH₃)₄]²⁺ + 2OH⁻"},"Ag+":{name:"Silver",ppt:"Ag₂O",pptColour:"#8b7355",pptName:"Brown ppt",solubleNaOH:false,solubleNH3:true,complexNH3:"[Ag(NH₃)₂]⁺",complexNH3Colour:"#ffffff",complexNH3Name:"Colourless",eqPptNaOH:"2Ag⁺ + 2OH⁻ → Ag₂O↓ + H₂O",eqComplexNH3:"Ag₂O + 4NH₃ + H₂O → 2[Ag(NH₃)₂]⁺ + 2OH⁻"},"Cr3+":{name:"Chromium(III)",ppt:"Cr(OH)₃",pptColour:"#7d8c7d",pptName:"Grey-green ppt",solubleNaOH:true,solubleNH3:false,complexNaOH:"[Cr(OH)₄]⁻",complexNaOHColour:"#27ae60",complexNaOHName:"Green",eqPptNaOH:"Cr³⁺ + 3OH⁻ → Cr(OH)₃↓",eqComplexNaOH:"Cr(OH)₃ + OH⁻ → [Cr(OH)₄]⁻"}};
-let complexDrops=0,complexExcess=false;
-function resetComplexSim(){complexDrops=0;complexExcess=false;document.getElementById('dropCount').textContent='0 drops';document.getElementById('complexFlask').style.background='#b3d9ff';document.getElementById('complexLabel').textContent='Initial';document.getElementById('complexObservation').innerHTML='👆 Select a cation and reagent, then add drops.';document.getElementById('complexEquation').textContent='';}
-function addDropComplex(){if(!isPremium()){showUpgradeLock();return;}const catKey=document.getElementById('complexCationSelect').value;const reagent=document.getElementById('complexReagentSelect').value;if(!catKey)return;const d=complexData[catKey];complexDrops++;document.getElementById('dropCount').textContent=complexDrops+' drops';const obsDiv=document.getElementById('complexObservation');const eqDiv=document.getElementById('complexEquation');const flask=document.getElementById('complexFlask');if(complexExcess){if(reagent==='NaOH'&&d.complexNaOH){obsDiv.innerHTML='✅ <strong>Excess NaOH:</strong> '+d.complexNaOHName+' — '+d.complexNaOH;eqDiv.textContent='⚡ '+d.eqComplexNaOH;flask.style.background=d.complexNaOHColour;}else if(reagent==='NH3'&&d.complexNH3){obsDiv.innerHTML='✅ <strong>Excess NH₃:</strong> '+d.complexNH3Name+' — '+d.complexNH3;eqDiv.textContent='⚡ '+d.eqComplexNH3;flask.style.background=d.complexNH3Colour;}else{obsDiv.innerHTML='⚠️ <strong>'+d.name+'</strong> does NOT dissolve in excess '+reagent+'.';}return;}obsDiv.innerHTML='🧪 <strong>'+d.name+':</strong> '+d.pptName+' formed — <strong>'+d.ppt+'</strong>';eqDiv.textContent='⚡ '+d.eqPptNaOH;flask.style.background=d.pptColour;document.getElementById('complexLabel').textContent='PPT Formed';}
-function addExcessComplex(){if(!isPremium()){showUpgradeLock();return;}complexExcess=true;addDropComplex();}
-document.getElementById('resetComplexBtn').addEventListener('click',resetComplexSim);
-// Solubility
-const solData=[{name:"KNO₃",temps:[20,30,40,50,60,70,80],sols:[32,46,64,86,110,138,170],colour:"#e74c3c"},{name:"KCl",temps:[20,30,40,50,60,70,80],sols:[34,37,40,43,46,49,52],colour:"#2980b9"},{name:"NaCl",temps:[20,30,40,50,60,70,80],sols:[36,36.3,36.6,37,37.3,37.7,38],colour:"#27ae60"},{name:"Ce₂(SO₄)₃",temps:[20,30,40,50,60,70,80],sols:[10,7.5,5.2,3.8,2.5,1.8,1.2],colour:"#8e44ad"},{name:"K₂SO₄",temps:[20,30,40,50,60,70,80],sols:[11,13,15,16.5,17.5,18,18],colour:"#e67e22"},{name:"NaNO₃",temps:[20,30,40,50,60,70,80],sols:[87,96,105,114,124,134,148],colour:"#16a085"},{name:"Pb(NO₃)₂",temps:[20,30,40,50,60,70,80],sols:[56,66,75,85,95,115,140],colour:"#c0392b"}];
-let solTimer=null,solStep=0,isHeating=false,currentSalt=0,allSolSteps=[0,0,0,0,0,0,0];const solSalt=document.getElementById('solubilitySaltSelect'),solTimeDisp=document.getElementById('solTimer'),solTempDisp=document.getElementById('solTemp'),solSolDisp=document.getElementById('solSolubility'),solTable=document.getElementById('solTable'),solGraph=document.getElementById('solCurveGraph'),thermoM=document.getElementById('thermoMercury'),beakerS=document.getElementById('beakerSolution'),bunsenF=document.getElementById('bunsenFlame'),heatBtn=document.getElementById('toggleHeatBtn');
-solSalt.addEventListener('change',()=>{currentSalt=parseInt(solSalt.value);resetSolubility();});
-function resetSolubility(){if(solTimer)clearInterval(solTimer);solStep=0;isHeating=false;solTimeDisp.textContent='Time: 0s';solTempDisp.textContent='Temp: 20°C';solSolDisp.textContent='Sol: 0g';thermoM.style.height='15%';beakerS.style.background='#b3d9ff';bunsenF.style.background='#ff9933';heatBtn.textContent='🔥 Heat ON';solTable.querySelector('tbody').innerHTML='<tr><td colspan="4">Click 🔥 Heat ON to start</td></tr>';drawAllCurves();}
-heatBtn.addEventListener('click',()=>{if(isHeating){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}else{resetSolubility();isHeating=true;heatBtn.textContent='🛑 Stop';bunsenF.style.background='#1a6eff';const d=solData[currentSalt];let h='';solTimer=setInterval(()=>{solStep++;allSolSteps[currentSalt]=Math.min(solStep,d.temps.length);const idx=Math.min(solStep-1,d.temps.length-1);const temp=d.temps[idx];const sol=d.sols[idx];solTimeDisp.textContent='Time: '+(solStep*20)+'s';solTempDisp.textContent='Temp: '+temp+'°C';solSolDisp.textContent='Sol: '+sol+'g';thermoM.style.height=(15+(temp-20)*2)+'%';if(temp>50)beakerS.style.background='#ffcccc';h+='<tr><td>'+(solStep*20)+'s</td><td>'+temp+'°C</td><td>'+sol+'g</td><td>'+(solStep===1?'Starting':solStep>=d.temps.length?'Saturated':'Dissolving...')+'</td></tr>';solTable.querySelector('tbody').innerHTML=h;drawAllCurves();if(solStep>=d.temps.length){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}},1000);}});
-function drawAllCurves(){const w=400,h=200,pad=40;let svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#333"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#333"/>';const allSols=solData.flatMap(d=>d.sols);const maxSol=Math.max(...allSols)+10;solData.forEach((d,si)=>{const ptsShown=allSolSteps[si];if(ptsShown>0){let pts='';for(let i=0;i<ptsShown;i++){const x=pad+((d.temps[i]-20)/(80-20))*(w-2*pad);const y=h-pad-((d.sols[i])/maxSol)*(h-2*pad);pts+=(i===0?'M':'L')+' '+x.toFixed(0)+' '+y.toFixed(0)+' ';svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="2" fill="'+d.colour+'"/>';}if(ptsShown>1)svg+='<path d="'+pts+'" fill="none" stroke="'+d.colour+'" stroke-width="2"/>';}});svg+='</svg>';solGraph.innerHTML=svg;}
-resetSolubility();resetTitr();loadTQ();loadEQ();ps();gq();fe.style.display='block';
-let tapCount=0;document.getElementById('safariFooterLink').addEventListener('click',()=>{tapCount++;if(tapCount>=4){window.open('https://safarisoftwares-code.github.io/safari-softwares/','_blank');tapCount=0;}setTimeout(()=>{tapCount=0},2000);});
-let prevStack=[];function saveCurrent(){if(cs.value&&as.value){prevStack.push({cation:cs.value,anion:as.value});if(prevStack.length>5)prevStack.shift();}}cs.addEventListener('change',()=>{saveCurrent();ud();});as.addEventListener('change',()=>{saveCurrent();ud();});document.getElementById('randomExampleBtn').addEventListener('click',()=>{saveCurrent();});document.getElementById('previousBtn').addEventListener('click',()=>{if(prevStack.length>0){const prev=prevStack.pop();cs.value=prev.cation;as.value=prev.anion;ud();}});
-const redoxData=[{reactant:"#8e44ad",product:"#cccccc",eq:"MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O",obs:"Purple KMnO₄ decolorizes. Fe²⁺ oxidized to Fe³⁺."},{reactant:"#e67e22",product:"#27ae60",eq:"Cr₂O₇²⁻ + 3SO₂ + 2H⁺ → 2Cr³⁺ + 3SO₄²⁻ + H₂O",obs:"Orange→green. SO₂ reduces Cr(VI) to Cr(III)."},{reactant:"#3a6ea5",product:"#cccccc",eq:"Zn + Cu²⁺ → Zn²⁺ + Cu",obs:"Blue fades. Brown Cu deposits on Zn."},{reactant:"#c49a2c",product:"#cccccc",eq:"I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻",obs:"Brown→colourless. Starch: blue-black→colourless."},{reactant:"#8e44ad",product:"#cccccc",eq:"2MnO₄⁻ + 5H₂O₂ + 6H⁺ → 2Mn²⁺ + 5O₂ + 8H₂O",obs:"Purple decolorizes. O₂ effervescence."},{reactant:"#c49a2c",product:"#b0c4b0",eq:"2Fe³⁺ + SO₂ + 2H₂O → 2Fe²⁺ + SO₄²⁻ + 4H⁺",obs:"Yellow-brown→pale green. SO₂ reduces Fe³⁺."}];
-function updateRedox(){const i=parseInt(document.getElementById('redoxSelect').value);document.getElementById('redoxReactant').style.background=redoxData[i].reactant;document.getElementById('redoxProduct').style.background=redoxData[i].product;document.getElementById('redoxEquation').textContent='⚡ '+redoxData[i].eq;document.getElementById('redoxObservation').textContent='👁️ '+redoxData[i].obs;}
-document.getElementById('redoxSelect').addEventListener('change',updateRedox);updateRedox();
-if(!isPremium()){document.getElementById('redoxBanner').style.display='none';}
-})();
-</script>
+    function generateAndCopy() {
+      generateKey();
+      const output = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(output).then(() => {
+        alert('📋 Key details copied to clipboard!');
+      }).catch(() => {
+        alert('Could not copy automatically. Please select and copy manually.');
+      });
+    }
+  </script>
 </body>
 </html>

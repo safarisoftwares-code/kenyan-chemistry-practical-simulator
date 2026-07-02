@@ -376,22 +376,21 @@
     const ADMIN_PASSWORD_KEY = 'safari_admin_auth';
     const DEFAULT_ADMIN_PASSWORD = 'admin123'; // Change this!
     
-    // Check authentication
-    function checkAuth() {
-      const auth = sessionStorage.getItem(ADMIN_PASSWORD_KEY);
-      if (auth !== 'true') {
-        const pw = prompt('🔒 Enter Admin Password:');
-        if (pw === (localStorage.getItem('admin_password') || DEFAULT_ADMIN_PASSWORD)) {
-          sessionStorage.setItem(ADMIN_PASSWORD_KEY, 'true');
-          addLog('Admin logged in');
-        } else {
-          alert('❌ Incorrect password!');
-          window.location.href = 'index.html';
-          return false;
-        }
-      }
-      return true;
-    }
+    // Check authentication (session from admin-login.html)
+function checkAuth() {
+  const auth = sessionStorage.getItem('safari_admin_auth');
+  const expires = sessionStorage.getItem('safari_admin_expires');
+  
+  if (auth !== 'true' || !expires || new Date(expires) <= new Date()) {
+    // No valid session - redirect to login page
+    sessionStorage.removeItem('safari_admin_auth');
+    sessionStorage.removeItem('safari_admin_session');
+    sessionStorage.removeItem('safari_admin_expires');
+    window.location.href = 'admin-login.html';
+    return false;
+  }
+  return true;
+}
     
     function logout() {
       sessionStorage.removeItem(ADMIN_PASSWORD_KEY);
