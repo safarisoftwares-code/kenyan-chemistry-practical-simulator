@@ -201,15 +201,50 @@
 <div id="complexEquation" style="background:#fafcff;padding:8px;border-radius:6px;font-size:0.78rem;text-align:center;font-weight:600;min-height:30px;"></div>
 </div>
 
-<div class="main-panel" id="panelEnthalpy"><h3>🔥 Enthalpy Experiments</h3><p style="color:#4a6078;margin-bottom:6px;">Plateau, peak-fall, steady change, or combustion.</p>
+<div class="main-panel" id="panelEnthalpy" style="padding-top:8px;"><h3 style="margin:0 0 2px 0;padding:0;">🔥 Enthalpy Experiments</h3><p style="color:#4a6078;margin-bottom:2px;font-size:0.78rem;">Plateau, peak-fall, or steady change.</p>
 <div style="margin-bottom:8px;"><select id="enthalpySelect" style="padding:8px;border-radius:8px;width:100%;max-width:500px;" onchange="if(!isPremium()&&parseInt(this.value)>0){this.value='0';showUpgradeLock();}"><option value="0">NaOH + HCl — Neutralization (plateau) — FREE</option><option value="1">Zn + CuSO₄ — Displacement (peak fall) 🔒</option><option value="2">NH₄NO₃ + H₂O — Dissolving (drop) 🔒</option><option value="3">NaOH + H₂SO₄ — Neutralization (plateau) 🔒</option><option value="4">Mg + HCl — Displacement + gas (peak fall) 🔒</option></select></div>
-<div style="display:flex;gap:4px;justify-content:center;align-items:flex-end;margin:8px 0;">
-<div style="text-align:center;"><div style="width:55px;height:50px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:5px 5px 10px 10px;position:relative;overflow:hidden;"><div id="cupLiquid" style="position:absolute;bottom:0;width:100%;background:#b3d9ff;border-radius:0 0 8px 8px;height:55%;transition:background 0.5s;"></div><div style="position:absolute;top:3px;left:50%;transform:translateX(-50%);width:10px;height:38px;border-left:1.5px solid #e74c3c;z-index:3;"></div></div><small style="font-size:0.6rem;">Beaker</small></div>
-<div style="text-align:center;"><div style="width:10px;height:55px;background:#fff;border:1.5px solid #999;border-radius:5px 5px 1px 1px;overflow:hidden;position:relative;"><div id="mercuryFill" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:20%;transition:height 0.8s;"></div></div><div style="width:10px;height:14px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div><small style="font-size:0.6rem;">Therm.</small></div>
-</div><div style="height:6px;"></div>
-<div style="text-align:center;"><button class="btn btn-primary" id="startEnthalpyBtn">▶ Start</button> <button class="btn" id="resetEnthalpyBtn">🔄 Reset</button> <span style="font-weight:700;margin:0 6px;" id="enthalpyTimer">0s</span> <span style="font-weight:700;" id="enthalpyTemp">25.0°C</span></div>
-<table style="width:100%;border-collapse:collapse;font-size:0.7rem;margin-top:8px;" id="enthalpyTable"><thead><tr style="background:#153e54;color:white;"><th>0s</th><th>30s</th><th>60s</th><th>90s</th><th>120s</th><th>150s</th><th>180s</th></tr></thead><tbody><tr><td>25.0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table>
-<div class="enthalpy-graph" id="enthalpyGraph"></div>
+<table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+  <tr>
+    <!-- LEFT: Apparatus -->
+    <td style="width:30%;vertical-align:middle;padding:10px;text-align:center;">
+      <div style="display:flex;gap:12px;justify-content:center;align-items:flex-end;">
+        <div style="text-align:center;">
+          <div style="width:55px;height:50px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:5px 5px 10px 10px;position:relative;overflow:hidden;margin:0 auto;">
+            <div id="cupLiquid" style="position:absolute;bottom:0;width:100%;background:#b3d9ff;border-radius:0 0 8px 8px;height:55%;transition:background 0.5s;"></div>
+            <div style="position:absolute;top:3px;left:50%;transform:translateX(-50%);width:10px;height:38px;border-left:1.5px solid #e74c3c;z-index:3;"></div>
+          </div>
+          <small style="font-size:0.6rem;">Beaker</small>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:10px;height:55px;background:#fff;border:1.5px solid #999;border-radius:5px 5px 1px 1px;overflow:hidden;position:relative;margin:0 auto;">
+            <div id="mercuryFill" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:20%;transition:height 0.8s;"></div>
+          </div>
+          <div style="width:10px;height:14px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div>
+          <small style="font-size:0.6rem;">Therm.</small>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:10px;">
+        <button class="btn btn-primary" id="startEnthalpyBtn">▶ Start</button> 
+        <button class="btn" id="resetEnthalpyBtn">🔄 Reset</button>
+        <div style="margin-top:6px;">
+          <span style="font-weight:700;margin:0 6px;" id="enthalpyTimer">0s</span> 
+          <span style="font-weight:700;" id="enthalpyTemp">25.0°C</span>
+        </div>
+      </div>
+    </td>
+    
+    <!-- RIGHT: Graph -->
+    <td style="width:70%;vertical-align:middle;padding:10px;">
+      <div class="enthalpy-graph" id="enthalpyGraph" style="width:100%;max-width:100%;height:200px;background:#fff;border:1px solid #ccc;"></div>
+    </td>
+  </tr>
+</table>
+
+<!-- Table stays below -->
+<table style="width:100%;border-collapse:collapse;font-size:0.7rem;margin-top:8px;" id="enthalpyTable">
+  <thead><tr style="background:#153e54;color:white;"><th>0s</th><th>30s</th><th>60s</th><th>90s</th><th>120s</th><th>150s</th><th>180s</th><th>210s</th></tr></thead>
+  <tbody><tr><td>25.0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody>
+</table>
 <div id="enthalpyCalcBox" style="display:none;background:#f0f4fa;padding:10px;border-radius:8px;margin-top:8px;"><strong>📊 Results:</strong><div id="enthalpyCalcContent"></div></div>
 <div style="margin-top:8px;background:#fef9e7;padding:12px;border-radius:8px;"><strong>📝 Questions:</strong><ol id="enthalpyQuestions" style="padding-left:16px;line-height:1.7;"></ol></div>
 </div>
@@ -506,9 +541,93 @@ function loadTQ(){const d=td[cT];tQ.innerHTML='<li><strong>Balanced equation:</s
 const eData=[{sT:25,pT:32.5,dH:-57.3,behaviour:"plateau",name:"NaOH + HCl"},{sT:25,pT:48.2,dH:-217,behaviour:"peakfall",name:"Zn + CuSO₄"},{sT:25,pT:18.5,dH:+25.7,behaviour:"steady",name:"NH₄NO₃ + H₂O"},{sT:25,pT:33.8,dH:-114.6,behaviour:"plateau",name:"NaOH + H₂SO₄"},{sT:25,pT:52.0,dH:-456,behaviour:"peakfall",name:"Mg + HCl"}];let eTimer=null,cE=0,enthalpyPoints=[];const eSel=document.getElementById('enthalpySelect'),mF=document.getElementById('mercuryFill'),cL=document.getElementById('cupLiquid'),eTD=document.getElementById('enthalpyTimer'),eTP=document.getElementById('enthalpyTemp'),eTb=document.getElementById('enthalpyTable'),eCB=document.getElementById('enthalpyCalcBox'),eCC=document.getElementById('enthalpyCalcContent'),eQ=document.getElementById('enthalpyQuestions'),eG=document.getElementById('enthalpyGraph');
 eSel.addEventListener('change',()=>{cE=parseInt(eSel.value);rE();loadEQ()});
 function rE(){if(eTimer)clearInterval(eTimer);eTD.textContent='0s';eTP.textContent='25.0°C';mF.style.height='20%';cL.style.background='#b3d9ff';eCB.style.display='none';eG.innerHTML='';enthalpyPoints=[];const cells=eTb.querySelectorAll('tbody td');cells[0].textContent='25.0';for(let i=1;i<cells.length;i++)cells[i].textContent='-'}
-document.getElementById('startEnthalpyBtn').addEventListener('click',()=>{rE();const d=eData[cE];let s=0;eTimer=setInterval(()=>{s++;eTD.textContent=(s*30)+'s';let t;if(d.behaviour==="plateau"){const p=Math.min(s/4,1);t=d.sT+(d.pT-d.sT)*p}else if(d.behaviour==="peakfall"){if(s<=3){t=d.sT+(d.pT-d.sT)*(s/3)}else{t=d.pT-(d.pT-d.sT)*0.08*((s-3)/3)}}else{const p=Math.min(s/6,1);t=d.sT+(d.pT-d.sT)*p}eTP.textContent=t.toFixed(1)+'°C';mF.style.height=(20+(t-d.sT)*5)+'%';cL.style.background=d.dH<0?'#ffcccc':'#ccccff';const cells=eTb.querySelectorAll('tbody td');if(s<=6)cells[s].textContent=t.toFixed(1);enthalpyPoints.push({time:s*30,temp:t});if(s>=6){clearInterval(eTimer);eCB.style.display='block';eCC.innerHTML='<strong>Experiment:</strong> '+d.name+'<br><strong>ΔT:</strong> '+(d.pT-d.sT).toFixed(1)+'°C<br><strong>ΔH:</strong> '+d.dH+' kJ/mol<br>'+(d.dH<0?'Exothermic 🔥':'Endothermic ❄️');drawGraph()}},500)});
+document.getElementById('startEnthalpyBtn').addEventListener('click',()=>{
+  rE();
+  const d=eData[cE];
+  let s=0;
+  eTimer=setInterval(()=>{
+    s++;
+    eTD.textContent=(s*30)+'s';
+    let t;
+    if(d.behaviour==="plateau"){
+      // Slow rise then plateau
+      const p=Math.min(s/6,1);  // 6 steps to reach peak (was 4)
+      t=d.sT+(d.pT-d.sT)*p;
+    }else if(d.behaviour==="peakfall"){
+      if(s<=5){  // 5 steps to peak (was 3)
+        t=d.sT+(d.pT-d.sT)*(s/5);
+      }else{
+        // Slow fall after peak
+        t=d.pT-(d.pT-d.sT)*0.05*((s-5)/3);
+      }
+    }else{
+      // Steady change - even slower
+      const p=Math.min(s/8,1);  // 8 steps (was 6)
+      t=d.sT+(d.pT-d.sT)*p;
+    }
+    // Ensure temp doesn't go below reasonable
+    t=Math.max(t,d.pT-5);
+    
+    eTP.textContent=t.toFixed(1)+'°C';
+    mF.style.height=(20+(t-d.sT)*5)+'%';
+    cL.style.background=d.dH<0?'#ffcccc':'#ccccff';
+    const cells=eTb.querySelectorAll('tbody td');
+    if(s<=8)cells[s].textContent=t.toFixed(1);  // Show up to 8 readings
+    enthalpyPoints.push({time:s*30,temp:t});
+    
+    // Draw graph in real-time every step
+    drawGraph();
+    
+    if(s>=8){  // 8 steps total (was 6) = 240 seconds
+      clearInterval(eTimer);
+      eCB.style.display='block';
+      eCC.innerHTML='<strong>Experiment:</strong> '+d.name+'<br><strong>ΔT:</strong> '+(d.pT-d.sT).toFixed(1)+'°C<br><strong>ΔH:</strong> '+d.dH+' kJ/mol<br>'+(d.dH<0?'Exothermic 🔥':'Endothermic ❄️');
+      drawGraph();
+    }
+  },1500);  // 1.5 seconds per step (was 500ms)
+});
 document.getElementById('resetEnthalpyBtn').addEventListener('click',rE);
-function drawGraph(){if(enthalpyPoints.length===0)return;const w=400,h=170,pad=20;let svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';const temps=enthalpyPoints.map(p=>p.temp);const minT=Math.min(...temps)-2,maxT=Math.max(...temps)+2;svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#999"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#999"/>';let pts='';enthalpyPoints.forEach((p,i)=>{const x=pad+((p.time/180)*(w-2*pad));const y=h-pad-(((p.temp-minT)/(maxT-minT))*(h-2*pad));pts+=(i===0?'M':'L')+' '+x.toFixed(0)+' '+y.toFixed(0)+' ';svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="3" fill="#e74c3c"/>'});svg+='<path d="'+pts+'" fill="none" stroke="#e74c3c" stroke-width="2"/>';svg+='</svg>';eG.innerHTML=svg}
+function drawGraph(){
+  if(enthalpyPoints.length===0)return;
+  var w=400,h=200,pad=30;
+  var svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;width:100%;">';
+  var temps=enthalpyPoints.map(function(p){return p.temp;});
+  var minT=Math.min.apply(null,temps)-2;
+  var maxT=Math.max.apply(null,temps)+2;
+  var rangeT=maxT-minT;
+  
+  // Grid lines
+  for(var g=minT;g<=maxT;g+=2){
+    var gy=h-pad-(((g-minT)/rangeT)*(h-2*pad));
+    svg+='<line x1="'+pad+'" y1="'+gy.toFixed(0)+'" x2="'+(w-pad)+'" y2="'+gy.toFixed(0)+'" stroke="#eee" stroke-width="0.5"/>';
+    svg+='<text x="'+(pad-5)+'" y="'+(gy.toFixed(0)+3)+'" text-anchor="end" font-size="7" fill="#999">'+g.toFixed(0)+'°</text>';
+  }
+  
+  // Time labels
+  for(var t=0;t<=180;t+=30){
+    var tx=pad+((t/180)*(w-2*pad));
+    svg+='<text x="'+tx.toFixed(0)+'" y="'+(h-2)+'" text-anchor="middle" font-size="7" fill="#999">'+t+'s</text>';
+  }
+  
+  // Axes
+  svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#333"/>';
+  svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#333"/>';
+  svg+='<text x="'+(w/2)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9">Time (s)</text>';
+  svg+='<text x="10" y="'+(h/2)+'" text-anchor="middle" font-size="9" transform="rotate(-90,10,'+(h/2)+')">Temp (°C)</text>';
+  
+  // Data line
+  var pts='';
+  enthalpyPoints.forEach(function(p,i){
+    var x=pad+((p.time/180)*(w-2*pad));
+    var y=h-pad-(((p.temp-minT)/rangeT)*(h-2*pad));
+    pts+=(i===0?'M':'L')+' '+x.toFixed(0)+' '+y.toFixed(0)+' ';
+    svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="4" fill="#e74c3c"><title>'+p.time+'s: '+p.temp.toFixed(1)+'°C</title></circle>';
+  });
+  if(enthalpyPoints.length>1)svg+='<path d="'+pts+'" fill="none" stroke="#e74c3c" stroke-width="2.5"/>';
+  
+  svg+='</svg>';
+  eG.innerHTML=svg;
+}
 function loadEQ(){eQ.innerHTML='<li><strong>Why plateau?</strong><br><span style="color:#888;">Reaction complete. No further heat generated.</span></li><li><strong>Why slight fall after peak?</strong><br><span style="color:#888;">Heat loss to surroundings (cooling).</span></li><li><strong>Calculate q (50g, c=4.2, your ΔT):</strong><br><span style="color:#888;">q = mcΔT = 50 × 4.2 × ΔT</span></li><li><strong>Why polystyrene cup?</strong><br><span style="color:#888;">Good insulator. Minimizes heat loss.</span></li><li><strong>Endo or exothermic?</strong><br><span style="color:#888;">ΔH negative = exothermic, ΔH positive = endothermic.</span></li>';}
 const AQ=[{q:"Colour of CuSO₄ solution?",opts:["Blue","Green","Yellow","Colourless"],ans:0,marks:1,topic:"Ion Colours"},{q:"Which cation gives a lilac flame?",opts:["Na⁺","K⁺","Ca²⁺","Cu²⁺"],ans:1,marks:1,topic:"Flame Tests"},{q:"Colour of Fe(OH)₂ precipitate?",opts:["Red-brown","Dirty green","White","Blue"],ans:1,marks:1,topic:"Precipitates"},{q:"Which anion forms a bright yellow ppt with Pb²⁺?",opts:["Cl⁻","SO₄²⁻","I⁻","CO₃²⁻"],ans:2,marks:1,topic:"Precipitates"},{q:"Gas that relights a glowing splint?",opts:["H₂","O₂","CO₂","Cl₂"],ans:1,marks:1,topic:"Gas Tests"},{q:"Colour of Fe³⁺ in aqueous solution?",opts:["Pale green","Blue","Yellow-brown","Colourless"],ans:2,marks:1,topic:"Ion Colours"},{q:"Which gas turns limewater milky?",opts:["O₂","H₂","CO₂","NH₃"],ans:2,marks:1,topic:"Gas Tests"},{q:"What colour is BaSO₄ precipitate?",opts:["Yellow","Blue","Green","White"],ans:3,marks:1,topic:"Precipitates"},{q:"Flame colour of calcium?",opts:["Golden yellow","Lilac","Brick red","Blue-green"],ans:2,marks:1,topic:"Flame Tests"},{q:"Which cation forms a deep blue complex with excess NH₃?",opts:["Fe²⁺","Cu²⁺","Zn²⁺","Al³⁺"],ans:1,marks:1,topic:"Complex Ions"},{q:"Which hydroxide dissolves in excess NaOH?",opts:["Fe(OH)₃","Cu(OH)₂","Al(OH)₃","Fe(OH)₂"],ans:2,marks:1,topic:"Complex Ions"},{q:"Indicator used in HCl vs NaOH titration?",opts:["Methyl orange","Phenolphthalein","Starch","Litmus"],ans:1,marks:1,topic:"Titration"},{q:"KMnO₄ colour in redox titration?",opts:["Orange","Purple","Green","Blue"],ans:1,marks:1,topic:"Redox"},{q:"Gas with pungent smell, turns red litmus blue?",opts:["CO₂","SO₂","NH₃","Cl₂"],ans:2,marks:1,topic:"Gas Tests"},{q:"Solubility of KNO₃ at 60°C (g/100g)?",opts:["86","110","138","170"],ans:1,marks:1,topic:"Solubility"}];
 let eq=[],ua={};const ec=document.getElementById('examContainer'),sd=document.getElementById('scoreDisplay'),ms=document.getElementById('markingScheme');
