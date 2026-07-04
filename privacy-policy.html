@@ -5,62 +5,371 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | Safari Softwares</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.7; color: #1a3850; }
-    h1 { color: #0f2b40; border-bottom: 3px solid #f0c040; padding-bottom: 10px; }
-    h2 { color: #134b6e; margin-top: 24px; }
-    a { color: #134b6e; }
-    .container { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif; background: #f0f4f8; padding: 40px 20px; max-width: 900px; margin: 0 auto; line-height: 1.8; color: #1a3850; }
+    h1 { color: #0f2b40; border-bottom: 4px solid #f0c040; padding-bottom: 14px; margin-bottom: 24px; font-size: 2rem; }
+    h2 { color: #134b6e; margin-top: 32px; margin-bottom: 12px; font-size: 1.3rem; border-left: 4px solid #134b6e; padding-left: 12px; }
+    h3 { color: #1f4d6e; margin-top: 20px; font-size: 1.05rem; }
+    p { margin-bottom: 14px; }
+    ul, ol { margin: 10px 0 16px 24px; }
+    li { margin-bottom: 8px; }
+    a { color: #134b6e; text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    .container { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .effective-date { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+    .back-link { display: inline-block; margin-top: 30px; padding: 12px 28px; background: #134b6e; color: white; text-decoration: none; border-radius: 30px; font-weight: 700; font-size: 0.9rem; transition: 0.2s; }
+    .back-link:hover { background: #0d3a55; text-decoration: none; }
+    .highlight-box { background: #fef9e7; border: 1px solid #f0c040; padding: 18px; border-radius: 12px; margin: 20px 0; }
+    .highlight-box strong { color: #0f2b40; }
+    .green-box { background: #d5f5e3; border: 1px solid #27ae60; padding: 18px; border-radius: 12px; margin: 20px 0; }
+    .green-box strong { color: #1a6e3e; }
+    .table-of-contents { background: #f7faff; padding: 18px 24px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #dce5f2; }
+    .table-of-contents ol { margin-left: 20px; }
+    .table-of-contents a { font-weight: 500; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+    th { background: #153e54; color: white; padding: 12px; text-align: left; font-weight: 600; }
+    td { padding: 10px 12px; border-bottom: 1px solid #e4ebf5; }
+    tr:nth-child(even) td { background: #fafcff; }
+    @media (max-width: 600px) {
+      body { padding: 16px; }
+      .container { padding: 24px 18px; }
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.1rem; }
+      table { font-size: 0.75rem; }
+      th, td { padding: 6px 8px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🔒 Privacy Policy</h1>
-    <p><strong>Effective Date:</strong> January 2025 | <strong>Last Updated:</strong> July 2026</p>
+    <p class="effective-date"><strong>Effective Date:</strong> 1 January 2025 | <strong>Last Updated:</strong> 4 July 2026</p>
+
+    <div class="green-box">
+      <strong>✅ Privacy-First Design:</strong> The Kenyan Chemistry Practical Simulator is designed with privacy as a foundational principle. It operates entirely within your web browser — no personal data is collected, stored, processed, or transmitted to Safari Softwares or any third party.
+    </div>
+
+    <div class="table-of-contents">
+      <strong>📑 Table of Contents</strong>
+      <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#information-we-collect">Information We Collect</a></li>
+        <li><a href="#local-storage">Local Storage & Browser Data</a></li>
+        <li><a href="#premium-activation">Premium Activation & Device Fingerprinting</a></li>
+        <li><a href="#cookies">Cookies & Tracking Technologies</a></li>
+        <li><a href="#third-party">Third-Party Services</a></li>
+        <li><a href="#communications">Communications With Us</a></li>
+        <li><a href="#children">Children's Privacy</a></li>
+        <li><a href="#security">Data Security</a></li>
+        <li><a href="#retention">Data Retention</a></li>
+        <li><a href="#rights">Your Rights</a></li>
+        <li><a href="#international">International Users</a></li>
+        <li><a href="#changes">Changes to This Policy</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+    </div>
+
+    <h2 id="introduction">1. Introduction</h2>
+    <p>Safari Softwares ("we," "our," "us," or "the Company") is committed to protecting your privacy. This Privacy Policy explains in clear, transparent terms how the Kenyan Chemistry Practical Simulator ("the Software," "the Application") handles information when you use it.</p>
+    <p>This policy applies to all versions of the Software (Freemium and Premium) and covers the Software's behavior whether accessed online via GitHub Pages or locally from your device's file system.</p>
+    <p>By using the Software, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with this policy, please discontinue use of the Software.</p>
+
+    <h2 id="information-we-collect">2. Information We Collect</h2>
     
-    <h2>1. Introduction</h2>
-    <p>Safari Softwares ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how our Chemistry Practical Simulator handles information.</p>
-    
-    <h2>2. No Data Collection</h2>
-    <p>Our Chemistry Practical Simulator operates entirely within your web browser. We do <strong>not</strong> collect, store, process, or transmit any personal information, including:</p>
+    <h3>2.1 Information We DO NOT Collect</h3>
+    <p>We want to be absolutely clear: the Software does <strong>NOT</strong> collect, store, process, or transmit any of the following:</p>
     <ul>
-      <li>Names or email addresses</li>
-      <li>Location data</li>
-      <li>Browsing history</li>
-      <li>Device information</li>
-      <li>IP addresses</li>
+      <li>❌ Personal identifiers (names, email addresses, phone numbers, national ID numbers, student registration numbers)</li>
+      <li>❌ Location data (GPS coordinates, IP-address-based location, physical addresses)</li>
+      <li>❌ Browsing history or online behavior</li>
+      <li>❌ Device information (make, model, operating system version)</li>
+      <li>❌ IP addresses or network information</li>
+      <li>❌ Payment information (M-Pesa transactions are processed entirely through Safaricom's systems)</li>
+      <li>❌ Usage analytics or interaction data</li>
+      <li>❌ Keystroke logs or input monitoring</li>
+      <li>❌ Screen recordings or session replays</li>
+      <li>❌ Any form of biometric data</li>
     </ul>
-    
-    <h2>3. Local Storage</h2>
-    <p>The simulator uses your browser's localStorage <strong>only</strong> for:</p>
+
+    <h3>2.2 Information Stored Locally on Your Device</h3>
+    <p>The Software uses your browser's localStorage to store a minimal amount of data necessary for functionality. This data remains exclusively on your device and is never transmitted anywhere. See <a href="#local-storage">Section 3</a> for details.</p>
+
+    <h3>2.3 Information You Voluntarily Provide</h3>
+    <p>If you choose to contact us via WhatsApp, email, or other communication channels, we will have access to the information you provide in that communication (such as your phone number, email address, and the content of your message). This is the only circumstance in which we receive any personal information related to your use of the Software. See <a href="#communications">Section 6</a> for details.</p>
+
+    <h2 id="local-storage">3. Local Storage & Browser Data</h2>
+    <p>The Software uses your web browser's <strong>localStorage</strong> — a standard web technology that allows websites to store small amounts of data on your device. This is similar to how many websites save your preferences or login status.</p>
+
+    <h3>3.1 What Is Stored in localStorage</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Item</th>
+          <th>Purpose</th>
+          <th>Example Value</th>
+          <th>Shared?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>premium_access</code></td>
+          <td>Indicates whether Premium features are activated</td>
+          <td><code>"true"</code> or not set</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>premium_key</code></td>
+          <td>Stores the Activation Key used (for verification)</td>
+          <td><code>"SAF-XXXX-XXXX-XXXX"</code></td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>premium_expires</code></td>
+          <td>Expiration date of Premium access</td>
+          <td><code>"2027-07-04"</code></td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>premium_devices_*</code></td>
+          <td>Device fingerprints registered for a key</td>
+          <td><code>["DEV-ABC123..."]</code></td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>safari_activation_logs</code></td>
+          <td>Local log of activation attempts</td>
+          <td>Array of objects</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>safari_keys</code></td>
+          <td>Admin key database (admin panel only)</td>
+          <td>Array of key objects</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>safari_payments</code></td>
+          <td>Payment records (admin panel only)</td>
+          <td>Array of payment objects</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>safari_logs</code></td>
+          <td>Admin activity log (admin panel only)</td>
+          <td>Array of log entries</td>
+          <td>No</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 How localStorage Data Is Used</h3>
     <ul>
-      <li>Premium activation status (stored locally on your device)</li>
-      <li>Your activation key (to verify premium access)</li>
+      <li>All localStorage data is used <strong>exclusively</strong> for the Software's core functionality (Premium verification, device counting, admin key management);</li>
+      <li>This data is <strong>never transmitted</strong> to Safari Softwares or any third-party server;</li>
+      <li>This data is <strong>never shared</strong> between different websites or browser profiles;</li>
+      <li>You can view this data at any time using your browser's Developer Tools (F12 → Application → Local Storage);</li>
+      <li>You can delete this data at any time by clearing your browser's localStorage (note: this will deactivate Premium access).</li>
     </ul>
-    <p>This data never leaves your device and is not accessible to us.</p>
-    
-    <h2>4. Premium Activation</h2>
-    <p>When you activate a premium key, your device generates a unique fingerprint used only for device verification. This fingerprint is stored locally and is not transmitted to any server.</p>
-    
-    <h2>5. No Cookies</h2>
-    <p>We do not use cookies, analytics trackers, or any third-party tracking services.</p>
-    
-    <h2>6. No Third-Party Services</h2>
-    <p>This application does not integrate with any external services, APIs, or analytics platforms.</p>
-    
-    <h2>7. Children's Privacy</h2>
-    <p>This educational software is suitable for all ages and does not collect any personal information from children or adults.</p>
-    
-    <h2>8. Changes to This Policy</h2>
-    <p>We may update this policy. Changes will be posted on this page.</p>
-    
-    <h2>9. Contact</h2>
-    <p>
-      📧 <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a><br>
+
+    <h3>3.3 How to Clear localStorage</h3>
+    <p>You can clear all localStorage data stored by the Software by:</p>
+    <ol>
+      <li>Opening your browser's Developer Tools (F12 or Ctrl+Shift+I);</li>
+      <li>Navigating to the "Application" or "Storage" tab;</li>
+      <li>Selecting "Local Storage" in the left sidebar;</li>
+      <li>Selecting the domain where the Software is loaded;</li>
+      <li>Clicking "Clear" or manually deleting individual items.</li>
+    </ol>
+    <p>Alternatively, you can clear all browser data through your browser's Settings → Privacy → Clear browsing data.</p>
+
+    <h2 id="premium-activation">4. Premium Activation & Device Fingerprinting</h2>
+    <h3>4.1 Device Fingerprint</h3>
+    <p>When you activate a Premium Activation Key, the Software generates a unique "device fingerprint" to identify your device for the purpose of enforcing the two-device limit per key. This fingerprint is created from:</p>
+    <ul>
+      <li>Screen dimensions and color depth;</li>
+      <li>Your system's timezone setting;</li>
+      <li>The number of CPU cores (hardware concurrency);</li>
+      <li>Your operating system platform identifier;</li>
+      <li>Your browser's language setting.</li>
+    </ul>
+    <p>These data points are combined and hashed into a string like <code>"DEV-ABC123DEF456"</code>. The original data points are <strong>not stored</strong> — only the resulting hash is kept. This fingerprint:</p>
+    <ul>
+      <li>Is stored <strong>only</strong> in your browser's localStorage;</li>
+      <li>Is <strong>never transmitted</strong> to any server;</li>
+      <li>Is used <strong>solely</strong> to count how many distinct devices have activated a given key;</li>
+      <li>Cannot be used to personally identify you or track you across websites.</li>
+    </ul>
+
+    <h3>4.2 Activation Key Processing</h3>
+    <p>Premium activation is verified entirely within your browser. When you enter an Activation Key and password, the Software checks them against:</p>
+    <ul>
+      <li>The <code>keys.js</code> file (a static list of valid keys distributed with the Software);</li>
+      <li>The <code>safari_keys</code> array in your browser's localStorage (for keys generated by the admin panel).</li>
+    </ul>
+    <p>No network request is made to any server during activation. Your key and password are processed exclusively on your device.</p>
+
+    <h2 id="cookies">5. Cookies & Tracking Technologies</h2>
+    <div class="green-box">
+      <strong>✅ Zero Cookies Policy:</strong> The Software does <strong>NOT</strong> use cookies, web beacons, pixels, fingerprinting scripts, analytics trackers, session recording tools, or any other tracking technologies. There are no hidden trackers, no analytics services, and no advertising networks integrated into the Software. Period.
+    </div>
+    <p>We do not use:</p>
+    <ul>
+      <li>First-party cookies</li>
+      <li>Third-party cookies</li>
+      <li>Google Analytics or any similar analytics service</li>
+      <li>Facebook Pixel or any social media tracking</li>
+      <li>Session recording or heatmap tools</li>
+      <li>Browser fingerprinting services</li>
+      <li>Advertising networks or ad exchanges</li>
+      <li>Any form of cross-site tracking</li>
+    </ul>
+
+    <h2 id="third-party">6. Third-Party Services</h2>
+    <h3>6.1 Hosting (GitHub Pages)</h3>
+    <p>The Software is hosted on GitHub Pages, a static website hosting service provided by GitHub, Inc. GitHub may collect standard server logs (including IP addresses, browser types, and timestamps) as part of their service delivery. This data collection is governed by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a>, not by Safari Softwares. We do not have access to GitHub's server logs.</p>
+
+    <h3>6.2 Payment Processing (M-Pesa / Safaricom)</h3>
+    <p>Premium payments are processed exclusively through M-Pesa, a mobile money service operated by Safaricom PLC. When you make a payment, you interact directly with Safaricom's systems. Safari Softwares does not collect, process, or store your M-Pesa PIN, your full phone number, or your financial information. We only receive the transaction confirmation message that you voluntarily share with us. Payment processing is governed by <a href="https://www.safaricom.co.ke/privacy-policy" target="_blank" rel="noopener">Safaricom's Privacy Policy</a>.</p>
+
+    <h3>6.3 Communication Platforms</h3>
+    <p>When you contact us via WhatsApp, your communication is subject to <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">WhatsApp's Privacy Policy</a> and <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">Meta's Privacy Policy</a>. When you contact us via email, your communication is subject to your email provider's privacy practices and our email provider's policies.</p>
+
+    <h3>6.4 No Third-Party Integrations in the Software</h3>
+    <p>Beyond the hosting and communication platforms described above, the Software itself does not integrate with any external APIs, services, databases, content delivery networks, or analytics platforms. The Software is completely self-contained and operates independently of any backend server infrastructure.</p>
+
+    <h2 id="communications">7. Communications With Us</h2>
+    <p>If you voluntarily contact us (via WhatsApp, email, or other means), we will receive the information you choose to provide. This typically includes:</p>
+    <ul>
+      <li>Your phone number (if contacting via WhatsApp);</li>
+      <li>Your email address (if contacting via email);</li>
+      <li>Any information you include in your message (name, M-Pesa confirmation code, inquiry details, etc.).</li>
+    </ul>
+
+    <h3>7.1 How We Use Communication Data</h3>
+    <p>Information you provide through communications is used solely for:</p>
+    <ul>
+      <li>Responding to your inquiry or support request;</li>
+      <li>Verifying Premium payments and issuing Activation Keys;</li>
+      <li>Providing customer support and troubleshooting;</li>
+      <li>Improving the Software based on feedback received.</li>
+    </ul>
+
+    <h3>7.2 Communication Data Retention</h3>
+    <p>Communication records (WhatsApp chats, emails) are retained for as long as necessary to provide support and maintain business records, typically not exceeding two (2) years from the date of last communication. You may request deletion of your communication history by contacting us.</p>
+
+    <h3>7.3 No Marketing Communications</h3>
+    <p>We do not send marketing emails, newsletters, promotional messages, or unsolicited communications. We will only contact you in response to your inquiry or to provide support related to the Software.</p>
+
+    <h2 id="children">8. Children's Privacy</h2>
+    <p>The Software is an educational tool suitable for learners of all ages, including children under the age of 13. We are committed to protecting the privacy of young learners:</p>
+    <ul>
+      <li>The Software does not collect, store, or process any personal information from users of any age;</li>
+      <li>No user accounts, profiles, or registration are required;</li>
+      <li>No communication features (chat, messaging, comments) exist within the Software that could expose children to contact from others;</li>
+      <li>All data storage is local to the device and under the control of the device owner.</li>
+    </ul>
+    <p>Parents and educators who have questions about the Software's data practices with respect to children are encouraged to contact us at <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a>.</p>
+
+    <h2 id="security">9. Data Security</h2>
+    <p>Since the Software does not transmit or store data on any external servers, the security of your data is primarily determined by the security of your device and browser. We recommend:</p>
+    <ul>
+      <li>Keeping your operating system and browser updated to the latest versions;</li>
+      <li>Using a secure, password-protected device;</li>
+      <li>Not sharing your device with untrusted individuals if you have Premium activated;</li>
+      <li>Keeping your Activation Key and password confidential;</li>
+      <li>Clearing localStorage before disposing of or transferring ownership of a device.</li>
+    </ul>
+    <p>Communications sent to us via WhatsApp or email are protected by the security measures employed by those respective platforms. However, no electronic communication is 100% secure, and you should avoid sending highly sensitive information through these channels.</p>
+
+    <h2 id="retention">10. Data Retention</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Type</th>
+          <th>Storage Location</th>
+          <th>Retention Period</th>
+          <th>Controlled By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LocalStorage data</td>
+          <td>Your device</td>
+          <td>Until you clear it or uninstall your browser</td>
+          <td>You</td>
+        </tr>
+        <tr>
+          <td>WhatsApp communications</td>
+          <td>WhatsApp servers & your device</td>
+          <td>Per WhatsApp's policies</td>
+          <td>You & WhatsApp</td>
+        </tr>
+        <tr>
+          <td>Email communications</td>
+          <td>Email provider servers</td>
+          <td>Up to 2 years</td>
+          <td>You & your email provider</td>
+        </tr>
+        <tr>
+          <td>M-Pesa transaction records</td>
+          <td>Safaricom servers</td>
+          <td>Per Safaricom's policies</td>
+          <td>Safaricom</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="rights">11. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have certain rights regarding your personal data. Under the Kenya Data Protection Act (2019) and similar laws, these rights may include:</p>
+    <ul>
+      <li><strong>Right of Access</strong> — The right to know what personal data is held about you;</li>
+      <li><strong>Right to Rectification</strong> — The right to correct inaccurate personal data;</li>
+      <li><strong>Right to Erasure</strong> — The right to request deletion of personal data ("right to be forgotten");</li>
+      <li><strong>Right to Restrict Processing</strong> — The right to limit how your data is processed;</li>
+      <li><strong>Right to Data Portability</strong> — The right to receive your data in a portable format;</li>
+      <li><strong>Right to Object</strong> — The right to object to certain types of data processing.</li>
+    </ul>
+    <p>However, since the Software does not collect personal data in the first place, most of these rights are inherently satisfied. Any localStorage data can be accessed, exported (via copy/paste from Developer Tools), or deleted by you at any time without needing to contact us.</p>
+    <p>For communications data (WhatsApp messages, emails), you may exercise your rights by contacting us at <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a>. We will respond to verifiable requests within the timeframe required by applicable law.</p>
+
+    <h2 id="international">12. International Users</h2>
+    <p>The Software is designed and maintained in the Republic of Kenya. If you access the Software from outside Kenya, please be aware that:</p>
+    <ul>
+      <li>The Software operates entirely in your browser — no data crosses international borders through our systems;</li>
+      <li>Any communications you send to us (WhatsApp, email) may be processed in Kenya or in the countries where those service providers operate;</li>
+      <li>By using the Software and communicating with us, you consent to the transfer of communication data as described in this policy;</li>
+      <li>Your local data protection laws may provide additional rights beyond those described here.</li>
+    </ul>
+
+    <h2 id="changes">13. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices, the Software's functionality, or applicable law. When we make changes:</p>
+    <ul>
+      <li>We will update the "Last Updated" date at the top of this page;</li>
+      <li>For material changes, we may display a notice within the Software;</li>
+      <li>We encourage you to review this policy periodically to stay informed about how we protect your privacy.</li>
+    </ul>
+    <p>Your continued use of the Software after any changes to this policy constitutes your acceptance of the revised policy.</p>
+
+    <h2 id="contact">14. Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:</p>
+    <div class="highlight-box">
+      <strong>🏢 Safari Softwares</strong><br>
       📍 Nairobi, Kenya<br>
-      🌐 <a href="https://safarisoftwares-code.github.io/safari-softwares/">Safari Softwares</a>
-    </p>
-    
-    <p><a href="index.html">← Back to Simulator</a></p>
+      📧 Email: <a href="mailto:safarisoftwares@gmail.com">safarisoftwares@gmail.com</a><br>
+      📱 WhatsApp: <a href="https://wa.me/254112168732">+254 112 168 732</a><br>
+      🌐 Website: <a href="https://safarisoftwares-code.github.io/safari-softwares/">safarisoftwares-code.github.io/safari-softwares</a>
+    </div>
+    <p>For privacy-specific inquiries, please include "Privacy Inquiry" in your subject line or opening message. We aim to respond to all privacy-related inquiries within 14 business days.</p>
+
+    <h3>Data Protection Authority</h3>
+    <p>If you believe your data protection rights have been violated and we have not adequately addressed your concern, you have the right to lodge a complaint with the Office of the Data Protection Commissioner (ODPC) of Kenya:</p>
+    <ul>
+      <li>🌐 <a href="https://www.odpc.go.ke/" target="_blank" rel="noopener">www.odpc.go.ke</a></li>
+      <li>📧 <a href="mailto:info@odpc.go.ke">info@odpc.go.ke</a></li>
+      <li>📍 Nairobi, Kenya</li>
+    </ul>
+
+    <a href="index.html" class="back-link">← Back to Simulator</a>
   </div>
 </body>
 </html>

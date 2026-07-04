@@ -11,9 +11,10 @@
     .step { background: #f7faff; padding: 14px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #134b6e; }
     .step strong { color: #134b6e; }
     input { width: 100%; padding: 12px; margin: 8px 0; border: 1.5px solid #dce5f2; border-radius: 10px; font-size: 1rem; text-align: center; letter-spacing: 2px; }
+    input:focus { outline: none; border-color: #134b6e; }
     .btn { width: 100%; padding: 14px; background: #134b6e; color: white; border: none; border-radius: 30px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 10px; }
     .btn:hover { background: #0d3a55; }
-    .btn-whatsapp { background: #25D366; margin-top: 6px; }
+    .btn-whatsapp { background: #25D366; margin-top: 6px; display: block; text-align: center; text-decoration: none; color: white; }
     .btn-whatsapp:hover { background: #1da851; }
     .note { font-size: 0.8rem; color: #888; text-align: center; margin-top: 10px; }
     .success { background: #d5f5e3; color: #27ae60; padding: 10px; border-radius: 8px; text-align: center; }
@@ -23,6 +24,11 @@
     .features-list { list-style: none; padding: 0; }
     .features-list li { padding: 6px 0; }
     .features-list li::before { content: '✅ '; }
+    @media (max-width: 500px) {
+      .card { padding: 20px; }
+      .price-tag { font-size: 2rem; }
+      input { font-size: 0.9rem; padding: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -40,35 +46,32 @@
       <li>💧 7 solubility curves</li>
       <li>🔄 Complex Ion Formation Simulator</li>
       <li>🔬 Redox Reactions Simulator (6 reactions)</li>
-      <li>📝 15+ practice questions</li>
+      <li>📝 15+ practice questions with marking</li>
       <li>📱 Works on <strong>2 devices</strong> per key</li>
       <li>🚫 No ads, no reaction limits</li>
     </ul>
 
     <div class="step"><strong>Step 1:</strong> Pay <strong>KES 350</strong> via M-Pesa<br>Paybill: <strong>516600</strong> | Account: <strong>528591</strong></div>
     <div class="step"><strong>Step 2:</strong> Send M-Pesa confirmation to<br>📱 WhatsApp: <strong>+254112168732</strong><br>✉️ Email: <strong>safarisoftwares@gmail.com</strong></div>
-    <div class="step"><strong>Step 3:</strong> Receive your Activation Key within 24 hours<br><small style="color:#888;">(Usually within 1-2 hours during business hours)</small></div>
+    <div class="step"><strong>Step 3:</strong> Receive your Activation Key within minutes<br><small style="color:#888;">(Usually within 5-30 minutes during business hours 8AM-8PM EAT)</small></div>
 
-    <a href="https://wa.me/254112168732?text=Hello%20Safari%20Softwares%2C%20I%20have%20paid%20KES%20350%20for%20Chemistry%20Simulator%20Premium.%20My%20M-Pesa%20confirmation%20code%20is%3A%20" target="_blank" class="btn btn-whatsapp" style="display:block;text-align:center;text-decoration:none;color:white;">💬 Send Confirmation via WhatsApp</a>
+    <a href="https://wa.me/254112168732?text=Hello%20Safari%20Softwares%2C%20I%20have%20paid%20KES%20350%20for%20Chemistry%20Simulator%20Premium.%20My%20M-Pesa%20confirmation%20code%20is%3A%20" target="_blank" class="btn btn-whatsapp">💬 Send Confirmation via WhatsApp</a>
 
     <hr style="margin:16px 0;">
 
     <h3 style="color:#0f2b40;text-align:center;">Already Have a Key?</h3>
-    <input type="text" id="keyInput" placeholder="Enter Key: SAF-XXXX-XXXX-XXXX" maxlength="19" autocomplete="off" style="letter-spacing:1px;font-family:monospace;font-size:0.95rem;width:100%;">
-    <input type="password" id="passInput" placeholder="Enter Password">
+    <p style="text-align:center;color:#888;font-size:0.82rem;">Enter the key and password you received</p>
+    
+    <input type="text" id="keyInput" placeholder="Enter Key: SAF-XXXX-XXXX-XXXX" maxlength="19" autocomplete="off" style="letter-spacing:1px;font-family:monospace;font-size:0.95rem;width:100%;text-transform:uppercase;">
+    <input type="password" id="passInput" placeholder="Enter Password" autocomplete="off">
     <button class="btn" onclick="activatePremium()">🔓 Activate Premium Now</button>
     <div id="message" style="margin-top:10px;"></div>
     <p class="note">Each key works on <strong>2 devices</strong> for 365 days.</p>
+    <p class="note" style="margin-top:4px;">Lost your key? <a href="https://wa.me/254112168732">Contact us on WhatsApp</a></p>
   </div>
 
-    <script>
-    // ============ VALID KEYS DATABASE ============
-    const validKeys = {
-      // ===== PRODUCTION KEYS =====
-      // Add generated keys from admin dashboard below:
-      // "SAF-XXXX-XXXX-XXXX": { password: "xxxxxxxx", expires: "2027-06-01" },
-    };
-
+  <script src="keys.js"></script>
+  <script>
     // ============ DEVICE FINGERPRINT (Computer-based) ============
     function getDeviceFingerprint() {
       var data = '';
@@ -88,7 +91,7 @@
     // ============ LOG ACTIVATION ATTEMPTS ============
     function logActivationAttempt(key, status, reason) {
       try {
-        const logs = JSON.parse(localStorage.getItem('safari_activation_logs') || '[]');
+        var logs = JSON.parse(localStorage.getItem('safari_activation_logs') || '[]');
         logs.unshift({
           time: new Date().toISOString(),
           key: key,
@@ -104,10 +107,10 @@
 
     // ============ ACTIVATE PREMIUM ============
     function activatePremium() {
-      let key = document.getElementById('keyInput').value.trim().toUpperCase();
+      var key = document.getElementById('keyInput').value.trim().toUpperCase();
       key = key.replace(/\s/g, '');
-      const password = document.getElementById('passInput').value.trim();
-      const msg = document.getElementById('message');
+      var password = document.getElementById('passInput').value.trim();
+      var msg = document.getElementById('message');
 
       if (!key) {
         msg.innerHTML = '<div class="error">❌ Please enter your activation key.</div>';
@@ -118,18 +121,30 @@
         return;
       }
 
-      // Find key data
-      let keyData = null;
-      try {
-        const allKeys = JSON.parse(localStorage.getItem('safari_keys') || '[]');
-        const foundKey = allKeys.find(k => k.key === key);
-        if (foundKey) keyData = { password: foundKey.password, expires: foundKey.expires };
-      } catch(e) {}
-      if (!keyData && validKeys[key]) keyData = validKeys[key];
+      // Find key data from keys.js (loaded via script src)
+      var keyData = null;
+
+// First check keys.js (external file)
+if (typeof validKeys !== 'undefined' && validKeys[key]) {
+  keyData = validKeys[key];
+}
+
+// If not found, check localStorage (admin-generated keys)
+if (!keyData) {
+  try {
+    var localKeys = JSON.parse(localStorage.getItem('safari_keys') || '[]');
+    for (var i = 0; i < localKeys.length; i++) {
+      if (localKeys[i].key === key) {
+        keyData = { password: localKeys[i].password, expires: localKeys[i].expires };
+        break;
+      }
+    }
+  } catch(e) {}
+}
 
       if (!keyData) {
         logActivationAttempt(key, 'rejected', 'Invalid key - not found');
-        msg.innerHTML = '<div class="error">❌ Invalid key. Please check and try again. If you just paid, wait for your key via WhatsApp/Email.</div>';
+        msg.innerHTML = '<div class="error">❌ Key not recognized. Please check and try again. If you just received this key, it may take a few minutes to activate. <a href="https://wa.me/254112168732">Contact support</a> if the issue persists.</div>';
         return;
       }
       if (keyData.password !== password) {
@@ -139,22 +154,22 @@
       }
       if (new Date(keyData.expires) < new Date()) {
         logActivationAttempt(key, 'rejected', 'Key expired - ' + keyData.expires);
-        msg.innerHTML = '<div class="error">❌ This key has expired. Please renew your subscription.</div>';
+        msg.innerHTML = '<div class="error">❌ This key has expired on <strong>' + keyData.expires + '</strong>. Please renew your subscription.</div>';
         return;
       }
 
       // Device check
-      const deviceId = getDeviceFingerprint();
-      let devicesForThisKey = [];
+      var deviceId = getDeviceFingerprint();
+      var devicesForThisKey = [];
       try {
         devicesForThisKey = JSON.parse(localStorage.getItem('premium_devices_' + key) || '[]');
       } catch(e) { devicesForThisKey = []; }
 
-      const alreadyUsed = devicesForThisKey.includes(deviceId);
+      var alreadyUsed = devicesForThisKey.includes(deviceId);
 
       if (!alreadyUsed && devicesForThisKey.length >= 2) {
         logActivationAttempt(key, 'rejected', 'Device limit reached - ' + devicesForThisKey.length + '/2 already');
-        msg.innerHTML = '<div class="error">❌ This key is already activated on <strong>2 computers</strong>. Each key works on 2 different computers only.<br><br>📱 Contact us on WhatsApp to reset your devices.</div>';
+        msg.innerHTML = '<div class="error">❌ This key is already activated on <strong>2 devices</strong>. Each key works on 2 devices only. <a href="https://wa.me/254112168732">Contact us</a> to reset.</div>';
         return;
       }
 
@@ -167,15 +182,21 @@
       localStorage.setItem('premium_access', 'true');
       localStorage.setItem('premium_key', key);
       localStorage.setItem('premium_expires', keyData.expires);
+      localStorage.setItem('premium_just_activated', 'true');
 
       logActivationAttempt(key, 'success', 'Activated - device ' + devicesForThisKey.length + '/2');
 
-      const deviceCount = devicesForThisKey.length;
-      const expiryFormatted = new Date(keyData.expires).toLocaleDateString('en-KE', {
+      var deviceCount = devicesForThisKey.length;
+      var expiryFormatted = new Date(keyData.expires).toLocaleDateString('en-KE', {
         year: 'numeric', month: 'long', day: 'numeric'
       });
 
-      msg.innerHTML = '<div class="success">✅ Premium activated successfully!<br>📅 Valid until: <strong>' + expiryFormatted + '</strong><br>💻 Active on: <strong>' + deviceCount + ' computer(s)</strong> (max 2)<br><br><a href="index.html" style="display:inline-block;padding:12px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:25px;font-weight:700;">🚀 Open Simulator Now</a></div>';
+      msg.innerHTML = '<div class="success">' +
+        '✅ <strong>Premium Activated Successfully!</strong><br><br>' +
+        '📅 Valid until: <strong>' + expiryFormatted + '</strong><br>' +
+        '💻 Active on: <strong>' + deviceCount + ' device(s)</strong> (max 2)<br><br>' +
+        '<a href="index.html" style="display:inline-block;padding:12px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:25px;font-weight:700;">🚀 Open Simulator Now</a>' +
+        '</div>';
 
       document.getElementById('keyInput').value = '';
       document.getElementById('passInput').value = '';
@@ -193,19 +214,25 @@
 
     // ============ CHECK IF ALREADY ACTIVATED ============
     (function() {
-      const hasAccess = localStorage.getItem('premium_access');
-      const expires = localStorage.getItem('premium_expires');
-      const savedKey = localStorage.getItem('premium_key');
+      var hasAccess = localStorage.getItem('premium_access');
+      var expires = localStorage.getItem('premium_expires');
+      var savedKey = localStorage.getItem('premium_key');
       if (hasAccess === 'true' && expires && new Date(expires) > new Date()) {
-        let deviceCount = 1;
+        var deviceCount = 1;
         try {
-          const devicesForThisKey = JSON.parse(localStorage.getItem('premium_devices_' + savedKey) || '[]');
+          var devicesForThisKey = JSON.parse(localStorage.getItem('premium_devices_' + savedKey) || '[]');
           deviceCount = devicesForThisKey.length || 1;
         } catch(e) {}
-        const expiryFormatted = new Date(expires).toLocaleDateString('en-KE', {
+        var expiryFormatted = new Date(expires).toLocaleDateString('en-KE', {
           year: 'numeric', month: 'long', day: 'numeric'
         });
-        document.getElementById('message').innerHTML = '<div class="success">✅ Premium is active!<br>📅 Expires: <strong>' + expiryFormatted + '</strong><br>💻 Active on: <strong>' + deviceCount + ' computer(s)</strong><br><br><a href="index.html" style="display:inline-block;padding:12px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:25px;font-weight:700;">🚀 Open Simulator</a> <button onclick="deactivatePremium()" style="display:inline-block;padding:12px 24px;background:#e74c3c;color:white;border:none;border-radius:25px;font-weight:700;cursor:pointer;margin-left:6px;">🔓 Deactivate</button></div>';
+        document.getElementById('message').innerHTML = '<div class="success">' +
+          '✅ <strong>Premium is active!</strong><br><br>' +
+          '📅 Expires: <strong>' + expiryFormatted + '</strong><br>' +
+          '💻 Active on: <strong>' + deviceCount + ' device(s)</strong><br><br>' +
+          '<a href="index.html" style="display:inline-block;padding:12px 30px;background:#134b6e;color:white;text-decoration:none;border-radius:25px;font-weight:700;">🚀 Open Simulator</a> ' +
+          '<button onclick="deactivatePremium()" style="display:inline-block;padding:12px 24px;background:#e74c3c;color:white;border:none;border-radius:25px;font-weight:700;cursor:pointer;margin-left:6px;">🔓 Deactivate</button>' +
+          '</div>';
       }
     })();
   </script>

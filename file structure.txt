@@ -1,0 +1,16 @@
+kenyan-chemistry-practical-simulator/
+├── index.html          # Main simulator (updated)
+├── upgrade.html        # Student activation page (updated)
+├── admin-login.html    # Admin login portal (updated)
+├── admin.html          # Admin dashboard (updated)
+├── totp-helper.html    # 2FA code generator (updated)
+├── keys.js             # Shared keys database (NEW)
+├── contact.html        # Contact page
+├── privacy-policy.html # Privacy
+├── terms-of-use.html   # Terms
+├── 404.html            # Error page
+├── robots.txt          # SEO
+├── sitemap.xml         # Sitemap
+├── manifest.json       # PWA
+├── service-worker.js   # Offline
+└── README.md           # Docs

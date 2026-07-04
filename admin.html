@@ -7,22 +7,16 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; display: flex; min-height: 100vh; }
-    
-    /* Sidebar */
     .sidebar { width: 240px; background: linear-gradient(180deg, #0f2b40 0%, #1a4058 100%); color: white; padding: 20px 0; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
     .sidebar h2 { padding: 0 20px 20px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 10px; }
     .sidebar h2 small { font-size: 0.7rem; opacity: 0.7; display: block; }
     .sidebar a { display: block; padding: 12px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; transition: 0.2s; border-left: 3px solid transparent; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.1); color: white; border-left-color: #f0c040; }
     .sidebar a .icon { margin-right: 8px; }
-    
-    /* Main Content */
     .main-content { margin-left: 240px; flex: 1; padding: 24px; }
     .header { background: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
     .header h1 { font-size: 1.3rem; color: #0f2b40; }
     .header .user-info { font-size: 0.82rem; color: #888; }
-    
-    /* Cards */
     .stats-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
     .stat-card { flex: 1; min-width: 180px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
     .stat-card .stat-value { font-size: 2rem; font-weight: 800; color: #134b6e; }
@@ -31,374 +25,183 @@
     .stat-card.green { border-top: 4px solid #27ae60; }
     .stat-card.blue { border-top: 4px solid #2980b9; }
     .stat-card.red { border-top: 4px solid #e74c3c; }
-    
-    /* Tables */
     .card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 20px; margin-bottom: 20px; }
     .card h3 { color: #0f2b40; margin-bottom: 14px; font-size: 1rem; border-bottom: 2px solid #f0c040; padding-bottom: 8px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
     th { background: #153e54; color: white; padding: 10px 8px; text-align: left; font-weight: 600; }
     td { padding: 8px; border-bottom: 1px solid #e4ebf5; }
     tr:hover td { background: #fafcff; }
-    
-    /* Forms */
     input, select, textarea { padding: 10px; border: 1.5px solid #dce5f2; border-radius: 8px; font-size: 0.85rem; width: 100%; margin-bottom: 8px; }
     input:focus, select:focus { outline: none; border-color: #134b6e; }
     .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .form-row > * { flex: 1; min-width: 150px; }
-    
-    /* Buttons */
     .btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.82rem; transition: 0.2s; }
     .btn-primary { background: #134b6e; color: white; }
     .btn-primary:hover { background: #0d3a55; }
     .btn-gold { background: linear-gradient(135deg,#f0c040,#e6a800); color: #0f2b40; }
-    .btn-gold:hover { background: #e6a800; }
     .btn-danger { background: #e74c3c; color: white; }
-    .btn-danger:hover { background: #c0392b; }
     .btn-success { background: #27ae60; color: white; }
     .btn-sm { padding: 6px 12px; font-size: 0.72rem; }
-    
-    /* Badges */
     .badge { padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; display: inline-block; }
     .badge-active { background: #d5f5e3; color: #27ae60; }
     .badge-expired { background: #fadbd8; color: #e74c3c; }
     .badge-pending { background: #fef9e7; color: #c8960c; }
-    
-    /* Modal */
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; justify-content: center; align-items: center; }
     .modal-overlay.show { display: flex; }
     .modal { background: white; border-radius: 16px; padding: 24px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
     .modal h3 { color: #0f2b40; margin-bottom: 14px; }
-    
-    /* Section visibility */
     .section { display: none; }
     .section.active { display: block; }
-    
-    /* Log */
     .log-entry { padding: 6px 10px; font-size: 0.75rem; border-bottom: 1px solid #eee; font-family: monospace; }
     .log-entry .time { color: #888; }
-    
     @media (max-width: 768px) {
-      .sidebar { width: 60px; }
-      .sidebar h2, .sidebar a span { display: none; }
-      .sidebar a { padding: 12px 16px; text-align: center; }
-      .main-content { margin-left: 60px; }
+      .sidebar { width: 100%; height: auto; position: relative; display: flex; flex-wrap: wrap; padding: 8px; justify-content: center; gap: 2px; }
+      .sidebar h2 { display: none; }
+      .sidebar a { padding: 8px 8px; font-size: 0.65rem; border-left: none; border-bottom: 2px solid transparent; display: inline-block; flex: 0 0 auto; }
+      .sidebar a .icon { margin-right: 2px; font-size: 0.7rem; }
+      .sidebar a span { display: inline; font-size: 0.6rem; }
+      .main-content { margin-left: 0; padding: 8px; }
+      .header { flex-direction: column; text-align: center; padding: 10px; }
+      .header h1 { font-size: 1rem; }
+      .stats-row { gap: 6px; }
+      .stat-card { min-width: 100px; padding: 10px; }
+      .stat-card .stat-value { font-size: 1.2rem; }
+      .stat-card .stat-label { font-size: 0.65rem; }
+      .btn { padding: 12px 14px; font-size: 0.8rem; width: 100%; margin-bottom: 6px; }
+      input, select, textarea { padding: 12px; font-size: 0.9rem; width: 100%; }
+      .form-row { flex-direction: column; }
+      .form-row > * { min-width: 100%; }
+      #genOutput { font-size: 0.65rem; max-height: 200px; overflow-y: auto; word-break: break-all; }
+      table { font-size: 0.55rem; }
+      th, td { padding: 3px 1px; }
+      .card { padding: 10px; }
+      .modal { max-width: 95%; padding: 12px; }
+      .sidebar a[href="index.html"] { background: #27ae60; color: white; border-radius: 4px; margin-top: 2px; }
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <div class="sidebar">
-    <h2>🔬 Safari Softwares<br><small>Admin Dashboard v1.0</small></h2>
+    <h2>🔬 Safari Softwares<br><small>Admin Dashboard v2.0</small></h2>
     <a href="#" class="active" onclick="showSection('dashboard', this)"><span class="icon">📊</span> <span>Dashboard</span></a>
     <a href="#" onclick="showSection('generate', this)"><span class="icon">🔑</span> <span>Generate Keys</span></a>
     <a href="#" onclick="showSection('keys', this)"><span class="icon">📋</span> <span>All Keys</span></a>
     <a href="#" onclick="showSection('payments', this)"><span class="icon">💰</span> <span>Payments</span></a>
-    <a href="#" onclick="showSection('devices', this)"><span class="icon">📱</span> <span>Device Management</span></a>
-    <a href="#" onclick="showSection('bulk', this)"><span class="icon">📦</span> <span>Bulk Operations</span></a>
+    <a href="#" onclick="showSection('devices', this)"><span class="icon">📱</span> <span>Device Mgmt</span></a>
+    <a href="#" onclick="showSection('bulk', this)"><span class="icon">📦</span> <span>Bulk Ops</span></a>
     <a href="#" onclick="showSection('settings', this)"><span class="icon">⚙️</span> <span>Settings</span></a>
     <a href="#" onclick="showSection('log', this)"><span class="icon">📝</span> <span>Activity Log</span></a>
-    <a href="#" onclick="showSection('activationLogs', this)"><span class="icon">🔑</span> <span>Key Activations</span></a>
-    <a href="index.html" target="_blank" style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.2);"><span class="icon">🚀</span> <span>Open Simulator</span></a>
+    <a href="#" onclick="showSection('activationLogs', this)"><span class="icon">🔑</span> <span>Activations</span></a>
+    <a href="index.html" target="_blank" style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.2);"><span class="icon">🚀</span> <span>Simulator</span></a>
   </div>
-
-  <!-- Main Content -->
   <div class="main-content">
-    <div class="header">
-      <h1 id="sectionTitle">📊 Dashboard Overview</h1>
-      <div class="user-info">Admin | <span id="currentDateTime">--</span> | <a href="#" onclick="logout()" style="color:#e74c3c;">Logout</a></div>
-    </div>
-
-    <!-- DASHBOARD SECTION -->
+    <div class="header"><h1 id="sectionTitle">📊 Dashboard Overview</h1><div class="user-info">Admin | <span id="currentDateTime">--</span> | <a href="#" onclick="logout()" style="color:#e74c3c;">Logout</a></div></div>
+    
+    <!-- DASHBOARD -->
     <div class="section active" id="sec-dashboard">
       <div class="stats-row">
-        <div class="stat-card gold">
-          <div class="stat-value" id="statTotalKeys">0</div>
-          <div class="stat-label">Total Keys Generated</div>
-        </div>
-        <div class="stat-card green">
-          <div class="stat-value" id="statActiveKeys">0</div>
-          <div class="stat-label">Active Keys</div>
-        </div>
-        <div class="stat-card blue">
-          <div class="stat-value" id="statActivatedKeys">0</div>
-          <div class="stat-label">Activated Keys</div>
-        </div>
-        <div class="stat-card red">
-          <div class="stat-value" id="statExpiredKeys">0</div>
-          <div class="stat-label">Expired Keys</div>
-        </div>
-        <div class="stat-card gold">
-          <div class="stat-value" id="statRevenue">KES 0</div>
-          <div class="stat-label">Estimated Revenue (KES 350/key)</div>
-        </div>
+        <div class="stat-card gold"><div class="stat-value" id="statTotalKeys">0</div><div class="stat-label">Total Keys</div></div>
+        <div class="stat-card green"><div class="stat-value" id="statActiveKeys">0</div><div class="stat-label">Active Keys</div></div>
+        <div class="stat-card blue"><div class="stat-value" id="statActivatedKeys">0</div><div class="stat-label">Activated</div></div>
+        <div class="stat-card red"><div class="stat-value" id="statExpiredKeys">0</div><div class="stat-label">Expired</div></div>
+        <div class="stat-card gold"><div class="stat-value" id="statRevenue">KES 0</div><div class="stat-label">Est. Revenue</div></div>
       </div>
-      
-      <div class="card">
-        <h3>🔑 Recent Keys</h3>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead><tr><th>Key</th><th>Student</th><th>Created</th><th>Expires</th><th>Status</th><th>Devices</th></tr></thead>
-            <tbody id="recentKeysTable"><tr><td colspan="6" style="text-align:center;color:#888;">No keys yet</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-      
-      <div class="card">
-        <h3>📝 Recent Activity</h3>
-        <div id="recentActivity" style="max-height:200px;overflow-y:auto;"></div>
-      </div>
+      <div class="card"><h3>🔑 Recent Keys</h3><div style="overflow-x:auto;"><table><thead><tr><th>Key</th><th>Student</th><th>Created</th><th>Expires</th><th>Status</th><th>Devices</th></tr></thead><tbody id="recentKeysTable"><tr><td colspan="6" style="text-align:center;color:#888;">No keys yet</td></tr></tbody></table></div></div>
+      <div class="card"><h3>📝 Recent Activity</h3><div id="recentActivity" style="max-height:200px;overflow-y:auto;"></div></div>
     </div>
-
-    <!-- GENERATE KEYS SECTION -->
+    
+    <!-- GENERATE KEYS -->
     <div class="section" id="sec-generate">
-      <div class="card">
-        <h3>🔑 Generate Single Key</h3>
-        <div class="form-row">
-          <input type="text" id="genStudentName" placeholder="Student Name or Email *">
-          <input type="text" id="genPhone" placeholder="Phone Number (optional)">
-          <select id="genMonths">
-            <option value="12">12 months - KES 350</option>
-            <option value="6">6 months - KES 200</option>
-            <option value="3">3 months - KES 100</option>
-            <option value="1">1 month - KES 50</option>
-          </select>
-        </div>
-        <div style="margin-top:10px;">
-          <input type="text" id="genPassword" placeholder="Custom password (leave empty for auto-generate)" style="width:100%;">
-        </div>
-                <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button>
-          <button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button>
-          <button class="btn btn-success" onclick="printKeyCard()" id="printKeyBtn" style="display:none;">🖨️ Print Key Card</button>
-        </div>
-<div id="genOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.78rem;white-space:pre-wrap;display:none;max-height:300px;overflow-y:auto;word-break:break-all;"></div>
+      <div class="card"><h3>🔑 Generate Single Key</h3>
+        <div class="form-row"><input type="text" id="genStudentName" placeholder="Student Name or Email *"><input type="text" id="genPhone" placeholder="Phone Number (optional)"><select id="genMonths"><option value="12">12 months - KES 350</option><option value="6">6 months - KES 200</option><option value="3">3 months - KES 100</option><option value="1">1 month - KES 50</option></select></div>
+        <div style="margin-top:10px;"><input type="text" id="genPassword" placeholder="Custom password (leave empty for auto-generate)"></div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" onclick="generateSingleKey()">🔑 Generate Key</button><button class="btn btn-gold" onclick="generateSingleKeyAndCopy()">📋 Generate & Copy</button><button class="btn btn-success" onclick="printKeyCard()" id="printKeyBtn" style="display:none;">🖨️ Print Key Card</button></div>
+        <div id="genOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.78rem;white-space:pre-wrap;display:none;max-height:300px;overflow-y:auto;word-break:break-all;"></div>
+        <div id="keyReminder" style="margin-top:8px;background:#fff3cd;padding:10px;border-radius:8px;font-size:0.75rem;display:none;border:1px solid #f0c040;">⚠️ <strong>Remember:</strong> Copy the line above and paste it into <code>keys.js</code>, then push to GitHub for the key to work on all devices.</div>
       </div>
     </div>
-
-    <!-- ALL KEYS SECTION -->
+    
+    <!-- ALL KEYS -->
     <div class="section" id="sec-keys">
-      <div class="card">
-        <h3>📋 All Generated Keys</h3>
-        <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
-          <input type="text" id="keySearch" placeholder="🔍 Search by key, name, or phone..." style="flex:2;min-width:200px;">
-          <select id="keyFilter" style="flex:1;min-width:120px;" onchange="renderKeysTable()">
-            <option value="all">All Keys</option>
-            <option value="active">Active Only</option>
-            <option value="expired">Expired Only</option>
-            <option value="activated">Activated</option>
-            <option value="unactivated">Not Activated</option>
-          </select>
-          <button class="btn btn-sm btn-primary" onclick="exportKeysCSV()">📥 Export CSV</button>
-        </div>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead><tr><th>Key</th><th>Password</th><th>Student</th><th>Phone</th><th>Created</th><th>Expires</th><th>Status</th><th>Devices</th><th>Actions</th></tr></thead>
-            <tbody id="allKeysTable"><tr><td colspan="9" style="text-align:center;color:#888;">No keys generated yet</td></tr></tbody>
-          </table>
-        </div>
+      <div class="card"><h3>📋 All Generated Keys</h3>
+        <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;"><input type="text" id="keySearch" placeholder="🔍 Search..." style="flex:2;min-width:200px;"><select id="keyFilter" style="flex:1;min-width:120px;" onchange="renderKeysTable()"><option value="all">All</option><option value="active">Active</option><option value="expired">Expired</option><option value="activated">Activated</option><option value="unactivated">Not Activated</option></select><button class="btn btn-sm btn-primary" onclick="exportKeysCSV()">📥 CSV</button></div>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Key</th><th>Password</th><th>Student</th><th>Phone</th><th>Created</th><th>Expires</th><th>Status</th><th>Devices</th><th>Actions</th></tr></thead><tbody id="allKeysTable"><tr><td colspan="9" style="text-align:center;color:#888;">No keys yet</td></tr></tbody></table></div>
       </div>
     </div>
-
-    <!-- PAYMENTS SECTION -->
+    
+    <!-- PAYMENTS -->
     <div class="section" id="sec-payments">
-      <div class="card">
-        <h3>💰 Payment Records</h3>
-        <button class="btn btn-primary" style="margin-bottom:10px;" onclick="addPaymentRecord()">➕ Add Payment</button>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead><tr><th>Date</th><th>Student</th><th>Phone</th><th>Amount (KES)</th><th>M-Pesa Code</th><th>Key Issued</th><th>Status</th></tr></thead>
-            <tbody id="paymentsTable"><tr><td colspan="7" style="text-align:center;color:#888;">No payment records</td></tr></tbody>
-          </table>
-        </div>
+      <div class="card"><h3>💰 Payment Records</h3><button class="btn btn-primary" style="margin-bottom:10px;" onclick="addPaymentRecord()">➕ Add Payment</button>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Date</th><th>Student</th><th>Phone</th><th>Amount</th><th>M-Pesa Code</th><th>Key Issued</th><th>Status</th></tr></thead><tbody id="paymentsTable"><tr><td colspan="7" style="text-align:center;color:#888;">No payment records</td></tr></tbody></table></div>
       </div>
     </div>
-
-    <!-- DEVICE MANAGEMENT SECTION -->
+    
+    <!-- DEVICE MANAGEMENT -->
     <div class="section" id="sec-devices">
-      <div class="card">
-        <h3>📱 Device Management</h3>
-        <p style="color:#888;margin-bottom:10px;">Manage device activations. Each key allows up to 2 devices.</p>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead><tr><th>Key</th><th>Student</th><th>Devices Used</th><th>Max Devices</th><th>Actions</th></tr></thead>
-            <tbody id="devicesTable"><tr><td colspan="5" style="text-align:center;color:#888;">No activated keys</td></tr></tbody>
-          </table>
-        </div>
+      <div class="card"><h3>📱 Device Management</h3><p style="color:#888;margin-bottom:10px;">Each key allows up to 2 devices.</p>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Key</th><th>Student</th><th>Devices Used</th><th>Max</th><th>Actions</th></tr></thead><tbody id="devicesTable"><tr><td colspan="5" style="text-align:center;color:#888;">No activated keys</td></tr></tbody></table></div>
       </div>
     </div>
-
-    <!-- BULK OPERATIONS SECTION -->
+    
+    <!-- BULK OPERATIONS -->
     <div class="section" id="sec-bulk">
-      <div class="card">
-        <h3>📦 Bulk Key Generation</h3>
-        <p style="color:#888;margin-bottom:10px;">Paste student names/emails (one per line) to generate multiple keys at once.</p>
-        <textarea id="bulkNames" rows="8" placeholder="john@gmail.com&#10;mary@school.ac.ke&#10;peter_chem&#10;..."></textarea>
-        <div class="form-row" style="margin-top:10px;">
-          <select id="bulkMonths">
-            <option value="12">12 months</option>
-            <option value="6">6 months</option>
-            <option value="3">3 months</option>
-            <option value="1">1 month</option>
-          </select>
-          <button class="btn btn-gold" onclick="generateBulkKeys()">📦 Generate Bulk Keys</button>
-        </div>
+      <div class="card"><h3>📦 Bulk Key Generation</h3><p style="color:#888;margin-bottom:10px;">Paste student names/emails (one per line).</p>
+        <textarea id="bulkNames" rows="6" placeholder="john@gmail.com&#10;mary@school.ac.ke&#10;..."></textarea>
+        <div class="form-row" style="margin-top:10px;"><select id="bulkMonths"><option value="12">12 months</option><option value="6">6 months</option><option value="3">3 months</option><option value="1">1 month</option></select><button class="btn btn-gold" onclick="generateBulkKeys()">📦 Generate</button></div>
         <div id="bulkOutput" style="margin-top:10px;background:#1a3850;color:#0f0;padding:14px;border-radius:8px;font-family:monospace;font-size:0.78rem;white-space:pre-wrap;max-height:300px;overflow-y:auto;display:none;"></div>
       </div>
-      
-      <div class="card">
-        <h3>⏰ Check for Expired Keys</h3>
-        <button class="btn btn-danger" onclick="checkExpiredKeys()">🔍 Scan & Mark Expired</button>
-        <div id="expiredCheckResult" style="margin-top:10px;"></div>
-      </div>
+      <div class="card"><h3>⏰ Check Expired</h3><button class="btn btn-danger" onclick="checkExpiredKeys()">🔍 Scan</button><div id="expiredCheckResult" style="margin-top:10px;"></div></div>
     </div>
-
-    <!-- SETTINGS SECTION -->
+    
+    <!-- SETTINGS -->
     <div class="section" id="sec-settings">
-      <div class="card">
-        <h3>⚙️ Admin Settings</h3>
-        <div class="form-row">
-          <div>
-            <label>Admin Password</label>
-            <input type="password" id="adminPassword" placeholder="Change admin password">
-          </div>
-          <div>
-            <label>Default Key Validity (months)</label>
-            <select id="defaultValidity">
-              <option value="12">12 months</option>
-              <option value="6">6 months</option>
-              <option value="3">3 months</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row" style="margin-top:10px;">
-          <div>
-            <label>Price per 12-month key (KES)</label>
-            <input type="number" id="priceSetting" value="350">
-          </div>
-          <div>
-            <label>Max Devices per Key</label>
-            <input type="number" id="maxDevicesSetting" value="2" min="1" max="5">
-          </div>
-        </div>
-        <button class="btn btn-primary" style="margin-top:10px;" onclick="saveSettings()">💾 Save Settings</button>
+      <div class="card"><h3>⚙️ Settings</h3>
+        <div class="form-row"><div><label>Admin Password</label><input type="password" id="adminPassword" placeholder="Change password"></div><div><label>Default Validity</label><select id="defaultValidity"><option value="12">12 months</option><option value="6">6 months</option><option value="3">3 months</option></select></div></div>
+        <div class="form-row" style="margin-top:10px;"><div><label>Price (KES)</label><input type="number" id="priceSetting" value="350"></div><div><label>Max Devices</label><input type="number" id="maxDevicesSetting" value="2" min="1" max="5"></div></div>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="saveSettings()">💾 Save</button>
       </div>
-      
-      <div class="card">
-        <h3>🗑️ Data Management</h3>
-        <button class="btn btn-danger" onclick="exportAllData()">📥 Export All Data (Backup)</button>
-        <button class="btn btn-sm" style="margin-left:10px;" onclick="importDataPrompt()">📤 Import Data</button>
-        <button class="btn btn-danger" style="margin-left:10px;" onclick="clearAllData()">⚠️ Clear All Data</button>
-      </div>
-    </div>
-
-    <!-- ACTIVATION LOGS SECTION -->
-<div class="section" id="sec-activationLogs">
-  <div class="card">
-    <h3>🔑 Key Activation Attempts</h3>
-    <p style="color:#888;margin-bottom:10px;">Tracks every activation attempt — successful and rejected — with reasons.</p>
-    
-    <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
-      <select id="activationFilter" style="flex:1;min-width:120px;padding:8px;" onchange="renderActivationLogs()">
-        <option value="all">All Attempts</option>
-        <option value="success">✅ Successful Only</option>
-        <option value="rejected">❌ Rejected Only</option>
-      </select>
-      <button class="btn btn-sm btn-primary" onclick="renderActivationLogs()">🔄 Refresh</button>
-      <button class="btn btn-sm btn-danger" onclick="clearActivationLogs()">🗑️ Clear Logs</button>
+      <div class="card"><h3>🗑️ Data</h3><button class="btn btn-danger" onclick="exportAllData()">📥 Backup</button><button class="btn btn-sm" style="margin-left:10px;" onclick="importDataPrompt()">📤 Import</button></div>
     </div>
     
-    <div style="overflow-x:auto;">
-      <table>
-        <thead>
-          <tr>
-            <th>Date/Time</th>
-            <th>Key</th>
-            <th>Status</th>
-            <th>Reason</th>
-            <th>Device ID</th>
-            <th>Browser</th>
-          </tr>
-        </thead>
-        <tbody id="activationLogsTable">
-          <tr><td colspan="6" style="text-align:center;color:#888;">No activation attempts recorded yet</td></tr>
-        </tbody>
-      </table>
+    <!-- ACTIVATION LOGS -->
+    <div class="section" id="sec-activationLogs">
+      <div class="card"><h3>🔑 Key Activation Attempts</h3><p style="color:#888;margin-bottom:10px;">Every attempt — successful and rejected.</p>
+        <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;"><select id="activationFilter" style="flex:1;min-width:120px;padding:8px;" onchange="renderActivationLogs()"><option value="all">All</option><option value="success">✅ Success</option><option value="rejected">❌ Rejected</option></select><button class="btn btn-sm btn-primary" onclick="renderActivationLogs()">🔄 Refresh</button><button class="btn btn-sm btn-danger" onclick="clearActivationLogs()">🗑️ Clear</button></div>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Date/Time</th><th>Key</th><th>Status</th><th>Reason</th><th>Device ID</th><th>Browser</th></tr></thead><tbody id="activationLogsTable"><tr><td colspan="6" style="text-align:center;color:#888;">No attempts yet</td></tr></tbody></table></div>
+      </div>
     </div>
-  </div>
-</div>
-    <!-- ACTIVITY LOG SECTION -->
+    
+    <!-- ACTIVITY LOG -->
     <div class="section" id="sec-log">
-      <div class="card">
-        <h3>📝 Activity Log</h3>
-        <button class="btn btn-sm" style="margin-bottom:10px;" onclick="clearActivityLog()">🗑️ Clear Log</button>
-        <div id="activityLogFull" style="max-height:500px;overflow-y:auto;"></div>
-      </div>
+      <div class="card"><h3>📝 Activity Log</h3><button class="btn btn-sm" style="margin-bottom:10px;" onclick="clearActivityLog()">🗑️ Clear</button><div id="activityLogFull" style="max-height:500px;overflow-y:auto;"></div></div>
     </div>
   </div>
-
-  <!-- MODAL: Add Payment -->
-  <div class="modal-overlay" id="paymentModal">
-    <div class="modal">
-      <h3>➕ Add Payment Record</h3>
-      <input type="text" id="payStudent" placeholder="Student Name/Email *">
-      <input type="text" id="payPhone" placeholder="Phone Number">
-      <input type="number" id="payAmount" placeholder="Amount (KES) *" value="350">
-      <input type="text" id="payMpesa" placeholder="M-Pesa Confirmation Code">
-      <select id="payKeyLink">
-        <option value="">-- Link to Key (optional) --</option>
-      </select>
-      <button class="btn btn-primary" onclick="savePayment()">💾 Save Payment</button>
-      <button class="btn btn-sm" style="margin-left:10px;" onclick="closePaymentModal()">Cancel</button>
-    </div>
-  </div>
-
-  <!-- MODAL: Edit Key -->
-  <div class="modal-overlay" id="editKeyModal">
-    <div class="modal">
-      <h3>✏️ Edit Key</h3>
-      <input type="hidden" id="editKeyOriginal">
-      <label>Student Name</label>
-      <input type="text" id="editKeyStudent">
-      <label>Phone</label>
-      <input type="text" id="editKeyPhone">
-      <label>Expiry Date</label>
-      <input type="date" id="editKeyExpiry">
-      <label>Password</label>
-      <input type="text" id="editKeyPassword">
-      <button class="btn btn-primary" onclick="saveKeyEdit()">💾 Save Changes</button>
-      <button class="btn btn-danger btn-sm" style="margin-left:10px;" onclick="deleteKey()">🗑️ Delete Key</button>
-      <button class="btn btn-sm" style="margin-left:10px;" onclick="closeEditKeyModal()">Cancel</button>
-    </div>
-  </div>
-
-  <script>
-    // ============ INITIALIZATION ============
-    const ADMIN_PASSWORD_KEY = 'safari_admin_auth';
-    const DEFAULT_ADMIN_PASSWORD = 'admin123'; // Change this!
-    
-    // Check authentication (session from admin-login.html)
-function checkAuth() {
-  const auth = sessionStorage.getItem('safari_admin_auth');
-  const expires = sessionStorage.getItem('safari_admin_expires');
   
-  if (auth !== 'true' || !expires || new Date(expires) <= new Date()) {
-    // No valid session - redirect to login page
-    sessionStorage.removeItem('safari_admin_auth');
-    sessionStorage.removeItem('safari_admin_session');
-    sessionStorage.removeItem('safari_admin_expires');
-    window.location.href = 'admin-login.html';
-    return false;
-  }
-  return true;
-}
-    
+  <!-- MODALS -->
+  <div class="modal-overlay" id="paymentModal"><div class="modal"><h3>➕ Add Payment</h3><input type="text" id="payStudent" placeholder="Student *"><input type="text" id="payPhone" placeholder="Phone"><input type="number" id="payAmount" placeholder="Amount *" value="350"><input type="text" id="payMpesa" placeholder="M-Pesa Code"><select id="payKeyLink"><option value="">-- Link to Key --</option></select><button class="btn btn-primary" onclick="savePayment()">💾 Save</button><button class="btn btn-sm" style="margin-left:10px;" onclick="closePaymentModal()">Cancel</button></div></div>
+  <div class="modal-overlay" id="editKeyModal"><div class="modal"><h3>✏️ Edit Key</h3><input type="hidden" id="editKeyOriginal"><label>Student</label><input type="text" id="editKeyStudent"><label>Phone</label><input type="text" id="editKeyPhone"><label>Expiry</label><input type="date" id="editKeyExpiry"><label>Password</label><input type="text" id="editKeyPassword"><button class="btn btn-primary" onclick="saveKeyEdit()">💾 Save</button><button class="btn btn-danger btn-sm" style="margin-left:10px;" onclick="deleteKey()">🗑️ Delete</button><button class="btn btn-sm" style="margin-left:10px;" onclick="closeEditKeyModal()">Cancel</button></div></div>
+    <script>
+    // ============ SESSION CHECK ============
+    (function() {
+      var auth = sessionStorage.getItem('safari_admin_auth');
+      var expires = sessionStorage.getItem('safari_admin_expires');
+      if (auth !== 'true' || !expires || new Date(expires) <= new Date()) {
+        sessionStorage.removeItem('safari_admin_auth');
+        sessionStorage.removeItem('safari_admin_session');
+        sessionStorage.removeItem('safari_admin_expires');
+        window.location.href = 'admin-login.html';
+      }
+    })();
+
     function logout() {
-      sessionStorage.removeItem(ADMIN_PASSWORD_KEY);
+      sessionStorage.removeItem('safari_admin_auth');
+      sessionStorage.removeItem('safari_admin_session');
+      sessionStorage.removeItem('safari_admin_expires');
       addLog('Admin logged out');
-      window.location.reload();
+      window.location.href = 'admin-login.html';
     }
-    
-    // Data stores (using localStorage)
+
+    // ============ DATA STORES ============
     function getKeys() { return JSON.parse(localStorage.getItem('safari_keys') || '[]'); }
     function setKeys(keys) { localStorage.setItem('safari_keys', JSON.stringify(keys)); addLog('Keys data updated'); }
     function getPayments() { return JSON.parse(localStorage.getItem('safari_payments') || '[]'); }
@@ -409,66 +212,46 @@ function checkAuth() {
     function setSettings(settings) { localStorage.setItem('safari_settings', JSON.stringify(settings)); }
     
     function addLog(action) {
-      const logs = getLogs();
+      var logs = getLogs();
       logs.unshift({ time: new Date().toISOString(), action: action });
-      if (logs.length > 500) logs.length = 500; // Keep max 500 entries
+      if (logs.length > 500) logs.length = 500;
       setLogs(logs);
     }
-    
+
     // ============ SECTION NAVIGATION ============
     function showSection(section, link) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-      
-      const secMap = {
-        'dashboard': 'sec-dashboard',
-        'generate': 'sec-generate',
-        'keys': 'sec-keys',
-        'payments': 'sec-payments',
-        'devices': 'sec-devices',
-        'bulk': 'sec-bulk',
-        'settings': 'sec-settings',
-        'log': 'sec-log',
-'activationLogs': 'sec-activationLogs'
+      document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+      document.querySelectorAll('.sidebar a').forEach(function(a){ a.classList.remove('active'); });
+      var secMap = {
+        dashboard:'sec-dashboard', generate:'sec-generate', keys:'sec-keys',
+        payments:'sec-payments', devices:'sec-devices', bulk:'sec-bulk',
+        settings:'sec-settings', log:'sec-log', activationLogs:'sec-activationLogs'
       };
-      
-      const secId = secMap[section];
-      if (secId) document.getElementById(secId).classList.add('active');
-      if (link) link.classList.add('active');
-      
-      const titles = {
-        'dashboard': '📊 Dashboard Overview',
-        'generate': '🔑 Generate Keys',
-        'keys': '📋 All Keys',
-        'payments': '💰 Payment Records',
-        'devices': '📱 Device Management',
-        'bulk': '📦 Bulk Operations',
-        'settings': '⚙️ Settings',
-        'log': '📝 Activity Log',
-'activationLogs': '🔑 Key Activations'
+      var secId = secMap[section];
+      if(secId) document.getElementById(secId).classList.add('active');
+      if(link) link.classList.add('active');
+      var titles = {
+        dashboard:'📊 Dashboard Overview', generate:'🔑 Generate Keys', keys:'📋 All Keys',
+        payments:'💰 Payment Records', devices:'📱 Device Management', bulk:'📦 Bulk Operations',
+        settings:'⚙️ Settings', log:'📝 Activity Log', activationLogs:'🔑 Key Activations'
       };
       document.getElementById('sectionTitle').textContent = titles[section] || 'Dashboard';
-      
-      // Refresh section data
-      if (section === 'dashboard') refreshDashboard();
-      if (section === 'keys') renderKeysTable();
-      if (section === 'payments') renderPaymentsTable();
-      if (section === 'devices') renderDevicesTable();
-      if (section === 'log') renderActivityLog();
-      if (section === 'settings') loadSettings();
+      if(section==='dashboard') refreshDashboard();
+      if(section==='keys') renderKeysTable();
+      if(section==='payments') renderPaymentsTable();
+      if(section==='devices') renderDevicesTable();
+      if(section==='log') renderActivityLog();
+      if(section==='settings') loadSettings();
+      if(section==='activationLogs') renderActivationLogs();
     }
-    
+
     // ============ DASHBOARD ============
     function refreshDashboard() {
-      const keys = getKeys();
-      const payments = getPayments();
-      const settings = getSettings();
-      const now = new Date();
-      
-      const activeKeys = keys.filter(k => new Date(k.expires) > now);
-      const expiredKeys = keys.filter(k => new Date(k.expires) <= now);
-      const activatedKeys = keys.filter(k => k.activated);
-      const totalRevenue = payments.reduce((sum, p) => sum + (parseInt(p.amount) || 0), 0);
+      var keys = getKeys(), payments = getPayments(), now = new Date();
+      var activeKeys = keys.filter(function(k){ return new Date(k.expires) > now; });
+      var expiredKeys = keys.filter(function(k){ return new Date(k.expires) <= now; });
+      var activatedKeys = keys.filter(function(k){ return k.activated; });
+      var totalRevenue = payments.reduce(function(sum, p){ return sum + (parseInt(p.amount) || 0); }, 0);
       
       document.getElementById('statTotalKeys').textContent = keys.length;
       document.getElementById('statActiveKeys').textContent = activeKeys.length;
@@ -476,207 +259,167 @@ function checkAuth() {
       document.getElementById('statExpiredKeys').textContent = expiredKeys.length;
       document.getElementById('statRevenue').textContent = 'KES ' + totalRevenue.toLocaleString();
       
-      // Recent keys (last 10)
-      const recentKeys = [...keys].sort((a,b) => new Date(b.created) - new Date(a.created)).slice(0, 10);
-      let tableHTML = '';
-      recentKeys.forEach(k => {
-        const status = new Date(k.expires) > now ? 
+      var recentKeys = keys.slice().sort(function(a,b){ return new Date(b.created) - new Date(a.created); }).slice(0, 10);
+      var tableHTML = '';
+      recentKeys.forEach(function(k){
+        var status = new Date(k.expires) > now ? 
           (k.activated ? '<span class="badge badge-active">Active</span>' : '<span class="badge badge-pending">Not Activated</span>') :
           '<span class="badge badge-expired">Expired</span>';
-        tableHTML += `<tr>
-          <td><code>${k.key}</code></td>
-          <td>${k.student || '—'}</td>
-          <td>${new Date(k.created).toLocaleDateString()}</td>
-          <td>${new Date(k.expires).toLocaleDateString()}</td>
-          <td>${status}</td>
-          <td>${k.devices ? k.devices.length : 0}/2</td>
-        </tr>`;
+        tableHTML += '<tr><td><code>'+k.key+'</code></td><td>'+(k.student||'—')+'</td><td>'+new Date(k.created).toLocaleDateString()+'</td><td>'+new Date(k.expires).toLocaleDateString()+'</td><td>'+status+'</td><td>'+(k.devices?k.devices.length:0)+'/2</td></tr>';
       });
       document.getElementById('recentKeysTable').innerHTML = tableHTML || '<tr><td colspan="6" style="text-align:center;color:#888;">No keys yet</td></tr>';
       
-      // Recent activity
-      const logs = getLogs().slice(0, 20);
-      document.getElementById('recentActivity').innerHTML = logs.map(l => 
-        `<div class="log-entry"><span class="time">${new Date(l.time).toLocaleString()}</span> — ${l.action}</div>`
-      ).join('') || '<div style="color:#888;text-align:center;padding:10px;">No activity yet</div>';
+      var logs = getLogs().slice(0, 20);
+      document.getElementById('recentActivity').innerHTML = logs.map(function(l){ 
+        return '<div class="log-entry"><span class="time">'+new Date(l.time).toLocaleString()+'</span> — '+l.action+'</div>'; 
+      }).join('') || '<div style="color:#888;text-align:center;padding:10px;">No activity yet</div>';
     }
-    
+
     // ============ KEY GENERATION ============
     function generateKeyString() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let key = 'SAF';
-  for (let i = 0; i < 3; i++) { 
-    key += '-';
-    for (let j = 0; j < 4; j++) {
-      key += chars[Math.floor(Math.random() * chars.length)];
+      var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      var key = 'SAF';
+      for (var i = 0; i < 3; i++) { 
+        key += '-';
+        for (var j = 0; j < 4; j++) { key += chars[Math.floor(Math.random() * chars.length)]; }
+      }
+      return key;
     }
-  }
-  return key;
-}
     
     function generatePassword() {
-      const pwChars = 'abcdefghjkmnpqrstuvwxyz23456789';
-      let password = '';
-      for (let i = 0; i < 8; i++) password += pwChars[Math.floor(Math.random() * pwChars.length)];
+      var pwChars = 'abcdefghjkmnpqrstuvwxyz23456789';
+      var password = '';
+      for (var i = 0; i < 8; i++) password += pwChars[Math.floor(Math.random() * pwChars.length)];
       return password;
     }
     
     function generateSingleKey() {
-      const student = document.getElementById('genStudentName').value.trim();
+      var student = document.getElementById('genStudentName').value.trim();
       if (!student) { alert('Please enter student name or email!'); return; }
       
-      const phone = document.getElementById('genPhone').value.trim();
-      const months = parseInt(document.getElementById('genMonths').value);
-      let password = document.getElementById('genPassword').value.trim();
+      var phone = document.getElementById('genPhone').value.trim();
+      var months = parseInt(document.getElementById('genMonths').value);
+      var password = document.getElementById('genPassword').value.trim();
       if (!password) password = generatePassword();
       
-      const key = generateKeyString();
-      const now = new Date();
-      const expiry = new Date();
+      var key = generateKeyString();
+      var now = new Date();
+      var expiry = new Date();
       expiry.setMonth(expiry.getMonth() + months);
       
-      const keyData = {
-        key: key,
-        password: password,
-        student: student,
-        phone: phone,
-        created: now.toISOString(),
-        expires: expiry.toISOString(),
-        months: months,
-        activated: false,
-        devices: []
+      var keyData = {
+        key: key, password: password, student: student, phone: phone,
+        created: now.toISOString(), expires: expiry.toISOString(),
+        months: months, activated: false, devices: []
       };
       
-      const keys = getKeys();
+      var keys = getKeys();
       keys.push(keyData);
       setKeys(keys);
       
       document.getElementById('genOutput').style.display = 'block';
       document.getElementById('printKeyBtn').style.display = 'inline-block';
+      document.getElementById('keyReminder').style.display = 'block';
       document.getElementById('genOutput').textContent = 
-    `✅ KEY GENERATED SUCCESSFULLY\n\n` +
-    `🔑 Key:     ${key}\n` +
-    `🔒 Password: ${password}\n` +
-    `👤 Student:  ${student}\n` +
-    `📅 Created:  ${now.toLocaleDateString()}\n` +
-    `⏰ Expires:  ${expiry.toLocaleDateString()}\n` +
-    `📆 Duration: ${months} month(s)\n` +
-    `📱 Devices:  2 max\n\n` +
-    `📋 Copy-paste for upgrade.html:\n` +
-    `"${key}": { password: "${password}", expires: "${expiry.toISOString().split('T')[0]}" },`;      
-      addLog(`Generated key ${key} for ${student} (${months} months)`);
+        '✅ KEY GENERATED SUCCESSFULLY\n\n' +
+        '🔑 Key:     '+key+'\n' +
+        '🔒 Password: '+password+'\n' +
+        '👤 Student:  '+student+'\n' +
+        '📅 Created:  '+now.toLocaleDateString()+'\n' +
+        '⏰ Expires:  '+expiry.toLocaleDateString()+'\n' +
+        '📆 Duration: '+months+' month(s)\n' +
+        '📱 Devices:  2 max\n\n' +
+        '📋 Copy-paste for keys.js:\n' +
+        '"'+key+'": { password: "'+password+'", expires: "'+expiry.toISOString().split('T')[0]+'" },';
+      
+      addLog('Generated key '+key+' for '+student+' ('+months+' months)');
       refreshDashboard();
     }
     
     function generateSingleKeyAndCopy() {
       generateSingleKey();
-      const output = document.getElementById('genOutput').textContent;
-      navigator.clipboard.writeText(output).then(() => {
+      var output = document.getElementById('genOutput').textContent;
+      navigator.clipboard.writeText(output).then(function(){
         alert('📋 Key details copied to clipboard!');
+      }).catch(function(){
+        prompt('Copy this key:', output);
       });
     }
     
     function generateBulkKeys() {
-      const namesText = document.getElementById('bulkNames').value.trim();
+      var namesText = document.getElementById('bulkNames').value.trim();
       if (!namesText) { alert('Please enter student names!'); return; }
       
-      const names = namesText.split('\n').filter(n => n.trim());
-      const months = parseInt(document.getElementById('bulkMonths').value);
-      const keys = getKeys();
-      let output = '📦 BULK KEY GENERATION\n\n';
-      const now = new Date();
+      var names = namesText.split('\n').filter(function(n){ return n.trim(); });
+      var months = parseInt(document.getElementById('bulkMonths').value);
+      var keys = getKeys();
+      var output = '📦 BULK KEY GENERATION\n\n';
+      var now = new Date();
       
-      names.forEach(name => {
-        const key = generateKeyString();
-        const password = generatePassword();
-        const expiry = new Date();
+      names.forEach(function(name){
+        var key = generateKeyString();
+        var password = generatePassword();
+        var expiry = new Date();
         expiry.setMonth(expiry.getMonth() + months);
         
         keys.push({
-          key: key,
-          password: password,
-          student: name.trim(),
-          phone: '',
-          created: now.toISOString(),
-          expires: expiry.toISOString(),
-          months: months,
-          activated: false,
-          devices: []
+          key: key, password: password, student: name.trim(), phone: '',
+          created: now.toISOString(), expires: expiry.toISOString(),
+          months: months, activated: false, devices: []
         });
         
-        output += `👤 ${name.trim()}\n🔑 ${key} | 🔒 ${password} | ⏰ ${expiry.toISOString().split('T')[0]}\n\n`;
+        output += '👤 '+name.trim()+'\n🔑 '+key+' | 🔒 '+password+' | ⏰ '+expiry.toISOString().split('T')[0]+'\n\n';
       });
       
       setKeys(keys);
       document.getElementById('bulkOutput').style.display = 'block';
-      document.getElementById('bulkOutput').textContent = output + `\n✅ ${names.length} keys generated!`;
-      addLog(`Bulk generated ${names.length} keys (${months} months each)`);
+      document.getElementById('bulkOutput').textContent = output + '\n✅ '+names.length+' keys generated!';
+      addLog('Bulk generated '+names.length+' keys ('+months+' months each)');
       refreshDashboard();
     }
-    
+
     // ============ KEYS TABLE ============
     function renderKeysTable() {
-      const keys = getKeys();
-      const filter = document.getElementById('keyFilter').value;
-      const search = (document.getElementById('keySearch')?.value || '').toLowerCase();
-      const now = new Date();
+      var keys = getKeys();
+      var filter = document.getElementById('keyFilter').value;
+      var search = (document.getElementById('keySearch')?.value || '').toLowerCase();
+      var now = new Date();
       
-      let filteredKeys = keys;
-      
-      if (filter === 'active') filteredKeys = keys.filter(k => new Date(k.expires) > now);
-      if (filter === 'expired') filteredKeys = keys.filter(k => new Date(k.expires) <= now);
-      if (filter === 'activated') filteredKeys = keys.filter(k => k.activated);
-      if (filter === 'unactivated') filteredKeys = keys.filter(k => !k.activated);
+      var filteredKeys = keys;
+      if (filter === 'active') filteredKeys = keys.filter(function(k){ return new Date(k.expires) > now; });
+      if (filter === 'expired') filteredKeys = keys.filter(function(k){ return new Date(k.expires) <= now; });
+      if (filter === 'activated') filteredKeys = keys.filter(function(k){ return k.activated; });
+      if (filter === 'unactivated') filteredKeys = keys.filter(function(k){ return !k.activated; });
       
       if (search) {
-        filteredKeys = filteredKeys.filter(k => 
-          k.key.toLowerCase().includes(search) ||
-          k.student.toLowerCase().includes(search) ||
-          (k.phone && k.phone.includes(search))
-        );
+        filteredKeys = filteredKeys.filter(function(k){ 
+          return k.key.toLowerCase().includes(search) || k.student.toLowerCase().includes(search) || (k.phone && k.phone.includes(search));
+        });
       }
       
-      filteredKeys.sort((a,b) => new Date(b.created) - new Date(a.created));
+      filteredKeys.sort(function(a,b){ return new Date(b.created) - new Date(a.created); });
       
-      let tableHTML = '';
-      filteredKeys.forEach(k => {
-        const status = new Date(k.expires) > now ? 
+      var tableHTML = '';
+      filteredKeys.forEach(function(k){
+        var status = new Date(k.expires) > now ? 
           (k.activated ? '<span class="badge badge-active">Active</span>' : '<span class="badge badge-pending">Pending</span>') :
           '<span class="badge badge-expired">Expired</span>';
-        
-        tableHTML += `<tr>
-          <td><code style="font-size:0.7rem;">${k.key}</code></td>
-          <td><code>${k.password}</code></td>
-          <td>${k.student}</td>
-          <td>${k.phone || '—'}</td>
-          <td>${new Date(k.created).toLocaleDateString()}</td>
-          <td>${new Date(k.expires).toLocaleDateString()}</td>
-          <td>${status}</td>
-          <td>${k.devices ? k.devices.length : 0}/2</td>
-          <td>
-            <button class="btn btn-sm btn-primary" onclick="editKey('${k.key}')">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="resetKeyDevices('${k.key}')">📱</button>
-          </td>
-        </tr>`;
+        tableHTML += '<tr><td><code style="font-size:0.7rem;">'+k.key+'</code></td><td><code>'+k.password+'</code></td><td>'+k.student+'</td><td>'+(k.phone||'—')+'</td><td>'+new Date(k.created).toLocaleDateString()+'</td><td>'+new Date(k.expires).toLocaleDateString()+'</td><td>'+status+'</td><td>'+(k.devices?k.devices.length:0)+'/2</td><td><button class="btn btn-sm btn-primary" onclick="editKey(\''+k.key+'\')">✏️</button> <button class="btn btn-sm btn-danger" onclick="resetKeyDevices(\''+k.key+'\')">📱</button></td></tr>';
       });
       
       document.getElementById('allKeysTable').innerHTML = tableHTML || '<tr><td colspan="9" style="text-align:center;color:#888;">No keys match your filter</td></tr>';
     }
     
-    // Search functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchInput = document.getElementById('keySearch');
-      if (searchInput) {
-        searchInput.addEventListener('input', renderKeysTable);
-      }
+    document.addEventListener('DOMContentLoaded', function(){ 
+      var si = document.getElementById('keySearch'); 
+      if(si) si.addEventListener('input', renderKeysTable); 
     });
-    
+
     // ============ KEY EDITING ============
     function editKey(keyStr) {
-      const keys = getKeys();
-      const keyData = keys.find(k => k.key === keyStr);
+      var keys = getKeys();
+      var keyData = keys.find(function(k){ return k.key === keyStr; });
       if (!keyData) return;
-      
       document.getElementById('editKeyOriginal').value = keyStr;
       document.getElementById('editKeyStudent').value = keyData.student || '';
       document.getElementById('editKeyPhone').value = keyData.phone || '';
@@ -686,76 +429,68 @@ function checkAuth() {
     }
     
     function saveKeyEdit() {
-      const keyStr = document.getElementById('editKeyOriginal').value;
-      const keys = getKeys();
-      const keyData = keys.find(k => k.key === keyStr);
+      var keyStr = document.getElementById('editKeyOriginal').value;
+      var keys = getKeys();
+      var keyData = keys.find(function(k){ return k.key === keyStr; });
       if (!keyData) return;
-      
       keyData.student = document.getElementById('editKeyStudent').value;
       keyData.phone = document.getElementById('editKeyPhone').value;
       keyData.expires = new Date(document.getElementById('editKeyExpiry').value).toISOString();
       keyData.password = document.getElementById('editKeyPassword').value;
-      
       setKeys(keys);
       closeEditKeyModal();
       renderKeysTable();
-      addLog(`Edited key ${keyStr}`);
+      addLog('Edited key '+keyStr);
       alert('✅ Key updated successfully!');
     }
     
     function deleteKey() {
-      if (!confirm('⚠️ Are you sure you want to DELETE this key? This cannot be undone!')) return;
-      const keyStr = document.getElementById('editKeyOriginal').value;
-      let keys = getKeys();
-      keys = keys.filter(k => k.key !== keyStr);
+      if (!confirm('⚠️ DELETE this key? This cannot be undone!')) return;
+      var keyStr = document.getElementById('editKeyOriginal').value;
+      var keys = getKeys();
+      keys = keys.filter(function(k){ return k.key !== keyStr; });
       setKeys(keys);
       closeEditKeyModal();
       renderKeysTable();
       refreshDashboard();
-      addLog(`Deleted key ${keyStr}`);
+      addLog('Deleted key '+keyStr);
       alert('🗑️ Key deleted!');
     }
     
     function resetKeyDevices(keyStr) {
-      if (!confirm('📱 Reset all device activations for this key? The student will be able to activate on 2 new devices.')) return;
-      const keys = getKeys();
-      const keyData = keys.find(k => k.key === keyStr);
-      if (keyData) {
-        keyData.devices = [];
-        keyData.activated = false;
-        setKeys(keys);
-        renderKeysTable();
-        refreshDashboard();
-        addLog(`Reset devices for key ${keyStr}`);
-        alert('✅ Devices reset! Student can now activate on 2 new devices.');
+      if (!confirm('📱 Reset all device activations for this key?')) return;
+      var keys = getKeys();
+      var keyData = keys.find(function(k){ return k.key === keyStr; });
+      if (keyData) { 
+        keyData.devices = []; 
+        keyData.activated = false; 
+        setKeys(keys); 
+        renderKeysTable(); 
+        refreshDashboard(); 
+        addLog('Reset devices for key '+keyStr); 
+        alert('✅ Devices reset!'); 
       }
     }
     
-    function closeEditKeyModal() {
-      document.getElementById('editKeyModal').classList.remove('show');
-    }
-    
+    function closeEditKeyModal() { document.getElementById('editKeyModal').classList.remove('show'); }
+
     // ============ PAYMENTS ============
     function addPaymentRecord() {
-      const keys = getKeys();
-      const keySelect = document.getElementById('payKeyLink');
+      var keys = getKeys();
+      var keySelect = document.getElementById('payKeyLink');
       keySelect.innerHTML = '<option value="">-- Link to Key (optional) --</option>';
-      keys.forEach(k => {
-        keySelect.innerHTML += `<option value="${k.key}">${k.key} — ${k.student}</option>`;
-      });
+      keys.forEach(function(k){ keySelect.innerHTML += '<option value="'+k.key+'">'+k.key+' — '+k.student+'</option>'; });
       document.getElementById('paymentModal').classList.add('show');
     }
     
-    function closePaymentModal() {
-      document.getElementById('paymentModal').classList.remove('show');
-    }
+    function closePaymentModal() { document.getElementById('paymentModal').classList.remove('show'); }
     
     function savePayment() {
-      const student = document.getElementById('payStudent').value.trim();
-      const amount = document.getElementById('payAmount').value;
+      var student = document.getElementById('payStudent').value.trim();
+      var amount = document.getElementById('payAmount').value;
       if (!student || !amount) { alert('Please fill in required fields!'); return; }
       
-      const payment = {
+      var payment = {
         date: new Date().toISOString(),
         student: student,
         phone: document.getElementById('payPhone').value.trim(),
@@ -764,152 +499,101 @@ function checkAuth() {
         linkedKey: document.getElementById('payKeyLink').value
       };
       
-      const payments = getPayments();
+      var payments = getPayments();
       payments.push(payment);
       setPayments(payments);
-      
       closePaymentModal();
       renderPaymentsTable();
       refreshDashboard();
-      addLog(`Added payment of KES ${amount} from ${student}`);
+      addLog('Added payment of KES '+amount+' from '+student);
       alert('✅ Payment recorded!');
     }
     
     function renderPaymentsTable() {
-      const payments = getPayments();
-      payments.sort((a,b) => new Date(b.date) - new Date(a.date));
-      
-      let tableHTML = '';
-      payments.forEach(p => {
-        tableHTML += `<tr>
-          <td>${new Date(p.date).toLocaleDateString()}</td>
-          <td>${p.student}</td>
-          <td>${p.phone || '—'}</td>
-          <td><strong>KES ${p.amount}</strong></td>
-          <td><code>${p.mpesaCode || '—'}</code></td>
-          <td>${p.linkedKey ? '<code style="font-size:0.7rem;">'+p.linkedKey+'</code>' : '—'}</td>
-          <td>${p.linkedKey ? '<span class="badge badge-active">Linked</span>' : '<span class="badge badge-pending">Pending</span>'}</td>
-        </tr>`;
+      var payments = getPayments();
+      payments.sort(function(a,b){ return new Date(b.date) - new Date(a.date); });
+      var tableHTML = '';
+      payments.forEach(function(p){
+        tableHTML += '<tr><td>'+new Date(p.date).toLocaleDateString()+'</td><td>'+p.student+'</td><td>'+(p.phone||'—')+'</td><td><strong>KES '+p.amount+'</strong></td><td><code>'+(p.mpesaCode||'—')+'</code></td><td>'+(p.linkedKey?'<code style="font-size:0.7rem;">'+p.linkedKey+'</code>':'—')+'</td><td>'+(p.linkedKey?'<span class="badge badge-active">Linked</span>':'<span class="badge badge-pending">Pending</span>')+'</td></tr>';
       });
-      
       document.getElementById('paymentsTable').innerHTML = tableHTML || '<tr><td colspan="7" style="text-align:center;color:#888;">No payment records</td></tr>';
     }
-    
+
     // ============ DEVICES ============
     function renderDevicesTable() {
-      const keys = getKeys();
-      const activatedKeys = keys.filter(k => k.activated || (k.devices && k.devices.length > 0));
-      
-      let tableHTML = '';
-      activatedKeys.forEach(k => {
-        tableHTML += `<tr>
-          <td><code style="font-size:0.7rem;">${k.key}</code></td>
-          <td>${k.student}</td>
-          <td>${k.devices ? k.devices.length : 0}</td>
-          <td>2</td>
-          <td>
-            <button class="btn btn-sm btn-danger" onclick="resetKeyDevices('${k.key}')">🔄 Reset Devices</button>
-          </td>
-        </tr>`;
+      var keys = getKeys();
+      var activatedKeys = keys.filter(function(k){ return k.activated || (k.devices && k.devices.length > 0); });
+      var tableHTML = '';
+      activatedKeys.forEach(function(k){
+        tableHTML += '<tr><td><code style="font-size:0.7rem;">'+k.key+'</code></td><td>'+k.student+'</td><td>'+(k.devices?k.devices.length:0)+'</td><td>2</td><td><button class="btn btn-sm btn-danger" onclick="resetKeyDevices(\''+k.key+'\')">🔄 Reset</button></td></tr>';
       });
-      
       document.getElementById('devicesTable').innerHTML = tableHTML || '<tr><td colspan="5" style="text-align:center;color:#888;">No activated keys</td></tr>';
     }
-    
+
     // ============ BULK OPERATIONS ============
     function checkExpiredKeys() {
-      const keys = getKeys();
-      const now = new Date();
-      let expiredCount = 0;
-      
-      keys.forEach(k => {
-        if (new Date(k.expires) <= now && k.activated) {
-          k.activated = false;
-          expiredCount++;
-        }
-      });
-      
+      var keys = getKeys(), now = new Date(), expiredCount = 0;
+      keys.forEach(function(k){ if (new Date(k.expires) <= now && k.activated) { k.activated = false; expiredCount++; } });
       setKeys(keys);
-      document.getElementById('expiredCheckResult').innerHTML = 
-        `<div class="success">✅ Scan complete. Found and marked <strong>${expiredCount}</strong> expired key(s).</div>`;
-      addLog(`Checked for expired keys — found ${expiredCount}`);
+      document.getElementById('expiredCheckResult').innerHTML = '<div class="success">✅ Scan complete. Found and marked <strong>'+expiredCount+'</strong> expired key(s).</div>';
+      addLog('Checked for expired keys — found '+expiredCount);
       refreshDashboard();
     }
     
     function exportKeysCSV() {
-      const keys = getKeys();
-      let csv = 'Key,Password,Student,Phone,Created,Expires,Status,Devices\n';
-      const now = new Date();
-      keys.forEach(k => {
-        const status = new Date(k.expires) > now ? 'Active' : 'Expired';
-        csv += `"${k.key}","${k.password}","${k.student}","${k.phone || ''}","${k.created}","${k.expires}","${status}","${k.devices ? k.devices.length : 0}"\n`;
+      var keys = getKeys(), now = new Date();
+      var csv = 'Key,Password,Student,Phone,Created,Expires,Status,Devices\n';
+      keys.forEach(function(k){
+        var status = new Date(k.expires) > now ? 'Active' : 'Expired';
+        csv += '"'+k.key+'","'+k.password+'","'+k.student+'","'+(k.phone||'')+'","'+k.created+'","'+k.expires+'","'+status+'","'+(k.devices?k.devices.length:0)+'"\n';
       });
-      
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'safari_keys_' + new Date().toISOString().split('T')[0] + '.csv';
-      a.click();
+      var blob = new Blob([csv], { type: 'text/csv' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; 
+      a.download = 'safari_keys_'+new Date().toISOString().split('T')[0]+'.csv'; a.click();
       addLog('Exported keys to CSV');
     }
-    
+
     // ============ SETTINGS ============
     function loadSettings() {
-      const settings = getSettings();
+      var settings = getSettings();
       document.getElementById('priceSetting').value = settings.price || 350;
       document.getElementById('maxDevicesSetting').value = settings.maxDevices || 2;
       document.getElementById('defaultValidity').value = settings.defaultMonths || 12;
     }
     
     function saveSettings() {
-      const settings = {
+      var settings = {
         price: parseInt(document.getElementById('priceSetting').value),
         maxDevices: parseInt(document.getElementById('maxDevicesSetting').value),
         defaultMonths: parseInt(document.getElementById('defaultValidity').value)
       };
-      
-      const newPassword = document.getElementById('adminPassword').value;
-      if (newPassword) {
-        localStorage.setItem('admin_password', newPassword);
-        alert('✅ Admin password updated!');
-      }
-      
+      var newPassword = document.getElementById('adminPassword').value;
+      if (newPassword) { localStorage.setItem('admin_password', newPassword); alert('✅ Admin password updated!'); }
       setSettings(settings);
       addLog('Settings updated');
       alert('✅ Settings saved!');
     }
     
     function exportAllData() {
-      const data = {
-        keys: getKeys(),
-        payments: getPayments(),
-        logs: getLogs(),
-        settings: getSettings(),
-        exportDate: new Date().toISOString()
-      };
-      
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'safari_backup_' + new Date().toISOString().split('T')[0] + '.json';
-      a.click();
+      var data = { keys: getKeys(), payments: getPayments(), logs: getLogs(), settings: getSettings(), exportDate: new Date().toISOString() };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; 
+      a.download = 'safari_backup_'+new Date().toISOString().split('T')[0]+'.json'; a.click();
       addLog('Exported all data (backup)');
       alert('✅ Backup exported!');
     }
     
     function importDataPrompt() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.json';
-      input.onchange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = (event) => {
+      var input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+      input.onchange = function(e){
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(event){
           try {
-            const data = JSON.parse(event.target.result);
-            if (confirm(`⚠️ This will REPLACE all current data! Found ${data.keys?.length || 0} keys and ${data.payments?.length || 0} payments. Continue?`)) {
+            var data = JSON.parse(event.target.result);
+            if (confirm('⚠️ REPLACE all data? Found '+(data.keys?.length||0)+' keys and '+(data.payments?.length||0)+' payments.')) {
               if (data.keys) setKeys(data.keys);
               if (data.payments) setPayments(data.payments);
               if (data.logs) setLogs(data.logs);
@@ -918,241 +602,86 @@ function checkAuth() {
               alert('✅ Data imported! Refreshing...');
               location.reload();
             }
-          } catch (err) {
-            alert('❌ Invalid backup file!');
-          }
+          } catch (err) { alert('❌ Invalid backup file!'); }
         };
         reader.readAsText(file);
       };
       input.click();
     }
-    
-    function clearAllData() {
-      if (!confirm('⚠️⚠️⚠️ THIS WILL DELETE ALL KEYS, PAYMENTS, AND LOGS! THIS CANNOT BE UNDONE! Type "DELETE" to confirm:')) return;
-      alert('Clear cancelled. Use desktop for this action.');
-      return;
-      
-      localStorage.removeItem('safari_keys');
-      localStorage.removeItem('safari_payments');
-      localStorage.removeItem('safari_logs');
-      addLog('⚠️ ALL DATA CLEARED');
-      alert('🗑️ All data has been cleared!');
-      location.reload();
-    }
-    
+
     // ============ ACTIVITY LOG ============
     function renderActivityLog() {
-      const logs = getLogs();
-      document.getElementById('activityLogFull').innerHTML = logs.map(l => 
-        `<div class="log-entry"><span class="time">[${new Date(l.time).toLocaleString()}]</span> ${l.action}</div>`
-      ).join('') || '<div style="color:#888;text-align:center;padding:20px;">No activity recorded yet</div>';
+      var logs = getLogs();
+      document.getElementById('activityLogFull').innerHTML = logs.map(function(l){ 
+        return '<div class="log-entry"><span class="time">['+new Date(l.time).toLocaleString()+']</span> '+l.action+'</div>'; 
+      }).join('') || '<div style="color:#888;text-align:center;padding:20px;">No activity recorded yet</div>';
     }
     
-    function clearActivityLog() {
-      if (!confirm('Clear all activity logs?')) return;
-      setLogs([]);
-      renderActivityLog();
-      addLog('Activity log cleared');
+    function clearActivityLog() { 
+      if (!confirm('Clear all activity logs?')) return; 
+      setLogs([]); renderActivityLog(); addLog('Activity log cleared'); 
     }
-    
+
     // ============ CLOCK ============
-    function updateClock() {
-      document.getElementById('currentDateTime').textContent = new Date().toLocaleString();
-    }
-    
+    function updateClock() { document.getElementById('currentDateTime').textContent = new Date().toLocaleString(); }
+    setInterval(updateClock, 1000);
+    updateClock();
+
     // ============ INIT ============
-    function init() {
-      if (!checkAuth()) return;
-      updateClock();
-      setInterval(updateClock, 1000);
-      refreshDashboard();
+    refreshDashboard();
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay){ 
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) overlay.classList.remove('show'); }); 
+    });
+    addLog('Admin dashboard opened');
+
+    // ============ PRINT KEY CARD ============
+    function printKeyCard() {
+      var outputText = document.getElementById('genOutput').textContent;
+      var keyMatch = outputText.match(/🔑 Key:\s+(SAF-[A-Z0-9-]+)/);
+      var passMatch = outputText.match(/🔒 Password:\s+(\w+)/);
+      var studentMatch = outputText.match(/👤 Student:\s+(.+)/);
+      var expiresMatch = outputText.match(/⏰ Expires:\s+(.+)/);
+      var monthsMatch = outputText.match(/📆 Duration:\s+(\d+)\s*month/);
       
-      // Close modals on outside click
-      document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) {
-            overlay.classList.remove('show');
-          }
-        });
+      var key = keyMatch ? keyMatch[1] : 'N/A';
+      var password = passMatch ? passMatch[1] : 'N/A';
+      var student = studentMatch ? studentMatch[1] : 'N/A';
+      var expires = expiresMatch ? expiresMatch[1] : 'N/A';
+      var months = monthsMatch ? parseInt(monthsMatch[1]) : 12;
+      var priceMap = {1:50, 3:100, 6:200, 12:350};
+      var price = priceMap[months] || 350;
+      var durationText = months === 12 ? '1 Year' : months+' Month(s)';
+      
+      var printWindow = window.open('', '_blank', 'width=650,height=600');
+      printWindow.document.write('<!DOCTYPE html><html><head><title>Key Card - Safari Softwares</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;padding:20px;background:#f0f4f8;}.card{border:3px solid #134b6e;border-radius:16px;padding:30px;max-width:550px;margin:0 auto;background:white;text-align:center;}.header{background:linear-gradient(135deg,#0f2b40,#1a4058);color:white;padding:20px;border-radius:12px;margin-bottom:20px;}.header .logo{font-size:2.5rem;}.header h1{font-size:1.2rem;margin:5px 0;}.header .price{font-size:2rem;font-weight:900;color:#f0c040;}.key-box{background:#1a3850;color:#0f0;padding:20px;border-radius:10px;font-family:monospace;font-size:1.1rem;letter-spacing:2px;margin:16px 0;text-align:left;line-height:1.8;}.key-box .label{color:#8af;font-size:0.8rem;}.detail-row{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #eee;font-size:0.9rem;background:#fafcff;}.detail-row:nth-child(even){background:#f0f4fa;}.detail-row strong{color:#134b6e;}.instructions{background:#fef9e7;padding:14px;border-radius:8px;margin:16px 0;font-size:0.82rem;text-align:left;line-height:1.6;border:1px solid #f0c040;}.instructions ol{padding-left:18px;}.footer{margin-top:20px;font-size:0.75rem;color:#888;line-height:1.6;border-top:2px solid #f0c040;padding-top:14px;}.validity-badge{display:inline-block;background:#27ae60;color:white;padding:6px 16px;border-radius:20px;font-weight:700;font-size:0.9rem;margin:8px 0;}@media print{body{background:white;padding:0;}.card{border:2px solid #000;box-shadow:none;}.no-print{display:none;}}</style></head><body><div class="card"><div class="header"><div class="logo">🔬</div><h1>Safari Softwares</h1><p style="font-size:0.9rem;opacity:0.9;">Chemistry Practical Simulator</p><div class="price">KES '+price+'</div><div class="validity-badge">📆 '+durationText+'</div></div><h2 style="color:#134b6e;font-size:1.1rem;">Premium Activation Key</h2><div class="key-box"><div><span class="label">🔑 KEY:</span> '+key+'</div><div><span class="label">🔒 PASSWORD:</span> '+password+'</div></div><div class="detail-row"><strong>👤 Student:</strong><span>'+student+'</span></div><div class="detail-row"><strong>⏰ Expires:</strong><span>'+expires+'</span></div><div class="detail-row"><strong>📆 Duration:</strong><span>'+durationText+'</span></div><div class="detail-row"><strong>💰 Price:</strong><span>KES '+price+'</span></div><div class="detail-row"><strong>📱 Max Devices:</strong><span>2</span></div><div class="instructions"><strong>📋 How to Activate:</strong><ol><li>Go to:<br><code>safarisoftwares-code.github.io/kenyan-chemistry-practical-simulator/upgrade.html</code></li><li>Enter <strong>KEY</strong> and <strong>PASSWORD</strong></li><li>Click <strong>"Activate Premium Now"</strong></li><li>Open the simulator!</li></ol></div><div class="footer"><p>📧 safarisoftwares@gmail.com | 📱 +254112168732</p><p>🌐 safarisoftwares-code.github.io/safari-softwares/</p><p style="margin-top:8px;"><strong>Keep this card safe!</strong></p></div><button class="no-print" onclick="window.print()" style="margin-top:16px;padding:14px 40px;background:#134b6e;color:white;border:none;border-radius:30px;cursor:pointer;font-size:1rem;font-weight:700;width:100%;">🖨️ Print Key Card</button></div></body></html>');
+      printWindow.document.close();
+    }
+
+    // ============ ACTIVATION LOGS ============
+    function renderActivationLogs() {
+      var filter = document.getElementById('activationFilter').value;
+      var logs = [];
+      try { logs = JSON.parse(localStorage.getItem('safari_activation_logs') || '[]'); } catch(e) { logs = []; }
+      if (filter === 'success') logs = logs.filter(function(l){ return l.status === 'success'; });
+      if (filter === 'rejected') logs = logs.filter(function(l){ return l.status === 'rejected'; });
+      logs.sort(function(a, b){ return new Date(b.time) - new Date(a.time); });
+      
+      var html = '';
+      logs.forEach(function(l){
+        var time = new Date(l.time).toLocaleString();
+        var statusBadge = l.status === 'success' ? '<span class="badge badge-active">✅ Success</span>' : '<span class="badge badge-expired">❌ Rejected</span>';
+        html += '<tr><td style="font-size:0.75rem;">'+time+'</td><td><code style="font-size:0.7rem;">'+(l.key||'N/A')+'</code></td><td>'+statusBadge+'</td><td style="font-size:0.78rem;">'+(l.reason||'—')+'</td><td><code style="font-size:0.65rem;">'+(l.device||'—')+'</code></td><td style="font-size:0.65rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;" title="'+(l.browser||'')+'">'+(l.browser?l.browser.substring(0,40):'—')+'</td></tr>';
       });
       
-      addLog('Admin dashboard opened');
+      document.getElementById('activationLogsTable').innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#888;">No activation attempts match your filter</td></tr>';
     }
-
-    function printKeyCard() {
-  const outputText = document.getElementById('genOutput').textContent;
-  
-  // Parse the key details
-  const keyMatch = outputText.match(/🔑 Key:\s+(SAF-[A-Z0-9-]+)/);
-  const passMatch = outputText.match(/🔒 Password:\s+(\w+)/);
-  const studentMatch = outputText.match(/👤 Student:\s+(.+)/);
-  const expiresMatch = outputText.match(/⏰ Expires:\s+(.+)/);
-  
-  const key = keyMatch ? keyMatch[1] : 'N/A';
-  const password = passMatch ? passMatch[1] : 'N/A';
-  const student = studentMatch ? studentMatch[1] : 'N/A';
-  const expires = expiresMatch ? expiresMatch[1] : 'N/A';
-  
-  // Create print window
-  const printWindow = window.open('', '_blank', 'width=600,height=500');
-  printWindow.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Premium Key Card - Safari Softwares</title>
-      <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; }
-        .card { 
-          border: 3px solid #134b6e; 
-          border-radius: 16px; 
-          padding: 30px; 
-          max-width: 500px; 
-          margin: 0 auto; 
-          text-align: center;
-        }
-        .logo { font-size: 3rem; }
-        h1 { color: #0f2b40; font-size: 1.3rem; margin: 10px 0; }
-        .key-box { 
-          background: #1a3850; 
-          color: #0f0; 
-          padding: 20px; 
-          border-radius: 10px; 
-          font-family: 'Courier New', monospace; 
-          font-size: 1.1rem; 
-          letter-spacing: 2px;
-          margin: 16px 0;
-          word-break: break-all;
-        }
-        .detail-row { 
-          display: flex; 
-          justify-content: space-between; 
-          padding: 10px; 
-          border-bottom: 1px solid #eee; 
-          font-size: 0.9rem;
-        }
-        .detail-row strong { color: #134b6e; }
-        .footer { 
-          margin-top: 20px; 
-          font-size: 0.75rem; 
-          color: #888; 
-          line-height: 1.6;
-        }
-        .footer a { color: #134b6e; }
-        .instructions {
-          background: #fef9e7;
-          padding: 14px;
-          border-radius: 8px;
-          margin: 16px 0;
-          font-size: 0.82rem;
-          text-align: left;
-          line-height: 1.6;
-        }
-        .instructions ol { padding-left: 18px; }
-        @media print {
-          body { padding: 0; }
-          .card { border: 2px solid #000; }
-          .no-print { display: none; }
-        }
-
-        @media (max-width: 768px) {
-  .sidebar { width: 60px; }
-  .sidebar h2, .sidebar a span { display: none; }
-  .sidebar a { padding: 12px 16px; text-align: center; }
-  .main-content { margin-left: 60px; }
-  .btn { padding: 14px 20px; font-size: 0.9rem; width: 100%; margin-bottom: 8px; }
-  input, select { padding: 14px; font-size: 1rem; }
-  .form-row { flex-direction: column; }
-  .form-row > * { min-width: 100%; }
-  #genOutput { font-size: 0.7rem; max-height: 200px; }
-  table { font-size: 0.65rem; }
-  th, td { padding: 4px 2px; }
-}
-
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <div class="logo">🔬</div>
-        <h1>Safari Softwares</h1>
-        <h2 style="color:#134b6e;font-size:1.1rem;">Chemistry Simulator - Premium Key Card</h2>
-        
-        <div class="key-box">
-          <div style="margin-bottom:8px;"><strong>KEY:</strong> ${key}</div>
-          <div><strong>PASSWORD:</strong> ${password}</div>
-        </div>
-        
-        <div class="detail-row"><strong>👤 Student:</strong> <span>${student}</span></div>
-        <div class="detail-row"><strong>📅 Expires:</strong> <span>${expires}</span></div>
-        <div class="detail-row"><strong>📱 Devices:</strong> <span>2 devices max</span></div>
-        <div class="detail-row"><strong>💰 Price:</strong> <span>KES 350</span></div>
-        
-        <div class="instructions">
-          <strong>📋 How to Activate:</strong>
-          <ol>
-            <li>Go to: <strong>safarisoftwares-code.github.io/kenyan-chemistry-practical-simulator/upgrade.html</strong></li>
-            <li>Enter the <strong>KEY</strong> and <strong>PASSWORD</strong> above</li>
-            <li>Click <strong>"Activate Premium Now"</strong></li>
-            <li>Open the simulator and enjoy premium features!</li>
-          </ol>
-        </div>
-        
-        <div class="footer">
-          <p>📧 safarisoftwares@gmail.com</p>
-          <p>📱 WhatsApp: +254112168732</p>
-          <p>🌐 safarisoftwares-code.github.io/safari-softwares/</p>
-          <p style="margin-top:8px;"><strong>Keep this card safe!</strong> Each key works on 2 devices only.</p>
-        </div>
-        
-        <button class="no-print" onclick="window.print()" style="margin-top:16px;padding:12px 30px;background:#134b6e;color:white;border:none;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:700;">🖨️ Print Key Card</button>
-      </div>
-    </body>
-    </html>
-  `);
-  printWindow.document.close();
-}
- function renderActivationLogs() {
-  const filter = document.getElementById('activationFilter').value;
-  let logs = [];
-  
-  try {
-    logs = JSON.parse(localStorage.getItem('safari_activation_logs') || '[]');
-  } catch(e) { logs = []; }
-  
-  // Filter
-  if (filter === 'success') logs = logs.filter(l => l.status === 'success');
-  if (filter === 'rejected') logs = logs.filter(l => l.status === 'rejected');
-  
-  // Sort by newest first
-  logs.sort((a, b) => new Date(b.time) - new Date(a.time));
-  
-  let html = '';
-  logs.forEach(l => {
-    const time = new Date(l.time).toLocaleString();
-    const statusBadge = l.status === 'success' 
-      ? '<span class="badge badge-active">✅ Success</span>' 
-      : '<span class="badge badge-expired">❌ Rejected</span>';
     
-    html += '<tr>' +
-      '<td style="font-size:0.75rem;">' + time + '</td>' +
-      '<td><code style="font-size:0.7rem;">' + (l.key || 'N/A') + '</code></td>' +
-      '<td>' + statusBadge + '</td>' +
-      '<td style="font-size:0.78rem;">' + (l.reason || '—') + '</td>' +
-      '<td><code style="font-size:0.65rem;">' + (l.device || '—') + '</code></td>' +
-      '<td style="font-size:0.65rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;" title="' + (l.browser || '') + '">' + (l.browser ? l.browser.substring(0, 40) : '—') + '</td>' +
-      '</tr>';
-  });
-  
-  document.getElementById('activationLogsTable').innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:#888;">No activation attempts match your filter</td></tr>';
-}
-
-function clearActivationLogs() {
-  if (!confirm('Clear all activation logs? This cannot be undone.')) return;
-  localStorage.removeItem('safari_activation_logs');
-  renderActivationLogs();
-  addLog('Activation logs cleared');
-}   
-    init();
+    function clearActivationLogs() {
+      if (!confirm('Clear all activation logs?')) return;
+      localStorage.removeItem('safari_activation_logs');
+      renderActivationLogs();
+      addLog('Activation logs cleared');
+    }
   </script>
 </body>
 </html>
