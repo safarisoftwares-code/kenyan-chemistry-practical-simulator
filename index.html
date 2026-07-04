@@ -416,9 +416,34 @@ function ud(){const cv=cs.value,av=as.value,cD=CATIONS.find(c=>c.value===cv),aD=
 cs.addEventListener('change',ud);as.addEventListener('change',ud);
 document.getElementById('clearSelectionsBtn').addEventListener('click',()=>{cs.value='';as.value='';ud();});
 let freeSelectionCount=0;
-document.getElementById('randomExampleBtn').addEventListener('click',()=>{
-if(!isPremium()){freeSelectionCount++;if(freeSelectionCount>5){showUpgradeLock();return;}}
-const rc=CATIONS[Math.floor(Math.random()*CATIONS.length)],ra=ANIONS[Math.floor(Math.random()*ANIONS.length)];cs.value=rc.value;as.value=ra.value;ud();});
+var usedCombos=[];
+document.getElementById('randomExampleBtn').addEventListener('click',function(){
+  if(!isPremium()){
+    freeSelectionCount++;
+    if(freeSelectionCount>5){
+      // Rotate through previously used combos instead of locking
+      if(usedCombos.length>0){
+        var combo=usedCombos[Math.floor(Math.random()*usedCombos.length)];
+        cs.value=combo.cation;as.value=combo.anion;ud();
+        // Show subtle upgrade reminder
+        var existingMsg=document.getElementById('upgradeReminder');
+        if(!existingMsg){
+          var reminder=document.createElement('div');
+          reminder.id='upgradeReminder';
+          reminder.style.cssText='text-align:center;margin-top:8px;padding:10px;background:#fff3cd;border-radius:8px;font-size:0.8rem;color:#5d4037;border:1px solid #f0c040;';
+          reminder.innerHTML='🔄 You\'ve used your 5 free reactions! These will now repeat. <a href="upgrade.html" style="color:#134b6e;font-weight:700;">⭐ Upgrade for 108+ reactions</a>';
+          document.querySelector('.merged-row').after(reminder);
+        }
+        return;
+      }
+    }
+  }
+  var rc=CATIONS[Math.floor(Math.random()*CATIONS.length)],ra=ANIONS[Math.floor(Math.random()*ANIONS.length)];
+  cs.value=rc.value;as.value=ra.value;ud();
+  // Save combo for rotation later
+  usedCombos.push({cation:rc.value,anion:ra.value});
+  if(usedCombos.length>10)usedCombos.shift();
+});
 const fs=document.getElementById('flameCationSelect'),fd=document.getElementById('flameDisplay'),fl=document.getElementById('flameLabel'),fi=document.getElementById('flameInfo');
 fs.innerHTML='<option value="">-- Select --</option>';
 CATIONS.forEach(c=>{const o=document.createElement('option');o.value=c.value;o.textContent=c.labelWord+(c.flame&&c.flame!=='none'?' → '+c.flame+' flame':'');fs.appendChild(o);});
