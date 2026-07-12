@@ -757,7 +757,7 @@ window.startElectrochemSim = function() {
 
     var anodeEl = document.getElementById('ecLeftElectrode');
     if (anodeEl) {
-      if (ecAnodeHeight <= 120) {
+      if (ecAnodeHeight <= 108) {
         window.stopElectrochemSim();
         var logEl = document.getElementById('ecObservationLog');
         if (logEl) logEl.innerHTML = '⛔ <strong>STOPPED:</strong> Anode worn below electrolyte level. No more electrode contact — current stops flowing. Cell exhausted.';
