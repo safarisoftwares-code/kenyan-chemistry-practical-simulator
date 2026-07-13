@@ -628,6 +628,20 @@ function clearAllECTimers() {
   if (ecSaltTimeout) { clearTimeout(ecSaltTimeout); ecSaltTimeout = null; }
 }
 
+function getElectrodeName(colour, type) {
+  if (colour === '#888') return 'Zinc metal (Zn)';
+  if (colour === '#aaa') return 'Magnesium metal (Mg)';
+  if (colour === '#777') return 'Iron metal (Fe)';
+  if (colour === '#666') return 'Lead metal (Pb)';
+  if (colour === '#b87333') return 'Copper metal (Cu)';
+  if (colour === '#c0c0c0') return 'Silver metal (Ag) / Platinum';
+  return 'Metal electrode';
+}
+
+function electrodeInfoHTML(d) {
+  return '<br><br><br><span style="font-size:0.75rem;color:#00695c;background:#e0f2f1;padding:4px 10px;border-radius:6px;">📝 <strong>NOTE:</strong> 🪨 <strong>Anode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + ' (with deposit)</span>';
+}
+
 window.resetElectrochemSim = function() {
   clearAllECTimers();
   ecSimRunning = false;
@@ -673,8 +687,11 @@ window.resetElectrochemSim = function() {
   if (elLabel) elLabel.style.display = 'none';
   var clearIds = ['ecLeftIons','ecRightIons','ecSaltBridgeIons','ecElectrons','ecLeftBubbles'];
   for (var i = 0; i < clearIds.length; i++) { var el = document.getElementById(clearIds[i]); if (el) el.innerHTML = ''; }
-  var log = document.getElementById('ecObservationLog');
-  if (log) log.innerHTML = '💡 Press <strong>START</strong> to begin. Watch: anode dissolves, cathode deposit grows, ions migrate, electrons flow through external circuit, bulb glows, salt bridge maintains neutrality.';
+      var log = document.getElementById('ecObservationLog');
+  if (log) {
+    log.innerHTML = '💡 Press <strong>START</strong> to begin. Watch: anode dissolves, cathode deposit grows, ions migrate, electrons flow through external circuit, bulb glows, salt bridge maintains neutrality.' +
+      '<br><br><span style="font-size:0.78rem;color:#00695c;background:#e0f2f1;padding:5px 12px;border-radius:6px;display:inline-block;">📝 <strong>NOTE:</strong> 🪨 <strong>Anode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + ' (with deposit)</span>';
+  }
   var startBtn = document.getElementById('ecStartBtn');
   var stopBtn = document.getElementById('ecStopBtn');
   if (startBtn) startBtn.disabled = false;
@@ -725,9 +742,11 @@ window.startElectrochemSim = function() {
   if (timerEl) timerEl.textContent = '⏱ 00:00';
   var vm = document.getElementById('ecVoltmeterDisplay');
   if (vm) vm.textContent = 'E° = ' + d.voltage;
-  var log = document.getElementById('ecObservationLog');
-  if (log) log.innerHTML = '🔴 <strong>LIVE:</strong> Circuit complete! ' + d.anodeEq + '  ⚡  ' + d.cathodeEq;
   
+  var log = document.getElementById('ecObservationLog');
+  if (log) log.innerHTML = '🔴 <strong>LIVE:</strong> Circuit complete! ' + d.anodeEq + '  ⚡  ' + d.cathodeEq + 
+    '<br><span style="font-size:0.75rem;color:#00695c;background:#e0f2f1;padding:4px 10px;border-radius:6px;">🪨 <strong>Anode electrode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' &nbsp;|&nbsp; 🪨 <strong>Cathode electrode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + '</span>';
+
   ecMainInterval = setInterval(function() {
     ecSimTime++;
     var m = Math.floor(ecSimTime / 60);
@@ -760,7 +779,11 @@ window.startElectrochemSim = function() {
       if (ecAnodeHeight <= 108) {
         window.stopElectrochemSim();
         var logEl = document.getElementById('ecObservationLog');
-        if (logEl) logEl.innerHTML = '⛔ <strong>STOPPED:</strong> Anode worn below electrolyte level. No more electrode contact — current stops flowing. Cell exhausted.';
+                if (logEl) {
+          var d2 = getCurrentECData();
+          logEl.innerHTML = '⛔ <strong>STOPPED:</strong> Anode worn below electrolyte level. No more electrode contact — current stops flowing. Cell exhausted.' +
+            '<br><span style="font-size:0.75rem;color:#00695c;background:#e0f2f1;padding:4px 10px;border-radius:6px;">🪨 <strong>Anode:</strong> ' + getElectrodeName(d2.leftElectrode, d2.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d2.rightElectrode, d2.cathodeType) + ' (with deposit)</span>';
+        }
         return;
       }
       var wearRate = d.hasBubbles ? 1.2 : 0.8;
@@ -781,11 +804,11 @@ window.startElectrochemSim = function() {
       if (rEl) rEl.style.background = d.rightFadeColour;
     }
     var logEl = document.getElementById('ecObservationLog');
-    if (ecSimTime === 3 && logEl) logEl.innerHTML = '🟡 <strong>3s:</strong> Electrons flowing from anode (⊖) to cathode (⊕) through external wire. Bulb glowing!';
-    if (ecSimTime === 10 && logEl) logEl.innerHTML = '🟠 <strong>10s:</strong> Metal deposit visible on cathode. K⁺ → cathode, NO₃⁻ → anode through salt bridge.';
-    if (ecSimTime === 20 && logEl) logEl.innerHTML = '🔵 <strong>20s:</strong> Anode visibly thinner. ' + (d.rightElectrolyteFades ? 'Blue colour fading in cathode compartment — Cu²⁺ ions being reduced.' : '') + (d.leftElectrolyteDeepens ? ' Anode compartment deepening as metal ions enter solution.' : '');
-    if (ecSimTime === 35 && logEl) logEl.innerHTML = '🟢 <strong>35s:</strong> Significant deposit at cathode. ' + (d.leftElectrolyteDeepens ? 'Left solution more concentrated with metal ions from anode oxidation.' : '') + ' Salt bridge maintains ionic balance.';
-    if (ecSimTime === 55 && logEl) logEl.innerHTML = '✅ <strong>55s:</strong> Cell operating steadily. Oxidation at anode, reduction at cathode, electron flow through external circuit, ion migration through salt bridge.';
+        if (ecSimTime === 3 && logEl) logEl.innerHTML = '🟡 <strong>3s:</strong> Electrons flowing from anode (⊖) to cathode (⊕) through external wire. Bulb glowing!' + electrodeInfoHTML(d);
+        if (ecSimTime === 10 && logEl) logEl.innerHTML = '🟠 <strong>10s:</strong> Metal deposit visible on cathode. K⁺ → cathode, NO₃⁻ → anode through salt bridge.' + electrodeInfoHTML(d);
+        if (ecSimTime === 20 && logEl) logEl.innerHTML = '🔵 <strong>20s:</strong> Anode visibly thinner. ' + (d.rightElectrolyteFades ? 'Blue colour fading in cathode compartment — Cu²⁺ ions being reduced.' : '') + (d.leftElectrolyteDeepens ? ' Anode compartment deepening as metal ions enter solution.' : '') + electrodeInfoHTML(d);
+        if (ecSimTime === 35 && logEl) logEl.innerHTML = '🟢 <strong>35s:</strong> Significant deposit at cathode. ' + (d.leftElectrolyteDeepens ? 'Left solution more concentrated with metal ions from anode oxidation.' : '') + ' Salt bridge maintains ionic balance.' + electrodeInfoHTML(d);
+        if (ecSimTime === 55 && logEl) logEl.innerHTML = '✅ <strong>55s:</strong> Cell operating steadily. Oxidation at anode, reduction at cathode, electron flow through external circuit, ion migration through salt bridge.' + electrodeInfoHTML(d);
   }, 1000);
   
   function animateIons() {
