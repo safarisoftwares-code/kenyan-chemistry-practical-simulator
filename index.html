@@ -115,6 +115,17 @@
     #titreTable td { text-align: center; padding: 7px 6px; font-size: 0.78rem; }
     .auto-record-badge { background: #27ae60; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.6rem; font-weight: 700; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    /* MOBILE RESPONSIVENESS */
+    @media (max-width: 768px) {
+      #ecMainContainer { transform: scale(0.65); transform-origin: top left; margin-bottom: -120px !important; }
+      #panelEnthalpy > table { display: block !important; }
+      #panelEnthalpy > table > tbody, #panelEnthalpy > table > tr { display: flex !important; flex-direction: column !important; }
+      #panelEnthalpy > table td { display: block !important; width: 100% !important; }
+      .enthalpy-graph { max-width: 100% !important; margin-top: 10px !important; }
+    }
+    @media (max-width: 480px) {
+      #ecMainContainer { transform: scale(0.48); transform-origin: top left; margin-bottom: -200px !important; }
+    }
   </style>
 </head>
 <body>
@@ -339,7 +350,7 @@
           <div style="position:absolute;left:0;top:6px;width:2px;height:18px;background:#778899;z-index:1;"></div>
           <div style="position:absolute;right:0;top:6px;width:2px;height:18px;background:#778899;z-index:1;"></div>
           <div style="position:absolute;left:-12px;top:8px;width:20px;height:14px;background:linear-gradient(180deg,#fdfdf8,#e8e8dd);border-radius:45%;box-shadow:inset 0 0 5px rgba(0,0,0,0.12);z-index:4;border:1px solid #ccc;"></div>
-          <div style="position:absolute;right:-9px;top:8px;width:20px;height:14px;background:linear-gradient(180deg,#fdfdf8,#e8e8dd);border-radius:45%;box-shadow:inset 0 0 5px rgba(0,0,0,0.12);z-index:4;border:1px solid #ccc;"></div>
+          <div style="position:absolute;right:-12px;top:8px;width:20px;height:14px;background:linear-gradient(180deg,#fdfdf8,#e8e8dd);border-radius:45%;box-shadow:inset 0 0 5px rgba(0,0,0,0.12);z-index:4;border:1px solid #ccc;"></div>
           <div style="position:absolute;left:22px;top:10px;width:536px;height:10px;background:rgba(220,225,235,0.4);z-index:0;border-radius:2px;"></div>
         </div>
         <small style="position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:0.5rem;font-weight:700;color:#555;white-space:nowrap;">Salt Bridge — KNO₃(aq)</small>
@@ -349,42 +360,39 @@
       <!-- ==================== EXTERNAL CIRCUIT SVG ==================== -->
       <svg id="ecCircuitSVG" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:30;" viewBox="0 0 950 460" preserveAspectRatio="xMidYMid meet">
         
-        <!-- Wire from LEFT electrode going UP (extended to y=91) -->
+        <!-- Wire from LEFT electrode going UP -->
         <line x1="105" y1="134" x2="105" y2="55" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
         <!-- Horizontal wire left to SWITCH -->
         <line x1="105" y1="55" x2="185" y2="55" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
-                <!-- SWITCH -->
+        <!-- SWITCH -->
         <line id="ecSwitchLine1" x1="185" y1="55" x2="215" y2="55" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         <circle id="ecSwitchPivot" cx="215" cy="55" r="5" fill="#555"/>
-        <!-- Switch lever - OPEN position: angled down-right, NOT touching contact -->
         <line id="ecSwitchLever" x1="215" y1="55" x2="242" y2="68" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-        <!-- Contact point - lever touches this when CLOSED -->
         <circle id="ecSwitchContact" cx="250" cy="55" r="5" fill="#888"/>
-        <!-- Small gap indicator line from contact to wire -->
         <line x1="250" y1="55" x2="255" y2="55" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
         <!-- Wire from switch contact to BATTERY -->
-        <line x1="250" y1="50" x2="268" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+        <line x1="250" y1="50" x2="281" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
-        <!-- BATTERY - below the wire, terminals sticking UP -->
+        <!-- BATTERY -->
         <rect x="271" y="56" width="50" height="30" rx="4" fill="#2c3e50" stroke="#1a252f" stroke-width="2.5"/>
         <rect x="273" y="56" width="46" height="4" rx="2" fill="#3d566e"/>
         <text x="296" y="76" font-size="7" fill="white" font-weight="900" text-anchor="middle">BATTERY</text>
         
-        <!-- NEGATIVE terminal (LEFT) -->
+        <!-- NEGATIVE terminal -->
         <line x1="281" y1="56" x2="281" y2="50" stroke="#555" stroke-width="4" stroke-linecap="round"/>
         <rect x="268" y="41" width="16" height="16" rx="8" fill="#333"/>
         <text x="276" y="53" font-size="11" fill="white" font-weight="900" text-anchor="middle">−</text>
         
-        <!-- POSITIVE terminal (RIGHT) -->
+        <!-- POSITIVE terminal -->
         <line x1="311" y1="56" x2="311" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         <rect x="303" y="41" width="16" height="16" rx="8" fill="#333"/>
         <text x="311" y="53" font-size="11" fill="white" font-weight="900" text-anchor="middle">+</text>
         
         <!-- Wire from battery to BULB -->
-        <line x1="319" y1="50" x2="400" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+        <line x1="311" y1="50" x2="399" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
         <!-- BULB -->
         <circle id="ecBulbSVG" cx="425" cy="50" r="26" fill="#f5f5dc" stroke="#555" stroke-width="3"/>
@@ -402,7 +410,7 @@
         <!-- Wire from voltmeter to RIGHT -->
         <line x1="530" y1="50" x2="845" y2="50" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
-                <!-- Wire down to RIGHT electrode (extended to y=134 to match left) -->
+        <!-- Wire down to RIGHT electrode -->
         <line x1="845" y1="50" x2="845" y2="134" stroke="#555" stroke-width="3" stroke-linecap="round"/>
         
         <!-- Connection dots -->
@@ -458,7 +466,21 @@
 
 <div class="main-panel" id="panelSolubility"><h3>💧 Solubility & Solubility Curves <span class="premium-badge">Premium</span></h3><p style="color:#4a6078;margin-bottom:10px;">Select a salt, heat the solution. All 7 curves plot simultaneously.</p>
 <div style="margin-bottom:10px;"><select id="solubilitySaltSelect" style="padding:8px;border-radius:8px;width:100%;max-width:450px;" onchange="if(!isPremium()&&parseInt(this.value)>0){this.value='0';showUpgradeLock();}"><option value="0">KNO₃ — Potassium nitrate (free)</option><option value="1">KCl — Potassium chloride 🔒</option><option value="2">NaCl — Sodium chloride 🔒</option><option value="3">Ce₂(SO₄)₃ — Cerium(III) sulphate 🔒</option><option value="4">K₂SO₄ — Potassium sulphate 🔒</option><option value="5">NaNO₃ — Sodium nitrate 🔒</option><option value="6">Pb(NO₃)₂ — Lead(II) nitrate 🔒</option></select></div>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed;"><tr><td style="width:20%;vertical-align:top;padding:0 4px;"><div style="display:flex;flex-direction:column;align-items:center;gap:0px;"><div style="text-align:center;"><div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;"><div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div></div><div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div><small style="font-size:0.5rem;">Therm.</small></div><div style="text-align:center;margin-top:2px;"><div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;"><div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div><div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div></div><small style="font-size:0.5rem;">Beaker</small></div><div style="text-align:center;margin-top:2px;margin-left:24px;"><div style="position:relative;width:32px;height:50px;"><div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:30px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div><div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:8px;height:18px;background:#7a8b9a;border-radius:1px;"></div><div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:8px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div></div><small style="font-size:0.5rem;">Bunsen</small><button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button></div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;"><span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTimer">Time: 0s</span><span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTemp">Temp: 20°C</span><span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solSolubility">Sol: 0g</span></div></div></td><td style="width:40%;vertical-align:top;padding:0 4px;"><div style="max-height:400px;overflow-y:auto;overflow-x:hidden;border:1px solid #dce5f2;border-radius:6px;margin-right:10px;"><table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.6rem;table-layout:fixed;"><colgroup><col style="width:22%;"><col style="width:18%;"><col style="width:28%;"><col style="width:32%;"></colgroup><thead><tr style="background:#153e54;color:white;position:sticky;top:0;"><th style="padding:2px 1px;">Time</th><th style="padding:2px 1px;">°C</th><th style="padding:2px 1px;">g/100g</th><th style="padding:2px 1px;">Obs.</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:6px;">Click 🔥 Heat ON</td></tr></tbody></table></div></td><td style="width:40%;vertical-align:top;padding:0 4px;"><div id="solCurveGraph" style="text-align:center;background:#fff;border:1px solid #ccc;min-height:220px;width:100%;"></div><div id="solCurveLegend" style="text-align:center;margin-top:4px;font-size:0.62rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"><span style="color:#e74c3c;font-weight:700;">● KNO₃</span><span style="color:#2980b9;font-weight:700;">● KCl</span><span style="color:#27ae60;font-weight:700;">● NaCl</span><span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span><span style="color:#e67e22;font-weight:700;">● K₂SO₄</span><span style="color:#16a085;font-weight:700;">● NaNO₃</span><span style="color:#c0392b;font-weight:700;">● Pb(NO₃)₂</span></div></td></tr></table>
+<div class="sol-container" style="display:flex;flex-wrap:wrap;gap:10px;">
+<div style="flex:1;min-width:200px;display:flex;flex-direction:column;align-items:center;gap:0px;">
+<div style="text-align:center;"><div style="width:8px;height:50px;background:#fff;border:1px solid #999;border-radius:4px 4px 1px 1px;overflow:hidden;position:relative;margin:0 auto;"><div id="thermoMercury" style="position:absolute;bottom:0;width:100%;background:#e74c3c;height:15%;transition:height 0.5s;"></div></div><div style="width:8px;height:10px;background:#e74c3c;border-radius:50%;margin:-1px auto 0;"></div><small style="font-size:0.5rem;">Therm.</small></div>
+<div style="text-align:center;margin-top:2px;"><div style="width:44px;height:42px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px 3px 8px 8px;position:relative;overflow:hidden;margin:0 auto;"><div id="beakerSolution" style="position:absolute;bottom:0;width:100%;height:50%;background:#b3d9ff;border-radius:0 0 7px 7px;transition:height 0.3s;"></div><div style="position:absolute;top:1px;left:50%;transform:translateX(-50%);width:6px;height:36px;background:transparent;border-left:1.5px solid #e74c3c;z-index:3;"></div></div><small style="font-size:0.5rem;">Beaker</small></div>
+<div style="text-align:center;margin-top:2px;margin-left:24px;"><div style="position:relative;width:32px;height:50px;"><div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:30px;background:#ff9933;border-radius:50% 50% 8px 8px;transition:background 0.3s;" id="bunsenFlame"></div><div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:8px;height:18px;background:#7a8b9a;border-radius:1px;"></div><div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:24px;height:8px;background:#5a6b7a;border-radius:3px 3px 1px 1px;"></div></div><small style="font-size:0.5rem;">Bunsen</small><button class="btn btn-primary" id="toggleHeatBtn" style="font-size:0.6rem;padding:3px 8px;margin-top:3px;display:block;width:100%;">🔥 Heat ON</button></div>
+<div style="display:flex;flex-direction:column;gap:3px;margin-top:6px;"><span style="font-family:monospace;font-weight:700;background:#1a3850;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTimer">Time: 0s</span><span style="font-family:monospace;font-weight:700;background:#134b6e;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solTemp">Temp: 20°C</span><span style="font-family:monospace;font-weight:700;background:#c49a2c;color:#fff;padding:3px 6px;border-radius:4px;font-size:0.65rem;" id="solSolubility">Sol: 0g</span></div>
+</div>
+<div style="flex:1;min-width:250px;">
+<div style="max-height:400px;overflow-y:auto;overflow-x:hidden;border:1px solid #dce5f2;border-radius:6px;margin-bottom:10px;"><table id="solTable" style="width:100%;border-collapse:collapse;font-size:0.6rem;table-layout:fixed;"><colgroup><col style="width:22%;"><col style="width:18%;"><col style="width:28%;"><col style="width:32%;"></colgroup><thead><tr style="background:#153e54;color:white;position:sticky;top:0;"><th style="padding:2px 1px;">Time</th><th style="padding:2px 1px;">°C</th><th style="padding:2px 1px;">g/100g</th><th style="padding:2px 1px;">Obs.</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:6px;">Click 🔥 Heat ON</td></tr></tbody></table></div>
+</div>
+<div style="flex:1;min-width:250px;">
+<div id="solCurveGraph" style="text-align:center;background:#fff;border:1px solid #ccc;min-height:250px;width:100%;"></div>
+<div id="solCurveLegend" style="text-align:center;margin-top:4px;font-size:0.62rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"><span style="color:#e74c3c;font-weight:700;">● KNO₃</span><span style="color:#2980b9;font-weight:700;">● KCl</span><span style="color:#27ae60;font-weight:700;">● NaCl</span><span style="color:#8e44ad;font-weight:700;">● Ce₂(SO₄)₃</span><span style="color:#e67e22;font-weight:700;">● K₂SO₄</span><span style="color:#16a085;font-weight:700;">● NaNO₃</span><span style="color:#c0392b;font-weight:700;">● Pb(NO₃)₂</span></div>
+</div>
+</div>
 <div style="margin-top:14px;background:#fff3cd;padding:14px;border-radius:10px;border:1px solid #f0c040;font-size:0.82rem;"><strong>💡 Key Note:</strong> Solubility of one salt does NOT interfere with another.<br><strong>📊 Calculations:</strong> Solubility = (Mass of solute ÷ Mass of water) × 100 | Mass crystallized = Mass at T₁ − Mass at T₂</div>
 <div style="margin-top:12px;background:#fef9e7;padding:14px;border-radius:12px;border:1px solid #f0c040;"><h4 style="color:#0f2b40;">📝 KCSE Exam-Style Questions</h4><ol style="padding-left:18px;line-height:1.9;"><li><strong>Mass of KNO₃ in 50g water at 60°C?</strong><br><span style="color:#134b6e;">(110×50)÷100 = <strong>55g KNO₃</strong></span></li><li><strong>KCl crystallized cooling 70°C→30°C in 200g water?</strong><br><span style="color:#134b6e;">98g − 74g = <strong>24g KCl</strong></span></li><li><strong>Best salts for fractional crystallization?</strong><br><span style="color:#134b6e;">KNO₃ and KCl — KNO₃ has steep curve.</span></li><li><strong>Ce₂(SO₄)₃ behaviour when heated?</strong><br><span style="color:#134b6e;">Solubility DECREASES — dissolves exothermically.</span></li><li><strong>80g NaNO₃ in 100g water at 30°C — saturated?</strong><br><span style="color:#134b6e;">80g < 96g → <strong>Unsaturated.</strong></span></li><li><strong>Pb(NO₃)₂ crystallized 80°C→20°C in 150g water?</strong><br><span style="color:#134b6e;">210g − 84g = <strong>126g</strong></span></li></ol></div>
 </div>
@@ -487,34 +509,7 @@ function switchPanel(k){var panels=document.querySelectorAll('.main-panel');for(
 var CATIONS=[{value:"sodium",labelWord:"sodium ions",labelIonic:"Na⁺ (aq)",productName:"sodium",colourName:"colourless",swatch:"#ffffff",flame:"golden yellow",flameClass:"golden-yellow"},{value:"potassium",labelWord:"potassium ions",labelIonic:"K⁺ (aq)",productName:"potassium",colourName:"colourless",swatch:"#ffffff",flame:"lilac",flameClass:"lilac"},{value:"lithium",labelWord:"lithium ions",labelIonic:"Li⁺ (aq)",productName:"lithium",colourName:"colourless",swatch:"#ffffff",flame:"crimson red",flameClass:"crimson"},{value:"calcium",labelWord:"calcium ions",labelIonic:"Ca²⁺ (aq)",productName:"calcium",colourName:"colourless",swatch:"#ffffff",flame:"brick red",flameClass:"brick-red"},{value:"copperII",labelWord:"copper(II) ions",labelIonic:"Cu²⁺ (aq)",productName:"copper(II)",colourName:"blue",swatch:"#3a6ea5",flame:"blue-green",flameClass:"blue-green"},{value:"ironII",labelWord:"iron(II) ions",labelIonic:"Fe²⁺ (aq)",productName:"iron(II)",colourName:"pale green",swatch:"#b0c4b0",flame:"none",flameClass:""},{value:"ironIII",labelWord:"iron(III) ions",labelIonic:"Fe³⁺ (aq)",productName:"iron(III)",colourName:"yellow-brown",swatch:"#c49a2c",flame:"none",flameClass:""},{value:"lead",labelWord:"lead(II) ions",labelIonic:"Pb²⁺ (aq)",productName:"lead(II)",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"barium",labelWord:"barium ions",labelIonic:"Ba²⁺ (aq)",productName:"barium",colourName:"colourless",swatch:"#ffffff",flame:"apple green",flameClass:"apple-green"},{value:"magnesium",labelWord:"magnesium ions",labelIonic:"Mg²⁺ (aq)",productName:"magnesium",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"aluminium",labelWord:"aluminium ions",labelIonic:"Al³⁺ (aq)",productName:"aluminium",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""},{value:"zinc",labelWord:"zinc ions",labelIonic:"Zn²⁺ (aq)",productName:"zinc",colourName:"colourless",swatch:"#ffffff",flame:"none",flameClass:""}];
 var ANIONS=[{value:"hydroxide",labelWord:"hydroxide ions",labelIonic:"OH⁻ (aq)",productName:"hydroxide",colourName:"colourless",swatch:"#ffffff"},{value:"sulphate",labelWord:"sulphate ions",labelIonic:"SO₄²⁻ (aq)",productName:"sulphate",colourName:"colourless",swatch:"#ffffff"},{value:"carbonate",labelWord:"carbonate ions",labelIonic:"CO₃²⁻ (aq)",productName:"carbonate",colourName:"colourless",swatch:"#ffffff"},{value:"chloride",labelWord:"chloride ions",labelIonic:"Cl⁻ (aq)",productName:"chloride",colourName:"colourless",swatch:"#ffffff"},{value:"iodide",labelWord:"iodide ions",labelIonic:"I⁻ (aq)",productName:"iodide",colourName:"colourless",swatch:"#ffffff"},{value:"sulphite",labelWord:"sulphite ions",labelIonic:"SO₃²⁻ (aq)",productName:"sulphite",colourName:"colourless",swatch:"#ffffff"},{value:"bromide",labelWord:"bromide ions",labelIonic:"Br⁻ (aq)",productName:"bromide",colourName:"colourless",swatch:"#ffffff"},{value:"nitrate",labelWord:"nitrate ions",labelIonic:"NO₃⁻ (aq)",productName:"nitrate",colourName:"colourless",swatch:"#ffffff"},{value:"hydrogenCarbonate",labelWord:"hydrogen carbonate ions",labelIonic:"HCO₃⁻ (aq)",productName:"hydrogen carbonate",colourName:"colourless",swatch:"#ffffff"}];
 var RD={"sodium:hydroxide":{word:"sodium ions + hydroxide ions → sodium hydroxide (soluble, colourless)",ionic:"Na⁺(aq) + OH⁻(aq) → NaOH(aq)",colour:"colourless",swatch:"#ffffff",productName:"sodium hydroxide"},"sodium:chloride":{word:"sodium ions + chloride ions → sodium chloride (soluble, colourless)",ionic:"Na⁺(aq) + Cl⁻(aq) → NaCl(aq)",colour:"colourless",swatch:"#ffffff",productName:"sodium chloride"},"sodium:carbonate":{word:"sodium ions + carbonate ions → sodium carbonate (soluble, colourless)",ionic:"2Na⁺(aq) + CO₃²⁻(aq) → Na₂CO₃(aq)",colour:"colourless",swatch:"#ffffff",productName:"sodium carbonate"},"potassium:iodide":{word:"potassium ions + iodide ions → potassium iodide (soluble, colourless)",ionic:"K⁺(aq) + I⁻(aq) → KI(aq)",colour:"colourless",swatch:"#ffffff",productName:"potassium iodide"},"potassium:chloride":{word:"potassium ions + chloride ions → potassium chloride (soluble, colourless)",ionic:"K⁺(aq) + Cl⁻(aq) → KCl(aq)",colour:"colourless",swatch:"#ffffff",productName:"potassium chloride"},"calcium:hydroxide":{word:"calcium ions + hydroxide ions → calcium hydroxide (white ppt)",ionic:"Ca²⁺(aq) + 2OH⁻(aq) → Ca(OH)₂(s)↓",colour:"white",swatch:"#f8f9fa",productName:"calcium hydroxide"},"calcium:carbonate":{word:"calcium ions + carbonate ions → calcium carbonate (white ppt)",ionic:"Ca²⁺(aq) + CO₃²⁻(aq) → CaCO₃(s)↓",colour:"white",swatch:"#f8f9fa",productName:"calcium carbonate"},"calcium:sulphate":{word:"calcium ions + sulphate ions → calcium sulphate (white ppt)",ionic:"Ca²⁺(aq) + SO₄²⁻(aq) → CaSO₄(s)↓",colour:"white",swatch:"#f8f9fa",productName:"calcium sulphate"},"copperII:hydroxide":{word:"copper(II) ions + hydroxide ions → copper(II) hydroxide (blue ppt)",ionic:"Cu²⁺(aq) + 2OH⁻(aq) → Cu(OH)₂(s)↓",colour:"blue",swatch:"#5b9bd5",productName:"copper(II) hydroxide"},"copperII:carbonate":{word:"copper(II) ions + carbonate ions → copper(II) carbonate (blue-green ppt)",ionic:"Cu²⁺(aq) + CO₃²⁻(aq) → CuCO₃(s)↓",colour:"blue-green",swatch:"#5fa8a0",productName:"copper(II) carbonate"},"ironII:hydroxide":{word:"iron(II) ions + hydroxide ions → iron(II) hydroxide (dirty green ppt)",ionic:"Fe²⁺(aq) + 2OH⁻(aq) → Fe(OH)₂(s)↓",colour:"dirty green",swatch:"#6b8e5a",productName:"iron(II) hydroxide"},"ironIII:hydroxide":{word:"iron(III) ions + hydroxide ions → iron(III) hydroxide (red-brown ppt)",ionic:"Fe³⁺(aq) + 3OH⁻(aq) → Fe(OH)₃(s)↓",colour:"red-brown",swatch:"#a0522d",productName:"iron(III) hydroxide"},"lead:iodide":{word:"lead(II) ions + iodide ions → lead(II) iodide (bright yellow ppt)",ionic:"Pb²⁺(aq) + 2I⁻(aq) → PbI₂(s)↓",colour:"bright yellow",swatch:"#f4d03f",productName:"lead(II) iodide"},"lead:chloride":{word:"lead(II) ions + chloride ions → lead(II) chloride (white ppt)",ionic:"Pb²⁺(aq) + 2Cl⁻(aq) → PbCl₂(s)↓",colour:"white",swatch:"#f8f9fa",productName:"lead(II) chloride"},"lead:hydroxide":{word:"lead(II) ions + hydroxide ions → lead(II) hydroxide (white ppt)",ionic:"Pb²⁺(aq) + 2OH⁻(aq) → Pb(OH)₂(s)↓",colour:"white",swatch:"#f8f9fa",productName:"lead(II) hydroxide"},"barium:sulphate":{word:"barium ions + sulphate ions → barium sulphate (white ppt)",ionic:"Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s)↓",colour:"white",swatch:"#f7f9fc",productName:"barium sulphate"},"barium:carbonate":{word:"barium ions + carbonate ions → barium carbonate (white ppt)",ionic:"Ba²⁺(aq) + CO₃²⁻(aq) → BaCO₃(s)↓",colour:"white",swatch:"#f8f9fa",productName:"barium carbonate"},"magnesium:hydroxide":{word:"magnesium ions + hydroxide ions → magnesium hydroxide (white ppt)",ionic:"Mg²⁺(aq) + 2OH⁻(aq) → Mg(OH)₂(s)↓",colour:"white",swatch:"#f8f9fa",productName:"magnesium hydroxide"},"aluminium:hydroxide":{word:"aluminium ions + hydroxide ions → aluminium hydroxide (white gelatinous ppt)",ionic:"Al³⁺(aq) + 3OH⁻(aq) → Al(OH)₃(s)↓",colour:"white gel",swatch:"#f8f9fa",productName:"aluminium hydroxide"},"zinc:hydroxide":{word:"zinc ions + hydroxide ions → zinc hydroxide (white ppt)",ionic:"Zn²⁺(aq) + 2OH⁻(aq) → Zn(OH)₂(s)↓",colour:"white",swatch:"#f8f9fa",productName:"zinc hydroxide"}};
-function getR(cK,aK){var k=cK+":"+aK;if(RD[k])return RD[k];var c=CATIONS.find(function(x){return x.value===cK;}),a=ANIONS.find(function(x){return x.value===aK;});if(!c||!a)return{word:'Select both ions','ionic':'Select both ions',colour:"colourless",swatch:"#ffffff",productName:'Select ions'};var pn=(c.productName||c.labelWord)+' '+(a.productName||a.labelWord);
-// Extract clean symbols without (aq) and without superscript charges
-var cClean=c.labelIonic.replace(' (aq)','').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/g,'');
-var aClean=a.labelIonic.replace(' (aq)','').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/g,'');
-// Get valency numbers
-var cVal=1,aVal=1;
-if(c.labelIonic.indexOf('²⁺')>-1)cVal=2;else if(c.labelIonic.indexOf('³⁺')>-1)cVal=3;
-if(a.labelIonic.indexOf('²⁻')>-1)aVal=2;else if(a.labelIonic.indexOf('³⁻')>-1)aVal=3;
-// Balance: use LCM to determine subscripts
-function gcd(x,y){return y===0?x:gcd(y,x%y);}
-var lcm=(cVal*aVal)/gcd(cVal,aVal);
-var cSub=lcm/cVal,aSub=lcm/aVal;
-var cPrefix=(cSub===1?'':cSub),aPrefix=(aSub===1?'':'('+aClean+')'+aSub);
-var balancedProduct=cPrefix+cClean+aPrefix;
-if(aSub===1)balancedProduct=cPrefix+cClean+aClean;
-// Special: handle Na, K, NH4 with sulphate, carbonate etc
-if((c.value==='sodium'||c.value==='potassium'||c.value==='lithium')&&a.value==='sulphate')balancedProduct=cPrefix+cClean+'₂SO₄';
-else if((c.value==='sodium'||c.value==='potassium'||c.value==='lithium')&&a.value==='carbonate')balancedProduct=cPrefix+cClean+'₂CO₃';
-else if(c.value==='ammonium'&&a.value==='sulphate')balancedProduct='(NH₄)₂SO₄';
-else if(c.value==='ammonium'&&a.value==='carbonate')balancedProduct='(NH₄)₂CO₃';
-if(a.value==='nitrate'){balancedProduct=cClean+(cSub===1?'':cSub)+'NO₃';}
-if(a.value==='hydrogenCarbonate'){balancedProduct=cClean+(cSub===1?'':cSub)+'HCO₃';}
-if(a.value==='chloride'){balancedProduct=cClean+(cSub===1?'':'Cl'+cSub);}
-if(a.value==='bromide'){balancedProduct=cClean+(cSub===1?'':'Br'+cSub);}
-if(a.value==='iodide'){balancedProduct=cClean+(cSub===1?'':'I'+cSub);}
-if(a.value==='sulphite'){balancedProduct=cClean+(cSub===1?'':cSub)+'SO₃';}
-var ionicProduct=c.labelIonic+' + '+a.labelIonic+' → '+balancedProduct+'(aq)';
-return{word:c.labelWord+' + '+a.labelWord+' → '+pn+' (solution)',ionic:ionicProduct,colour:"colourless",swatch:"#ffffff",productName:pn};}
+function getR(cK,aK){var k=cK+":"+aK;if(RD[k])return RD[k];var c=CATIONS.find(function(x){return x.value===cK;}),a=ANIONS.find(function(x){return x.value===aK;});if(!c||!a)return{word:'Select both ions','ionic':'Select both ions',colour:"colourless",swatch:"#ffffff",productName:'Select ions'};var pn=(c.productName||c.labelWord)+' '+(a.productName||a.labelWord);var cClean=c.labelIonic.replace(' (aq)','').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/g,'');var aClean=a.labelIonic.replace(' (aq)','').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/g,'');var cVal=1,aVal=1;if(c.labelIonic.indexOf('²⁺')>-1)cVal=2;else if(c.labelIonic.indexOf('³⁺')>-1)cVal=3;if(a.labelIonic.indexOf('²⁻')>-1)aVal=2;else if(a.labelIonic.indexOf('³⁻')>-1)aVal=3;function gcd(x,y){return y===0?x:gcd(y,x%y);}var lcm=(cVal*aVal)/gcd(cVal,aVal);var cSub=lcm/cVal,aSub=lcm/aVal;var cPrefix=(cSub===1?'':cSub),aPrefix=(aSub===1?'':'('+aClean+')'+aSub);var balancedProduct=cPrefix+cClean+aPrefix;if(aSub===1)balancedProduct=cPrefix+cClean+aClean;if((c.value==='sodium'||c.value==='potassium'||c.value==='lithium')&&a.value==='sulphate')balancedProduct=cPrefix+cClean+'₂SO₄';else if((c.value==='sodium'||c.value==='potassium'||c.value==='lithium')&&a.value==='carbonate')balancedProduct=cPrefix+cClean+'₂CO₃';else if(c.value==='ammonium'&&a.value==='sulphate')balancedProduct='(NH₄)₂SO₄';else if(c.value==='ammonium'&&a.value==='carbonate')balancedProduct='(NH₄)₂CO₃';if(a.value==='nitrate'){balancedProduct=cClean+(cSub===1?'':cSub)+'NO₃';}if(a.value==='hydrogenCarbonate'){balancedProduct=cClean+(cSub===1?'':cSub)+'HCO₃';}if(a.value==='chloride'){balancedProduct=cClean+(cSub===1?'':'Cl'+cSub);}if(a.value==='bromide'){balancedProduct=cClean+(cSub===1?'':'Br'+cSub);}if(a.value==='iodide'){balancedProduct=cClean+(cSub===1?'':'I'+cSub);}if(a.value==='sulphite'){balancedProduct=cClean+(cSub===1?'':cSub)+'SO₃';}var ionicProduct=c.labelIonic+' + '+a.labelIonic+' → '+balancedProduct+'(aq)';return{word:c.labelWord+' + '+a.labelWord+' → '+pn+' (solution)',ionic:ionicProduct,colour:"colourless",swatch:"#ffffff",productName:pn};}
 var cs=document.getElementById('cationSelect'),as=document.getElementById('anionSelect'),ed=document.getElementById('equationDisplay'),pcn=document.getElementById('productColourNote'),ct=document.getElementById('colourText'),csw=document.getElementById('colourSwatch'),cct=document.getElementById('cationColourText'),csw2=document.getElementById('cationSwatch'),act=document.getElementById('anionColourText'),asw=document.getElementById('anionSwatch'),wb=document.getElementById('wordEqBtn'),ib=document.getElementById('ionicEqBtn'),mi=document.getElementById('modeIndicator'),cl=document.getElementById('cationLiquid'),al=document.getElementById('anionLiquid'),pl=document.getElementById('productLiquid'),ctl=document.getElementById('cationTubeLabel'),atl=document.getElementById('anionTubeLabel'),ptl=document.getElementById('productTubeLabel');
 var cm='word';
 function ps(){var cv=cs.value,av=as.value;cs.innerHTML='<option value="">-- Select --</option>';as.innerHTML='<option value="">-- Select --</option>';if(cm==='word'){CATIONS.forEach(function(c){var o=document.createElement('option');o.value=c.value;o.textContent=c.labelWord;cs.appendChild(o);});ANIONS.forEach(function(a){var o=document.createElement('option');o.value=a.value;o.textContent=a.labelWord;as.appendChild(o);});mi.textContent='🧪 WORD EQUATION MODE';}else{CATIONS.forEach(function(c){var o=document.createElement('option');o.value=c.value;o.textContent=c.labelIonic;cs.appendChild(o);});ANIONS.forEach(function(a){var o=document.createElement('option');o.value=a.value;o.textContent=a.labelIonic;as.appendChild(o);});mi.textContent='⚡ IONIC EQUATION MODE';}cs.value=cv;as.value=av;ud();}
@@ -666,7 +661,7 @@ function getElectrodeName(colour, type) {
 }
 
 function electrodeInfoHTML(d) {
-  return '<br><br><br><span style="font-size:0.75rem;color:#00695c;background:#e0f2f1;padding:4px 10px;border-radius:6px;">📝 <strong>NOTE:</strong> 🪨 <strong>Anode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + ' (with deposit)</span>';
+  return '<br><br><span style="font-size:0.78rem;color:#00695c;background:#e0f2f1;padding:5px 12px;border-radius:6px;display:inline-block;">📝 <strong>NOTE:</strong> 🪨 <strong>Anode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + ' (with deposit)</span>';
 }
 
 window.resetElectrochemSim = function() {
@@ -680,11 +675,8 @@ window.resetElectrochemSim = function() {
   if (titleBar) titleBar.textContent = d.title;
   var timerEl = document.getElementById('ecTimer');
   if (timerEl) timerEl.textContent = '⏱ 00:00';
-    var vm = document.getElementById('ecVoltmeterDisplay');
-  if (vm) {
-    vm.textContent = 'E° = ' + d.voltage;
-    vm.style.background = '#134b6e';
-  }
+  var vm = document.getElementById('ecVoltmeterDisplay');
+  if (vm) { vm.textContent = 'E° = ' + d.voltage; vm.style.background = '#134b6e'; }
   var leftEl = document.getElementById('ecLeftElectrode');
   if (leftEl) { leftEl.style.background = d.leftElectrode; leftEl.style.height = ecAnodeHeight + 'px'; leftEl.style.display = 'block'; }
   var leftElec = document.getElementById('ecLeftElectrolyte');
@@ -707,14 +699,13 @@ window.resetElectrochemSim = function() {
   if (dotR) dotR.setAttribute('fill', '#888');
   var switchLever = document.getElementById('ecSwitchLever');
   var switchContact = document.getElementById('ecSwitchContact');
-    if (switchLever) { switchLever.setAttribute('x2', '242'); switchLever.setAttribute('y2', '68'); }
-  if (switchContact) switchContact.setAttribute('fill', '#888');
+  if (switchLever) { switchLever.setAttribute('x2', '242'); switchLever.setAttribute('y2', '68'); }
   if (switchContact) switchContact.setAttribute('fill', '#888');
   var elLabel = document.getElementById('ecElectronLabel');
   if (elLabel) elLabel.style.display = 'none';
   var clearIds = ['ecLeftIons','ecRightIons','ecSaltBridgeIons','ecElectrons','ecLeftBubbles'];
   for (var i = 0; i < clearIds.length; i++) { var el = document.getElementById(clearIds[i]); if (el) el.innerHTML = ''; }
-      var log = document.getElementById('ecObservationLog');
+  var log = document.getElementById('ecObservationLog');
   if (log) {
     log.innerHTML = '💡 Press <strong>START</strong> to begin. Watch: anode dissolves, cathode deposit grows, ions migrate, electrons flow through external circuit, bulb glows, salt bridge maintains neutrality.' +
       '<br><br><span style="font-size:0.78rem;color:#00695c;background:#e0f2f1;padding:5px 12px;border-radius:6px;display:inline-block;">📝 <strong>NOTE:</strong> 🪨 <strong>Anode:</strong> ' + getElectrodeName(d.leftElectrode, d.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d.rightElectrode, d.cathodeType) + ' (with deposit)</span>';
@@ -781,24 +772,16 @@ window.startElectrochemSim = function() {
     var tEl = document.getElementById('ecTimer');
     if (tEl) tEl.textContent = '⏱ ' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
 
-    // Update voltmeter with live reading (slight fluctuations)
     var vm = document.getElementById('ecVoltmeterDisplay');
     if (vm && ecSimTime % 2 === 0) {
       var baseVoltage = parseFloat(d.voltage);
-      // Small random fluctuation ±0.03V
       var fluctuation = (Math.random() - 0.5) * 0.06;
-      // Gradually decrease voltage as anode wears (voltage drops as cell depletes)
-      var wearFactor = 1 - (ecAnodeHeight / 180) * 0.15; // Up to 15% drop
+      var wearFactor = 1 - (ecAnodeHeight / 180) * 0.15;
       var displayVoltage = (baseVoltage + fluctuation) * wearFactor;
       vm.textContent = 'E = +' + displayVoltage.toFixed(2) + 'V';
-      // Change color based on voltage level
-      if (wearFactor < 0.9) {
-        vm.style.background = '#e74c3c'; // Red when voltage dropping
-      } else if (wearFactor < 0.95) {
-        vm.style.background = '#e67e22'; // Orange when slight drop
-      } else {
-        vm.style.background = '#134b6e'; // Normal blue
-      }
+      if (wearFactor < 0.9) { vm.style.background = '#e74c3c'; }
+      else if (wearFactor < 0.95) { vm.style.background = '#e67e22'; }
+      else { vm.style.background = '#134b6e'; }
     }
 
     var anodeEl = document.getElementById('ecLeftElectrode');
@@ -806,7 +789,7 @@ window.startElectrochemSim = function() {
       if (ecAnodeHeight <= 108) {
         window.stopElectrochemSim();
         var logEl = document.getElementById('ecObservationLog');
-                if (logEl) {
+        if (logEl) {
           var d2 = getCurrentECData();
           logEl.innerHTML = '⛔ <strong>STOPPED:</strong> Anode worn below electrolyte level. No more electrode contact — current stops flowing. Cell exhausted.' +
             '<br><span style="font-size:0.75rem;color:#00695c;background:#e0f2f1;padding:4px 10px;border-radius:6px;">🪨 <strong>Anode:</strong> ' + getElectrodeName(d2.leftElectrode, d2.anodeType) + ' (oxidized) &nbsp;|&nbsp; 🪨 <strong>Cathode:</strong> ' + getElectrodeName(d2.rightElectrode, d2.cathodeType) + ' (with deposit)</span>';
@@ -831,11 +814,11 @@ window.startElectrochemSim = function() {
       if (rEl) rEl.style.background = d.rightFadeColour;
     }
     var logEl = document.getElementById('ecObservationLog');
-        if (ecSimTime === 3 && logEl) logEl.innerHTML = '🟡 <strong>3s:</strong> Electrons flowing from anode (⊖) to cathode (⊕) through external wire. Bulb glowing!' + electrodeInfoHTML(d);
-        if (ecSimTime === 10 && logEl) logEl.innerHTML = '🟠 <strong>10s:</strong> Metal deposit visible on cathode. K⁺ → cathode, NO₃⁻ → anode through salt bridge.' + electrodeInfoHTML(d);
-        if (ecSimTime === 20 && logEl) logEl.innerHTML = '🔵 <strong>20s:</strong> Anode visibly thinner. ' + (d.rightElectrolyteFades ? 'Blue colour fading in cathode compartment — Cu²⁺ ions being reduced.' : '') + (d.leftElectrolyteDeepens ? ' Anode compartment deepening as metal ions enter solution.' : '') + electrodeInfoHTML(d);
-        if (ecSimTime === 35 && logEl) logEl.innerHTML = '🟢 <strong>35s:</strong> Significant deposit at cathode. ' + (d.leftElectrolyteDeepens ? 'Left solution more concentrated with metal ions from anode oxidation.' : '') + ' Salt bridge maintains ionic balance.' + electrodeInfoHTML(d);
-        if (ecSimTime === 55 && logEl) logEl.innerHTML = '✅ <strong>55s:</strong> Cell operating steadily. Oxidation at anode, reduction at cathode, electron flow through external circuit, ion migration through salt bridge.' + electrodeInfoHTML(d);
+    if (ecSimTime === 3 && logEl) logEl.innerHTML = '🟡 <strong>3s:</strong> Electrons flowing from anode (⊖) to cathode (⊕) through external wire. Bulb glowing!' + electrodeInfoHTML(d);
+    if (ecSimTime === 10 && logEl) logEl.innerHTML = '🟠 <strong>10s:</strong> Metal deposit visible on cathode. K⁺ → cathode, NO₃⁻ → anode through salt bridge.' + electrodeInfoHTML(d);
+    if (ecSimTime === 20 && logEl) logEl.innerHTML = '🔵 <strong>20s:</strong> Anode visibly thinner. ' + (d.rightElectrolyteFades ? 'Blue colour fading in cathode compartment — Cu²⁺ ions being reduced.' : '') + (d.leftElectrolyteDeepens ? ' Anode compartment deepening as metal ions enter solution.' : '') + electrodeInfoHTML(d);
+    if (ecSimTime === 35 && logEl) logEl.innerHTML = '🟢 <strong>35s:</strong> Significant deposit at cathode. ' + (d.leftElectrolyteDeepens ? 'Left solution more concentrated with metal ions from anode oxidation.' : '') + ' Salt bridge maintains ionic balance.' + electrodeInfoHTML(d);
+    if (ecSimTime === 55 && logEl) logEl.innerHTML = '✅ <strong>55s:</strong> Cell operating steadily. Oxidation at anode, reduction at cathode, electron flow through external circuit, ion migration through salt bridge.' + electrodeInfoHTML(d);
   }, 1000);
   
   function animateIons() {
@@ -905,7 +888,7 @@ window.stopElectrochemSim = function() {
   if (dotR) dotR.setAttribute('fill', '#888');
   var switchLever = document.getElementById('ecSwitchLever');
   var switchContact = document.getElementById('ecSwitchContact');
-  if (switchLever) { switchLever.setAttribute('x2', '245'); switchLever.setAttribute('y2', '50'); }
+  if (switchLever) { switchLever.setAttribute('x2', '242'); switchLever.setAttribute('y2', '68'); }
   if (switchContact) switchContact.setAttribute('fill', '#888');
   var elLabel = document.getElementById('ecElectronLabel');
   if (elLabel) elLabel.style.display = 'none';
@@ -915,12 +898,9 @@ window.stopElectrochemSim = function() {
   if (bubbles) bubbles.innerHTML = '';
   var log = document.getElementById('ecObservationLog');
   var timerEl = document.getElementById('ecTimer');
-  if (log && timerEl) log.innerHTML = '⏸ <strong>PAUSED at ' + timerEl.textContent + '.</strong> Press START to resume or RESET to restart.'; // Reset voltmeter on stop
+  if (log && timerEl) log.innerHTML = '⏸ <strong>PAUSED at ' + timerEl.textContent + '.</strong> Press START to resume or RESET to restart.';
   var vm = document.getElementById('ecVoltmeterDisplay');
-  if (vm) {
-    vm.textContent = 'E° = ' + getCurrentECData().voltage;
-    vm.style.background = '#134b6e';
-  }
+  if (vm) { vm.textContent = 'E° = ' + getCurrentECData().voltage; vm.style.background = '#134b6e'; }
 };
 
 (function wireButtons() {
@@ -943,7 +923,7 @@ var solData=[{name:"KNO₃",temps:[20,30,40,50,60,70,80],sols:[32,46,64,86,110,1
 var solTimer=null,solStep=0,isHeating=false,currentSalt=0,allSolSteps=[0,0,0,0,0,0,0];var solSalt=document.getElementById('solubilitySaltSelect'),solTimeDisp=document.getElementById('solTimer'),solTempDisp=document.getElementById('solTemp'),solSolDisp=document.getElementById('solSolubility'),solTable=document.getElementById('solTable'),solGraph=document.getElementById('solCurveGraph'),thermoM=document.getElementById('thermoMercury'),beakerS=document.getElementById('beakerSolution'),bunsenF=document.getElementById('bunsenFlame'),heatBtn=document.getElementById('toggleHeatBtn');solSalt.addEventListener('change',function(){currentSalt=parseInt(solSalt.value);resetSolubility();});
 function resetSolubility(){if(solTimer)clearInterval(solTimer);solStep=0;isHeating=false;solTimeDisp.textContent='Time: 0s';solTempDisp.textContent='Temp: 20°C';solSolDisp.textContent='Sol: 0g';thermoM.style.height='15%';beakerS.style.background='#b3d9ff';bunsenF.style.background='#ff9933';heatBtn.textContent='🔥 Heat ON';solTable.querySelector('tbody').innerHTML='<tr><td colspan="4">Click 🔥 Heat ON to start</td></tr>';drawAllCurves();}
 heatBtn.addEventListener('click',function(){if(isHeating){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}else{resetSolubility();isHeating=true;heatBtn.textContent='🛑 Stop';bunsenF.style.background='#1a6eff';var d=solData[currentSalt];var h='';solTimer=setInterval(function(){solStep++;allSolSteps[currentSalt]=Math.min(solStep,d.temps.length);var idx=Math.min(solStep-1,d.temps.length-1);var temp=d.temps[idx];var sol=d.sols[idx];solTimeDisp.textContent='Time: '+(solStep*20)+'s';solTempDisp.textContent='Temp: '+temp+'°C';solTempDisp.style.fontWeight='700';solSolDisp.textContent='Sol: '+sol+'g';thermoM.style.height=(15+(temp-20)*2)+'%';if(temp>50)beakerS.style.background='#ffcccc';h+='<tr><td>'+(solStep*20)+'s</td><td style="color:#e74c3c;font-weight:700;">'+temp+'°C</td><td>'+sol+'g</td><td>'+(solStep===1?'Starting':solStep>=d.temps.length?'Saturated':'Dissolving...')+'</td></tr>';solTable.querySelector('tbody').innerHTML=h;drawAllCurves();if(solStep>=d.temps.length){clearInterval(solTimer);isHeating=false;heatBtn.textContent='🔥 Heat ON';bunsenF.style.background='#ff9933';}},1000);}});
-function drawAllCurves(){var w=400,h=200,pad=45;var svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#333" stroke-width="1.5"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#333" stroke-width="1.5"/>';for(var tx=0;tx<=90;tx+=10){var xpos=pad+((tx/90)*(w-2*pad));svg+='<text x="'+xpos.toFixed(0)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9" fill="#333" font-weight="bold">'+tx+'°C</text>';}svg+='<text x="'+(w/2)+'" y="'+(h-12)+'" text-anchor="middle" font-size="9" fill="#333">Temperature (°C)</text>';svg+='<text x="10" y="'+(h/2)+'" text-anchor="middle" font-size="9" transform="rotate(-90,10,'+(h/2)+')">Solubility (g/100g)</text>';var allSols=solData.flatMap(function(d){return d.sols;});var maxSol=Math.max.apply(null,allSols)+10;for(var sy=0;sy<=maxSol;sy+=20){var ypos=h-pad-((sy/maxSol)*(h-2*pad));svg+='<text x="'+(pad-5)+'" y="'+(ypos.toFixed(0)+3)+'" text-anchor="end" font-size="7" fill="#999">'+sy+'</text>';}solData.forEach(function(d,si){var ptsShown=allSolSteps[si];if(ptsShown>0){var plotPoints=[];for(var i=0;i<ptsShown;i++){var x=pad+((d.temps[i]/90)*(w-2*pad));var y=h-pad-((d.sols[i])/maxSol)*(h-2*pad);plotPoints.push({x:x,y:y});svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="4" fill="'+d.colour+'"></circle>';}if(plotPoints.length>=2){var ptsStr='';for(var j=0;j<plotPoints.length;j++){ptsStr+=(j===0?'M':'L')+' '+plotPoints[j].x.toFixed(0)+' '+plotPoints[j].y.toFixed(0)+' ';}svg+='<path d="'+ptsStr+'" fill="none" stroke="'+d.colour+'" stroke-width="2.5"/>';}}});svg+='</svg>';solGraph.innerHTML=svg;}
+function drawAllCurves(){var w=400,h=200,pad=45;var svg='<svg width="'+w+'" height="'+h+'" style="background:#fff;border:1px solid #ddd;">';svg+='<line x1="'+pad+'" y1="'+(h-pad)+'" x2="'+(w-pad)+'" y2="'+(h-pad)+'" stroke="#333" stroke-width="1.5"/>';svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(h-pad)+'" stroke="#333" stroke-width="1.5"/>';for(var tx=0;tx<=90;tx+=10){var xpos=pad+((tx/90)*(w-2*pad));svg+='<text x="'+xpos.toFixed(0)+'" y="'+(h-4)+'" text-anchor="middle" font-size="9" fill="#333" font-weight="bold">'+tx+'°C</text>';}svg+='<text x="'+(w/2)+'" y="'+(h-12)+'" text-anchor="middle" font-size="9" fill="#333">Temperature (°C)</text>';svg+='<text x="10" y="'+(h/2)+'" text-anchor="middle" font-size="9" transform="rotate(-90,10,'+(h/2)+')">Solubility (g/100g)</text>';var allSols=solData.flatMap(function(d){return d.sols;});var maxSol=Math.max.apply(null,allSols)+10;for(var sy=0;sy<=maxSol;sy+=20){var ypos=h-pad-((sy/maxSol)*(h-2*pad));svg+='<text x="'+(pad-5)+'" y="'+(ypos.toFixed(0)+3)+'" text-anchor="end" font-size="7" fill="#999">'+sy+'</text>';}solData.forEach(function(d,si){var ptsShown=allSolSteps[si];if(ptsShown>0){var plotPoints=[];for(var i=0;i<ptsShown;i++){var x=pad+((d.temps[i]/90)*(w-2*pad));var y=h-pad-((d.sols[i])/maxSol)*(h-2*pad);plotPoints.push({x:x,y:y});svg+='<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="4" fill="'+d.colour+'"></circle>';}if(plotPoints.length>=2){var ptsStr='';for(var j=0;j<plotPoints.length;j++){ptsStr+=(j===0?'M':'L')+' '+plotPoints[j].x.toFixed(0)+' '+plotPoints[j].y.toFixed(0)+' ';}svg+='<path d="'+ptsStr+'" fill="none" stroke="'+d.colour+'" stroke-width="2.5"/>';var p0=plotPoints[0],p1=plotPoints[1];if(p1.x-p0.x>0){var slope=(p1.y-p0.y)/(p1.x-p0.x);var extrapY=p0.y-slope*(p0.x-pad);if(extrapY>h-pad)extrapY=h-pad;if(extrapY<pad)extrapY=pad;svg+='<line x1="'+p0.x.toFixed(0)+'" y1="'+p0.y.toFixed(0)+'" x2="'+pad+'" y2="'+extrapY.toFixed(0)+'" stroke="'+d.colour+'" stroke-width="1.3" stroke-dasharray="6,4" opacity="0.4"/>';}var pLast=plotPoints[plotPoints.length-1],pSecondLast=plotPoints[plotPoints.length-2];if(pLast.x-pSecondLast.x>0){var slope2=(pLast.y-pSecondLast.y)/(pLast.x-pSecondLast.x);var extrapY2=pLast.y+slope2*((w-pad)-pLast.x);if(extrapY2>h-pad)extrapY2=h-pad;if(extrapY2<pad)extrapY2=pad;svg+='<line x1="'+pLast.x.toFixed(0)+'" y1="'+pLast.y.toFixed(0)+'" x2="'+(w-pad)+'" y2="'+extrapY2.toFixed(0)+'" stroke="'+d.colour+'" stroke-width="1.3" stroke-dasharray="6,4" opacity="0.4"/>';}}}});svg+='</svg>';solGraph.innerHTML=svg;}
 
 // ============ EXAM ============
 var AQ=[{q:"Colour of CuSO₄ solution?",opts:["Blue","Green","Yellow","Colourless"],ans:0,marks:1,topic:"Ion Colours"},{q:"Which cation gives a lilac flame?",opts:["Na⁺","K⁺","Ca²⁺","Cu²⁺"],ans:1,marks:1,topic:"Flame Tests"},{q:"Colour of Fe(OH)₂ precipitate?",opts:["Red-brown","Dirty green","White","Blue"],ans:1,marks:1,topic:"Precipitates"},{q:"Which anion forms a bright yellow ppt with Pb²⁺?",opts:["Cl⁻","SO₄²⁻","I⁻","CO₃²⁻"],ans:2,marks:1,topic:"Precipitates"},{q:"Gas that relights a glowing splint?",opts:["H₂","O₂","CO₂","Cl₂"],ans:1,marks:1,topic:"Gas Tests"}];
@@ -966,10 +946,32 @@ function addDropComplex(){if(!isPremium()){showUpgradeLock();return;}var catKey=
 function addExcessComplex(){if(!isPremium()){showUpgradeLock();return;}complexExcess=true;addDropComplex();}
 window.addDropComplex=addDropComplex;window.addExcessComplex=addExcessComplex;window.resetComplexSim=resetComplexSim;
 
-// ============ REDOX ============
-var redoxData=[{reactant:"#8e44ad",product:"#cccccc",eq:"MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O",obs:"Purple KMnO₄ decolorizes as Mn²⁺ forms."},{reactant:"#e67e22",product:"#27ae60",eq:"Cr₂O₇²⁻ + 3SO₂ + 2H⁺ → 2Cr³⁺ + 3SO₄²⁻ + H₂O",obs:"Orange dichromate turns green as Cr³⁺ forms."}];
-function updateRedox(){var i=parseInt(document.getElementById('redoxSelect').value);document.getElementById('redoxReactant').style.background=redoxData[i].reactant;document.getElementById('redoxProduct').style.background=redoxData[i].product;document.getElementById('redoxEquation').textContent='⚡ '+redoxData[i].eq;document.getElementById('redoxObservation').textContent='👁️ '+redoxData[i].obs;}
-document.getElementById('redoxSelect').addEventListener('change',updateRedox);updateRedox();
+// ============ REDOX (FIXED - All 6 reactions) ============
+var redoxData=[
+  {reactant:"#8e44ad",product:"#cccccc",eq:"MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O",obs:"Purple KMnO₄ decolorizes as Mn²⁺ forms."},
+  {reactant:"#e67e22",product:"#27ae60",eq:"Cr₂O₇²⁻ + 3SO₂ + 2H⁺ → 2Cr³⁺ + 3SO₄²⁻ + H₂O",obs:"Orange dichromate turns green as Cr³⁺ forms."},
+  {reactant:"#888",product:"#b87333",eq:"Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)",obs:"Zinc dissolves, reddish-brown copper deposits."},
+  {reactant:"#c49a2c",product:"#cccccc",eq:"I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻",obs:"Brown iodine solution decolorizes."},
+  {reactant:"#8e44ad",product:"#cccccc",eq:"2MnO₄⁻ + 5H₂O₂ + 6H⁺ → 2Mn²⁺ + 5O₂ + 8H₂O",obs:"Purple KMnO₄ decolorizes, O₂ bubbles form."},
+  {reactant:"#c49a2c",product:"#aab",eq:"2Fe³⁺ + SO₂ + 2H₂O → 2Fe²⁺ + SO₄²⁻ + 4H⁺",obs:"Yellow-brown Fe³⁺ turns pale green Fe²⁺."}
+];
+function updateRedox(){
+  var sel=document.getElementById('redoxSelect');
+  if(!sel)return;
+  var i=parseInt(sel.value);
+  if(isNaN(i)||i<0)i=0;
+  if(i>=redoxData.length)i=0;
+  var re=document.getElementById('redoxReactant');
+  var rp=document.getElementById('redoxProduct');
+  var req=document.getElementById('redoxEquation');
+  var rob=document.getElementById('redoxObservation');
+  if(re)re.style.background=redoxData[i].reactant;
+  if(rp)rp.style.background=redoxData[i].product;
+  if(req)req.textContent='⚡ '+redoxData[i].eq;
+  if(rob)rob.textContent='👁️ '+redoxData[i].obs;
+}
+document.getElementById('redoxSelect').addEventListener('change',updateRedox);
+updateRedox();
 if(!isPremium()){document.getElementById('redoxBanner').style.display='none';}
 
 // ============ EQUATION GENERATOR ============
